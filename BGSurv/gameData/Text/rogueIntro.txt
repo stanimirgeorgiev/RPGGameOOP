@@ -1,0 +1,11 @@
+Bala bla vla.
+Bala asd vla.
+Bala fdsf vla.
+Bala bldfgfa vla.
+Bala dfgg vla.
+!NEWP
+10
+5
+rogueIntro.png
+Kokomicina
+!REMV
