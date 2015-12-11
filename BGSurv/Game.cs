@@ -34,20 +34,23 @@ namespace BGSurv
         public Game(Form form)
         {
             gameForm = form;
-            //gameForm.Width = 400;
-            //gameForm.Height = 400;
+            //TODO Constant
             gameForm.BackColor = Color.White;
 
             worldMap = new WorldMap(gameForm);
             worldMapMonsters = new List<WorldMapMonster>();
+            
+            //TODO player start start from home
 
             playerStartX = PlayerConfig.PlayerStartX;
             playerStartY = PlayerConfig.PlayerStartY;
 
             //
             friendlyNPCs = new List<WorldMapSprite>();
-            //TODO implementing random NPCs
+
+            //TODO implementing random NPCs and other humans
             friendlyNPCs.Add(new WorldMapSprite(new Point(40, 120), new Bitmap("Rogue.png"), 1));
+            
             friendlyNPCs[0].textFilename = "rogueIntro";
 
             LoadNewMap(0, 0);
