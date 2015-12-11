@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace BGSurv
 {
-    public partial class Form1 : Form
+    public partial class Playground : Form
     {
         public Game game;
 
-        public  Form1()
+        public  Playground()
         {
             InitializeComponent();
             this.game = new Game(this);
@@ -26,5 +26,6 @@ namespace BGSurv
             this.game.HandleKeyPress(e);
 
         }
+
     }
 }

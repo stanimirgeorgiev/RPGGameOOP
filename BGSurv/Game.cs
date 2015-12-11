@@ -9,6 +9,7 @@ using System.IO;
 
 namespace BGSurv
 {
+    using Config;
     public  class Game
     {
         Form gameForm;
@@ -40,11 +41,12 @@ namespace BGSurv
             worldMap = new WorldMap(gameForm);
             worldMapMonsters = new List<WorldMapMonster>();
 
-            playerStartX = 0;
-            playerStartY = 0;
+            playerStartX = PlayerConfig.PlayerStartX;
+            playerStartY = PlayerConfig.PlayerStartY;
 
             //
             friendlyNPCs = new List<WorldMapSprite>();
+            //TODO implementing random NPCs
             friendlyNPCs.Add(new WorldMapSprite(new Point(40, 120), new Bitmap("Rogue.png"), 1));
             friendlyNPCs[0].textFilename = "rogueIntro";
 
