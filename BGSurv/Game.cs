@@ -31,8 +31,13 @@ namespace BGSurv
         int playerStartX;
         int playerStartY;
 
+        public PlayerParty Player { get; set; }
+
         public Game(Form form)
         {
+
+            this.Player = this.playerParty;
+
             gameForm = form;
             //TODO Constant
             gameForm.BackColor = Color.White;
@@ -58,14 +63,14 @@ namespace BGSurv
             //
             textBoxReader = new TextBoxReader();
 
-            combatGUI = new CombatGUI();
-            combatGUI.Visible = true;
+            //combatGUI = new CombatGUI();
+            //combatGUI.Visible = true;
 
             inCombat = false;
 
             //Add combat party members for this class
-            playerParty = new PlayerParty(new Point(80, 0), new Bitmap("PlayerPartySprite.png"), 1,
-                new CombatPartyMember(50, 5, new Bitmap("PlayerKnightCombatSprite.png"), "Link"));
+            playerParty = new PlayerParty(new Point(80, 0), new Bitmap("DeveloperRightAnim.gif"), 1,
+                new CombatPartyMember(50, 5, new Bitmap("DeveloperRightAnim.gif"), "Link"));
 
             worldMapSpritePb = new PictureBox();
             worldMapSpritePb.Width = gameForm.Width;

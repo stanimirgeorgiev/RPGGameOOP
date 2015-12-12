@@ -12,20 +12,22 @@ namespace BGSurv
 {
     public partial class Playground : Form
     {
-        public Game game;
-
+        private Game game;
+       
+        
         public  Playground()
         {
             InitializeComponent();
             this.game = new Game(this);
+            //this.game.Player = 
+            
+            
         }
+        public Game Game { get; set; }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-
             this.game.HandleKeyPress(e);
-
         }
-
     }
 }
