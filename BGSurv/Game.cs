@@ -33,7 +33,7 @@ namespace BGSurv
 
         public PlayerParty Player { get; set; }
 
-        public Game(Form form)
+        public Game(Form form, string name, int age)
         {
 
             this.Player = this.playerParty;
@@ -69,8 +69,8 @@ namespace BGSurv
             inCombat = false;
 
             //Add combat party members for this class
-            playerParty = new PlayerParty(new Point(80, 0), new Bitmap("DeveloperRightAnim.gif"), 1,
-                new CombatPartyMember(50, 5, new Bitmap("DeveloperRightAnim.gif"), "Link"));
+            playerParty = new PlayerParty(new Point(80, 0), new Bitmap("PlayerPartySprite.png"), 1,
+                new CombatPartyMember(50, 5, new Bitmap("PlayerPartySprite.png"), "Link"),name, age);
 
             worldMapSpritePb = new PictureBox();
             worldMapSpritePb.Width = gameForm.Width;
@@ -421,14 +421,19 @@ namespace BGSurv
         public WorldMapSprite partySprite;
         public CombatPartyMember member1;
         public CombatPartyMember member2;
+
+        private string name;
+        private int age;
         //member2, 3...
 
         public PlayerParty(Point location, Image image, int ID,
-            CombatPartyMember member1)
+            CombatPartyMember member1, string name, int age)
         {
             //load in character images from save file eventually
             partySprite = new WorldMapSprite(location, image, ID);
             this.member1 = member1;
+            this.age = age;
+            this.name = name;
         }
     }
 

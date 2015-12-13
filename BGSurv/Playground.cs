@@ -15,10 +15,10 @@ namespace BGSurv
         private Game game;
        
         
-        public  Playground()
+        public  Playground(string name, int age)
         {
             InitializeComponent();
-            this.game = new Game(this);
+            this.game = new Game(this, name, age);
             //this.game.Player = 
             
             

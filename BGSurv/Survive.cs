@@ -23,7 +23,7 @@ namespace BGSurv
         private void button1_Click(object sender, EventArgs e)
         {
             this.Visible = false;
-            this.playground = new Playground();
+            this.playground = new Playground(this.textBox1.Text, int.Parse(this.comboBox1.Text));
             this.playground.ShowDialog();
             this.Close();
         }
