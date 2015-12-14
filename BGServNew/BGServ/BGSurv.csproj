@@ -59,11 +59,93 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="Building.cs" />
+    <Compile Include="Buildings\Airport.cs" />
+    <Compile Include="Buildings\Bank.cs" />
+    <Compile Include="Buildings\Building.cs" />
+    <Compile Include="Buildings\BusStation.cs" />
+    <Compile Include="Buildings\DummyBuilding.cs" />
+    <Compile Include="Buildings\Home.cs" />
+    <Compile Include="Buildings\Hospital.cs" />
+    <Compile Include="Buildings\ParkTile.cs" />
+    <Compile Include="Buildings\PoliceStation.cs" />
+    <Compile Include="Buildings\Port.cs" />
+    <Compile Include="Buildings\Restaurant.cs" />
+    <Compile Include="Buildings\AlleyTile.cs" />
+    <Compile Include="Buildings\StreetTile.cs" />
+    <Compile Include="Buildings\Supermarket.cs" />
+    <Compile Include="Buildings\TrainStation.cs" />
+    <Compile Include="Buildings\WaterTile.cs" />
     <Compile Include="Config\GameConfig.cs" />
-    <Compile Include="Disigner.cs" />
-    <Compile Include="Draw.cs" />
+    <Compile Include="Designer.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Exceptions\HumanException.cs" />
+    <Compile Include="Exceptions\InsufficientHealthException.cs" />
+    <Compile Include="Exceptions\InsufficientMoneyException.cs" />
+    <Compile Include="Humans\Criminals\Criminal.cs" />
+    <Compile Include="Humans\Criminals\MassMurderer.cs" />
+    <Compile Include="Humans\Criminals\Rapist.cs" />
+    <Compile Include="Humans\Criminals\Thief.cs" />
+    <Compile Include="Humans\DummyHuman.cs" />
+    <Compile Include="Humans\Human.cs" />
+    <Compile Include="Humans\Workers\Developer.cs" />
+    <Compile Include="Humans\Workers\Doctor.cs" />
+    <Compile Include="Humans\Workers\Mayor.cs" />
+    <Compile Include="Humans\Workers\Policeman.cs" />
+    <Compile Include="Humans\Workers\Worker.cs" />
+    <Compile Include="Interfaces\IAttack.cs" />
+    <Compile Include="Interfaces\ICorruptable.cs" />
+    <Compile Include="Interfaces\IDeposit.cs" />
+    <Compile Include="Interfaces\IDrinkable.cs" />
+    <Compile Include="Interfaces\IEatable.cs" />
+    <Compile Include="Interfaces\IHealable.cs" />
+    <Compile Include="Interfaces\IMovable.cs" />
+    <Compile Include="Interfaces\IShootable.cs" />
+    <Compile Include="Interfaces\IStealable.cs" />
+    <Compile Include="Interfaces\IWithDraw.cs" />
+    <Compile Include="Interfaces\iWorkable.cs" />
+    <Compile Include="Items\Accounts\Account.cs" />
+    <Compile Include="Items\Accounts\DepositAccount.cs" />
+    <Compile Include="Items\Accounts\LoanAccount.cs" />
+    <Compile Include="Items\Belongings\Jewelry.cs" />
+    <Compile Include="Items\Belongings\Laptop.cs" />
+    <Compile Include="Items\Belongings\SmartPhone.cs" />
+    <Compile Include="Items\Wallet.cs" />
+    <Compile Include="Items\Drinks\AlcoholicDrinks\AlcoholDrink.cs" />
+    <Compile Include="Items\Drinks\AlcoholicDrinks\Rakia.cs" />
+    <Compile Include="Items\Drinks\AlcoholicDrinks\Vodka.cs" />
+    <Compile Include="Items\Drinks\AlcoholicDrinks\Whiskey.cs" />
+    <Compile Include="Items\Drinks\Beverages\Airian.cs" />
+    <Compile Include="Items\Drinks\Beverages\Beverage.cs" />
+    <Compile Include="Items\Drinks\Beverages\Boza.cs" />
+    <Compile Include="Items\Drinks\Beverages\CocaCola.cs" />
+    <Compile Include="Items\Drinks\Beverages\RedBull.cs" />
+    <Compile Include="Items\Drinks\Drink.cs" />
+    <Compile Include="Items\Drugs\Antibiotic.cs" />
+    <Compile Include="Items\Drugs\Aspirin.cs" />
+    <Compile Include="Items\Drugs\Drug.cs" />
+    <Compile Include="Items\Drugs\VitaminC.cs" />
+    <Compile Include="Items\Foods\Dairies\Cheese.cs" />
+    <Compile Include="Items\Foods\Dairies\Dairy.cs" />
+    <Compile Include="Items\Foods\Dairies\Milk.cs" />
+    <Compile Include="Items\Foods\Dairies\Yogurt.cs" />
+    <Compile Include="Items\Foods\Food.cs" />
+    <Compile Include="Items\Foods\Fruits\Apple.cs" />
+    <Compile Include="Items\Foods\Fruits\Banana.cs" />
+    <Compile Include="Items\Foods\Fruits\Fruit.cs" />
+    <Compile Include="Items\Foods\Fruits\Orange.cs" />
+    <Compile Include="Items\Foods\Meats\Beaf.cs" />
+    <Compile Include="Items\Foods\Meats\Chicken.cs" />
+    <Compile Include="Items\Foods\Meats\Meat.cs" />
+    <Compile Include="Items\Foods\Meats\Pork.cs" />
+    <Compile Include="Items\Foods\Vegetables\Carrot.cs" />
+    <Compile Include="Items\Foods\Vegetables\Cucumber.cs" />
+    <Compile Include="Items\Foods\Vegetables\Tomato.cs" />
+    <Compile Include="Items\Foods\Vegetables\Vegetable.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\Weapons\Gun.cs" />
+    <Compile Include="Items\Weapons\Knife.cs" />
+    <Compile Include="Items\Weapons\MachineGun.cs" />
+    <Compile Include="Items\Weapons\Weapon.cs" />
     <Compile Include="Playground.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,14 +153,23 @@
       <DependentUpon>Playground.cs</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
-    <Compile Include="Gender.cs" />
-    <Compile Include="Human.cs" />
-    <Compile Include="Item.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tile.cs" />
-    <Compile Include="Wallet.cs" />
+    <Compile Include="Towns\Burgas.cs" />
+    <Compile Include="Towns\Location.cs" />
+    <Compile Include="Towns\Plovdiv.cs" />
+    <Compile Include="Towns\Sofia.cs" />
+    <Compile Include="Towns\Town.cs" />
+    <Compile Include="Towns\Varna.cs" />
+    <Compile Include="Transportation\Airplane.cs" />
+    <Compile Include="Transportation\Bike.cs" />
+    <Compile Include="Transportation\Boat.cs" />
+    <Compile Include="Transportation\Bus.cs" />
+    <Compile Include="Transportation\Car.cs" />
+    <Compile Include="Transportation\Train.cs" />
+    <Compile Include="Transportation\Transport.cs" />
     <EmbeddedResource Include="Playground.resx">
       <DependentUpon>Playground.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +212,27 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GameObjects\images\AlleyTile.png" />
+    <Content Include="GameObjects\images\BuildingTile.png" />
+    <Content Include="GameObjects\images\coin.png" />
+    <Content Include="GameObjects\images\GoblinCombatSprite.png" />
+    <Content Include="GameObjects\images\GrassTile.png" />
+    <Content Include="GameObjects\images\monster.png" />
+    <Content Include="GameObjects\images\MonsterSprite.png" />
+    <Content Include="GameObjects\images\PlayerKnightCombatSprite.png" />
+    <Content Include="GameObjects\images\PlayerPartySprite.png" />
+    <Content Include="GameObjects\images\Rogue.png" />
+    <Content Include="GameObjects\images\rogueIntro.jpg" />
+    <Content Include="GameObjects\images\rogueIntro.png" />
+    <Content Include="GameObjects\images\sprite.png" />
+    <Content Include="GameObjects\images\StreetTile.png" />
+    <Content Include="GameObjects\images\WaterTile - Copy.png" />
+    <Content Include="GameObjects\images\WaterTile.png" />
+    <Content Include="GameObjects\images\ZebraHTile.png" />
+    <Content Include="GameObjects\images\ZebraVTile.png" />
+    <Content Include="GameObjects\MapTileData\map.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

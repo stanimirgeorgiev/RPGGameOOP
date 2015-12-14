@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
+using WindowsFormsApplication1;
+using BGServ;
 using BulgarianReality.Humans;
 
-namespace WindowsFormsApplication1
+namespace BGServ
 {
     class Game
     {
@@ -28,10 +30,16 @@ namespace WindowsFormsApplication1
 
         public void Run()
         {
-            Map map = new Map();
-            this.map = map;
-            this.map.LoadMap();
-            //this.Draw();
+            //this.BuildingSeed(map.WorldMap);
+            this.map = new Map(Game.player);
+            Designer designer = new Designer();
+            designer.DrawPlayer(this.Player);
+            designer.DrawMap(map.CurrMap);
+        }
+
+        private void BuildingSeed(Tile[][] map)
+        {
+            throw new NotImplementedException();
         }
 
         private void Draw()

@@ -9,145 +9,119 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1;
+using BGServ.Humans;
 using BulgarianReality.Buildings;
 using BulgarianReality.Humans;
 
-namespace WindowsFormsApplication1
+namespace BGServ
 {
     class Map
     {
         private Tile[][] worldMap = new Tile[Config.GameConfig.MapY][];
-        public Map()
+        private Human player;
+        private Tile[][] currentMap;
+
+        public Map(Human player)
         {
             this.LoadMap();
-            this.DrawPlayers();
-            this.CreateMap();
+            this.player = player;
         }
 
-        private void DrawPlayers()
+        public Tile[][] CurrMap
         {
-            
-            PictureBox canvas = new PictureBox();
-            canvas.Height = 40;
-            canvas.Width = 40;
-            canvas.Parent = Game.Instance.GameForm;
-            canvas.Image = new Bitmap(@"images\PlayerPartySprite.png");
+            get { return this.currentMap; }
+            private set { this.currentMap = value; }
         }
 
-        public Tile this[int x, int y]
+        public void CurrentMap()
+        {
+            int startX = ((this.player.Location.X/Config.GameConfig.TileSize) % Config.GameConfig.GridX)*Config.GameConfig.GridX;
+            int startY = ((this.player.Location.Y/Config.GameConfig.TileSize) % Config.GameConfig.GridY)*Config.GameConfig.GridY;
+            int endX = startX + Config.GameConfig.GridX;
+            int endY = startY + Config.GameConfig.GridY;
+            Tile[][] currentMap = new Tile[Config.GameConfig.GridY][];
+
+            for (int y = startY; y < endY; y++)
+            {
+                currentMap[y] = new Tile[Config.GameConfig.GridX];
+                for (int x = startX; x < endX; x++)
+                {
+                    currentMap[y][x] = this.worldMap[y][x];
+                }
+            }
+            this.currentMap = currentMap;
+        }
+
+        public Tile[][] WorldMap
+        {
+            get { return this.worldMap; }
+            private set { this.currentMap = value; }
+        }
+
+        private Tile this[int y, int x]
         {
             get { return this.worldMap[y][x]; }
             set { this.worldMap[y][x] = value; }
         }
 
-        private void CreateMap()
-        {
-            //PictureBox proba = new PictureBox();
-            //proba.Width = Game.Instance.GameForm.Width;
-            //proba.Height = Game.Instance.GameForm.Height;
-            //proba.BackColor = Color.Transparent;
-            //proba.Parent = Game.Instance.GameForm;
-
-            Graphics device;
-            //device = Game.Instance.GameForm.CreateGraphics();
-            Image img = new Bitmap(Game.Instance.GameForm.Width, Game.Instance.GameForm.Height);
-            device = Graphics.FromImage(img);
-            for (int i = 0; i < 95; i++)
-            {
-                for (int j = 0; j < 64; j++)
-                {
-                    device.DrawImage(this[i,j].Image, this[i,j].Location);
-                }
-            }
-            
-            PictureBox canvas = new PictureBox();
-            canvas.Height = 1000;
-            canvas.Width = 1000;
-            canvas.Parent = Game.Instance.GameForm;
-            canvas.Image = img;
-        }
-
         public void LoadMap()
         {
+            Human dummyHumman = new DummyHuman();
+            Building dummyBuilding = new DummyBuilding();
+            AlleyTile alleyTile = new AlleyTile();
+            ParkTile parkTile = new ParkTile();
+            WaterTile waterTile = new WaterTile();
             for (int raw = 0; raw < Config.GameConfig.MapY; raw++)
             {
                 this.worldMap[raw] = new Tile[Config.GameConfig.MapX];
                 for (int column = 0; column < Config.GameConfig.MapX; column++)
                 {
-                    this.worldMap[raw][column] = new Tile(new Point(raw * 40, column * 40), new Bitmap(@"images\WaterTile.png"), new Human(), new Building(), true);
+                    this.worldMap[raw][column] = new Tile(new Point(raw * 40, column * 40), dummyHumman, dummyBuilding, false);
                 }
             }
 
-            StreamReader reader = new StreamReader(@"MapTileData\map.txt");
-
-            for (int y = 0; y < 64; y++)
+            using (StreamReader reader = new StreamReader(@"MapTileData\map.txt"))
             {
-                string line = reader.ReadLine();
-                Human dummyHumman = new Human();
-                Building dummyBuilding = new Building();
-
-                int lineLength = line.Length;
-                for (int x = 0; x < 64; x++)
+                for (int y = 0; y < 64; y++)
                 {
-                    Tile currentTile;
-                    switch (line[x].ToString())
+                    string line = reader.ReadLine();
+
+                    int lineLength = line.Length;
+                    for (int x = 0; x < 95; x++)
                     {
+                        Tile currentTile;
+                        switch (line[x].ToString())
+                        {
 
-                        case "0":
-                            this[y,x] = new Tile(new Point(y * 40, x * 40), new Bitmap(@"images\StreetTile.png"), new Human(), new Building(), true);
-                            //this.PlayMap[y][x] = new Tile();
-
-                            break;
-                        case "1":
-                            this[y, x] = new Tile(new Point(y * 40, x * 40), new Bitmap(@"images\BuildingTile.png"), new Human(), new Building(), true);
-                            //this.PlayMap[y][x] = new Tile();
-
-                            break;
-                        case "2":
-                            this[y, x] = new Tile(new Point(y * 40, x * 40), new Bitmap(@"images\GrassTile.png"), new Human(), new Building(), true);
-                            //this.PlayMap[y][x] = new Tile();
-
-                            break;
-                        case "3":
-                            this[y, x] = new Tile(new Point(y * 40, x * 40), new Bitmap(@"images\AlleyTile.png"), new Human(), new Building(), true);
-                            //this.PlayMap[y][x] = new Tile();
-
-                            break;
-                        case "4":
-                            this[y, x] = new Tile(new Point(y * 40, x * 40), new Bitmap(@"images\ZebraVTile.png"), new Human(), new Building(), true);
-                            //this.PlayMap[y][x] = new Tile();
-
-                            break;
-                        case "5":
-                            this[y, x] = new Tile(new Point(y * 40, x * 40), new Bitmap(@"images\ZebraHTile.png"), new Human(), new Building(), true);
-                            //this.PlayMap[y][x] = new Tile();
-
-                            break;
-                        case "9":
-                            this[y, x] = new Tile(new Point(y * 40, x * 40), new Bitmap(@"images\WaterTile.png"), new Human(), new Building(), true);
-                            //Image img = new Bitmap(@"images\WaterTile.png");
-                            //Human play = new Human();
-                            //Building build = new Building();
-                            //this.PlayMap[y][x] = new Tile(new Point(y * 40, x * 40), img, play, build, true);
-                            //Tile tile = new Tile();
-                            ////this.PlayMap[y][x] = tile;
-                            //this.PlayMap[y][x].Location = new Point(y * 40, x * 40);
-                            //this.PlayMap[y][x].Image = img;
-                            //this.PlayMap[y][x].Building = build;
-                            //this.PlayMap[y][x].Player = play;
-                            //this.PlayMap[y][x].Walkable = true;
-
-
-                            break;
-                        default:
-                            //this.PlayMap[y][x] = new Tile(new Point(y * 40, x * 40), new Bitmap("WaterTile.png"), new Human(), new Building(), true);
-                            this[y, x] = new Tile(new Point(y * 40, x * 40), new Bitmap(@"images\WaterTile.png"), new Human(), new Building(), true);
-
-                            break;
+                            case "0":
+                                this[y, x] = new Tile(new Point(y * 40, x * 40), dummyHumman, new StreetTile(false), false);
+                                break;
+                            case "1":
+                                this[y, x] = new Tile(new Point(y * 40, x * 40), dummyHumman, dummyBuilding, dummyBuilding.Walkable);
+                                break;
+                            case "2":
+                                this[y, x] = new Tile(new Point(y * 40, x * 40), dummyHumman, parkTile, parkTile.Walkable);
+                                break;
+                            case "3":
+                                this[y, x] = new Tile(new Point(y * 40, x * 40), dummyHumman, alleyTile, alleyTile.Walkable);
+                                break;
+                            case "4":
+                                this[y, x] = new Tile(new Point(y * 40, x * 40), dummyHumman, new StreetTile(true), true);
+                                break;
+                            case "5":
+                                this[y, x] = new Tile(new Point(y * 40, x * 40), dummyHumman, new StreetTile(true), true);
+                                break;
+                            case "9":
+                                this[y, x] = new Tile(new Point(y * 40, x * 40), dummyHumman, waterTile, waterTile.Walkable);
+                                break;
+                            default:
+                                this[y, x] = new Tile(new Point(y * 40, x * 40), dummyHumman, waterTile, waterTile.Walkable);
+                                break;
+                        }
                     }
                 }
             }
-            reader.Close();
         }
     }
 }

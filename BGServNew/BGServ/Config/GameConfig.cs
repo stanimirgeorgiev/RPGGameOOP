@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1.Config
+﻿namespace BGServ.Config
 {
     public class GameConfig
     {
@@ -12,6 +12,24 @@
         public const int GridY = 16;
         public const int MapX = 95;
         public const int MapY = 64;
+
+        public const int PlayerStartX = 40;
+        public const int PlayerStartY = 40;
+
+        //Workers
+        public const int Doctors = 5;
+        public const int Mayors = 1;
+        public const int Policemans = 10;
+        public const int Workers = 35;
+        public const int Developer = 15;
+        //Criminals
+        public const int Criminals = 2;
+        public const int Thiefs = 10;
+        public const int Rapists = 1;
+        public const int MassMurders = 5;
+
+
+
 
 
     }

@@ -12,12 +12,11 @@ namespace WindowsFormsApplication1
     public class Tile
     {
 
-        public Tile(Point point, Image image, Human player, Building building, bool walkable)
+        public Tile(Point point, Human player, Building building, bool walkable)
         //public Tile()
 
         {
             this.Location = point;
-            this.Image = image;
             this.Player = player;
             this.Building = building;
             this.Walkable = walkable;
@@ -25,7 +24,6 @@ namespace WindowsFormsApplication1
         }
 
         public Point Location { get; set; }
-        public Image Image { get; set; }
         public Human Player { get; set; }
         public Building Building { get; set; }
         public bool Walkable { get; set; }
