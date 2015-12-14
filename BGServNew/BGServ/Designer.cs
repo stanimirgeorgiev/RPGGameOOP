@@ -14,8 +14,7 @@ namespace BGServ
     public class Designer
     {
         private PictureBox designer;
-        private Tile[][] currentMap;
-        private Image img = new Bitmap(Game.Instance.GameForm.Width, Game.Instance.GameForm.Height);
+        private Image img = new Bitmap(Config.GameConfig.WindowSizeX, Config.GameConfig.WindowSizeY);
         private Graphics device;
 
         public Designer()
@@ -31,17 +30,19 @@ namespace BGServ
         public void DrawPlayer(Human player)
         {
 
-            this.device.DrawImage(player.Image, player.Location);
+            //this.device.DrawImage(player.Image, player.Location);
+            this.device.DrawImage(new Bitmap(@"images\DummyTile.png"), player.Location);
 
             //this.designer.Height = Config.GameConfig.TileSize;
             //this.designer.Width = Config.GameConfig.TileSize;
-            this.designer.BackColor = Color.Transparent;
+            this.designer.BackColor = Color.White;
             this.designer.Image = this.img;
 
         }
 
         public void DrawMap(Tile[][] map)
         {
+            Tile playTile = map[0][0];
             //designer.Width = Config.GameConfig.WindowSizeX;
             //designer.Height = Config.GameConfig.WindowSizeY;
             for (int y = 0; y < Config.GameConfig.GridY; y++)

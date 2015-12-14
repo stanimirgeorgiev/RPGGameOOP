@@ -28,11 +28,12 @@ namespace BulgarianReality.Humans
         private Point location;
         private Image image;
 
-        protected Human() : this (0, "","", 0, Gender.Male, 0,0,new Wallet(0), new Point(0,0), new Bitmap(@"images/monster.png"))
+        protected Human()
+            : this(0, "", "", 0, Gender.Male, 0, 0, new Wallet(0), new Point(0, 0), new Bitmap(@"images/monster.png"))
         {
-            
+
         }
-        protected Human(int id, string firstname, string lastname, int age, Gender gender, int health, int joy, 
+        protected Human(int id, string firstname, string lastname, int age, Gender gender, int health, int joy,
             Wallet wallet, Point location, Image image)
         {
             this.Id = id;
@@ -70,7 +71,7 @@ namespace BulgarianReality.Humans
         public IList<Account> Accounts { get; set; }
 
         public Image Image { get; set; }
-        public Point Location { get; set; }
+        public Point Location { get { return this.location; } set { this.location = value; } }
 
         public void Drink(Drink drink)
         {

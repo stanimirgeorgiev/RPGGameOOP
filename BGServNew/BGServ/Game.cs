@@ -31,10 +31,13 @@ namespace BGServ
         public void Run()
         {
             //this.BuildingSeed(map.WorldMap);
-            this.map = new Map(Game.player);
+            //this.map = new Map(Game.player);
+            this.map = new Map();
             Designer designer = new Designer();
-            designer.DrawMap(this.map.CurrMap);
-            designer.DrawPlayer(this.Player);
+
+            Tile[][] currentMap = this.map.CurrentMap(Game.player);
+            //designer.DrawMap(currentMap);
+            designer.DrawPlayer(Game.Instance.Player);
         }
 
         private void BuildingSeed(Tile[][] map)
@@ -44,21 +47,24 @@ namespace BGServ
 
         private void Draw()
         {
-            
+
         }
 
-        public Human Player { get; set; }
+        public Human Player {
+            get { return Game.player; } 
+            set { Game.player = value; } 
+        }
         public Form GameForm { get; set; }
 
         public static Game Instance
         {
             get
             {
-            if (Game.instance == null)
-            {
-                Game.instance = new Game(Game.gameForm,Game.player );
-            }
-            return Game.instance;
+                if (Game.instance == null)
+                {
+                    Game.instance = new Game(Game.gameForm, Game.player);
+                }
+                return Game.instance;
             }
         }
 
