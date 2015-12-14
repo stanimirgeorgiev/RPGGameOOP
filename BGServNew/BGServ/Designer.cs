@@ -15,6 +15,7 @@ namespace BGServ
     {
         private PictureBox designer;
         private Image img = new Bitmap(Config.GameConfig.WindowSizeX, Config.GameConfig.WindowSizeY);
+
         private Graphics device;
 
         public Designer()
@@ -31,11 +32,11 @@ namespace BGServ
         {
 
             //this.device.DrawImage(player.Image, player.Location);
-            this.device.DrawImage(new Bitmap(@"images\DummyTile.png"), player.Location);
+            this.designer.BackColor = Color.Transparent;
+            this.device.DrawImage(player.Image, this.NormalizeCoordinates(player.Location));
 
             //this.designer.Height = Config.GameConfig.TileSize;
             //this.designer.Width = Config.GameConfig.TileSize;
-            this.designer.BackColor = Color.White;
             this.designer.Image = this.img;
 
         }
@@ -47,14 +48,22 @@ namespace BGServ
             //designer.Height = Config.GameConfig.WindowSizeY;
             for (int y = 0; y < Config.GameConfig.GridY; y++)
             {
-                
+
                 for (int x = 0; x < Config.GameConfig.GridX; x++)
                 {
-                    device.DrawImage(map[y][x].Building.Image, map[y][x].Location);
+                    device.DrawImage(map[y][x].Building.Image, x*40, y*40);
                 }
             }
 
             this.designer.Image = this.img;
+        }
+
+        private Point NormalizeCoordinates(Point location)
+        {
+            Point newLocation = new Point();
+            newLocation.X = location.X % ((Config.GameConfig.GridX + 1) * Config.GameConfig.TileSize);
+            newLocation.Y = location.Y % ((Config.GameConfig.GridY + 1) * Config.GameConfig.TileSize);
+            return newLocation;
         }
     }
 }

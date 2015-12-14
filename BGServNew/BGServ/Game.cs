@@ -36,7 +36,7 @@ namespace BGServ
             Designer designer = new Designer();
 
             Tile[][] currentMap = this.map.CurrentMap(Game.player);
-            //designer.DrawMap(currentMap);
+            designer.DrawMap(currentMap);
             designer.DrawPlayer(Game.Instance.Player);
         }
 
