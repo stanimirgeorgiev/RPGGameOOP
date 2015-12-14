@@ -23,6 +23,8 @@ namespace BGServ
             this.designer = new PictureBox();
             this.designer.Parent = Game.Instance.GameForm;
             this.device = Graphics.FromImage(this.img);
+            designer.Width = Config.GameConfig.WindowSizeX;
+            designer.Height = Config.GameConfig.WindowSizeY;
         }
 
 
@@ -31,8 +33,8 @@ namespace BGServ
 
             this.device.DrawImage(player.Image, player.Location);
 
-            this.designer.Height = Config.GameConfig.TileSize;
-            this.designer.Width = Config.GameConfig.TileSize;
+            //this.designer.Height = Config.GameConfig.TileSize;
+            //this.designer.Width = Config.GameConfig.TileSize;
             this.designer.BackColor = Color.Transparent;
             this.designer.Image = this.img;
 
@@ -40,14 +42,17 @@ namespace BGServ
 
         public void DrawMap(Tile[][] map)
         {
-            for (int y = 0; y < Config.GameConfig.MapY; y++)
+            //designer.Width = Config.GameConfig.WindowSizeX;
+            //designer.Height = Config.GameConfig.WindowSizeY;
+            for (int y = 0; y < Config.GameConfig.GridY; y++)
             {
                 
-                for (int x = 0; x < Config.GameConfig.MapX; x++)
+                for (int x = 0; x < Config.GameConfig.GridX; x++)
                 {
                     device.DrawImage(map[y][x].Building.Image, map[y][x].Location);
                 }
             }
+
             this.designer.Image = this.img;
         }
     }

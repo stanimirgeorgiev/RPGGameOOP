@@ -18,14 +18,15 @@ namespace BGServ
 {
     class Map
     {
-        private Tile[][] worldMap = new Tile[Config.GameConfig.MapY][];
+        private Tile[][] worldMap = new Tile[Config.GameConfig.GridMapY][];
         private Human player;
         private Tile[][] currentMap;
 
         public Map(Human player)
         {
-            this.LoadMap();
             this.player = player;
+            this.LoadMap();
+            this.CurrentMap();
         }
 
         public Tile[][] CurrMap
@@ -72,10 +73,10 @@ namespace BGServ
             AlleyTile alleyTile = new AlleyTile();
             ParkTile parkTile = new ParkTile();
             WaterTile waterTile = new WaterTile();
-            for (int raw = 0; raw < Config.GameConfig.MapY; raw++)
+            for (int raw = 0; raw < Config.GameConfig.GridMapY; raw++)
             {
-                this.worldMap[raw] = new Tile[Config.GameConfig.MapX];
-                for (int column = 0; column < Config.GameConfig.MapX; column++)
+                this.worldMap[raw] = new Tile[Config.GameConfig.GridMapX];
+                for (int column = 0; column < Config.GameConfig.GridMapX; column++)
                 {
                     this.worldMap[raw][column] = new Tile(new Point(raw * 40, column * 40), dummyHumman, dummyBuilding, false);
                 }

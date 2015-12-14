@@ -10,8 +10,8 @@
         public const int TileSize = 40;
         public const int GridX = 19;
         public const int GridY = 16;
-        public const int MapX = 95;
-        public const int MapY = 64;
+        public const int GridMapX = 95;
+        public const int GridMapY = 64;
 
         public const int PlayerStartX = 40;
         public const int PlayerStartY = 40;

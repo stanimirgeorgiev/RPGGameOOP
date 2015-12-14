@@ -33,8 +33,8 @@ namespace BGServ
             //this.BuildingSeed(map.WorldMap);
             this.map = new Map(Game.player);
             Designer designer = new Designer();
+            designer.DrawMap(this.map.CurrMap);
             designer.DrawPlayer(this.Player);
-            designer.DrawMap(map.CurrMap);
         }
 
         private void BuildingSeed(Tile[][] map)
