@@ -30,8 +30,7 @@ namespace BGServ
 
         public void Run()
         {
-            //this.BuildingSeed(map.WorldMap);
-            //this.map = new Map(Game.player);
+
             this.map = Map.Instance();
             Designer designer = new Designer();
             Seeder seeder = new Seeder(this.map);
