@@ -23,9 +23,9 @@ namespace BGServ
         private List<Tile> dummyBuildings;
         private List<Tile> walkableTiles;
         private List<Tile> nonWalkableTiles;
+        private static Map instance = null;
 
-
-        public Map()
+        private Map()
         {
             this.LoadMap();
             //this.CurrentMap();
@@ -50,9 +50,8 @@ namespace BGServ
         public List<Tile> NonWalkableTiles { get { return this.nonWalkableTiles; } set { this.nonWalkableTiles = value; } }
         public Tile[][] CurrentMap(Human player)
         {
-            int startX = ((player.Location.X / Config.GameConfig.TileSize) / Config.GameConfig.GridX) * Config.GameConfig.GridX;
-            int startY = ((player.Location.Y / Config.GameConfig.TileSize) / Config.GameConfig.GridY) * Config.GameConfig.GridY;
-
+            int startX = CurrentMapStartGrid(player).X;
+            int startY = CurrentMapStartGrid(player).Y;
             Tile[][] currentMap = new Tile[Config.GameConfig.GridY][];
 
             for (int y = 0; y < Config.GameConfig.GridY; y++)
@@ -64,6 +63,14 @@ namespace BGServ
                 }
             }
             return currentMap;
+        }
+
+        public Point CurrentMapStartGrid(Human player)
+        {
+            int startX = ((player.Location.X / Config.GameConfig.TileSize) / Config.GameConfig.GridX) * Config.GameConfig.GridX;
+            int startY = ((player.Location.Y / Config.GameConfig.TileSize ) / Config.GameConfig.GridY) * Config.GameConfig.GridY;
+            Point startCoordinates = new Point(startX, startY);
+            return startCoordinates;
         }
         public void LoadMap()
         {
@@ -130,6 +137,15 @@ namespace BGServ
                     }
                 }
             }
+        }
+
+        public static Map Instance()
+        {
+            if (Map.instance == null)
+            {
+                Map.instance = new Map();
+            }
+            return Map.instance;
         }
     }
 }

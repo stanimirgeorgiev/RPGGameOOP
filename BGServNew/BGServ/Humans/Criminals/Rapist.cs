@@ -15,9 +15,9 @@ namespace BulgarianReality.Humans.Criminals
 
         private const int ID = 6;
 
-        public Rapist(string firstname, string lastname, int age, Gender gender, int health, int joy,
+        public Rapist(string firstname, string lastname, int age, Gender gender,
             Wallet wallet, Point location, Image image)
-            : base(ID, firstname, lastname, age, gender, health, joy, wallet, location, image)
+            : base(ID, firstname, lastname, age, gender, RapistHealth, RapistJoy, wallet, location, image)
         {
         }
 

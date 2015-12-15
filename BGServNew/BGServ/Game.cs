@@ -32,13 +32,16 @@ namespace BGServ
         {
             //this.BuildingSeed(map.WorldMap);
             //this.map = new Map(Game.player);
-            this.map = new Map();
+            this.map = Map.Instance();
             Designer designer = new Designer();
             Seeder seeder = new Seeder(this.map);
             seeder.AddBiuldings();
+            seeder.AddPeople();
+            
             Tile[][] currentMap = this.map.CurrentMap(Game.player);
 
             designer.DrawMap(currentMap);
+            designer.DrawBots(Game.player, currentMap);
             designer.DrawPlayer(Game.Instance.Player);
         }
 

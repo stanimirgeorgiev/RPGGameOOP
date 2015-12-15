@@ -10,18 +10,19 @@
         public const int TileSize = 40;
         public const int GridX = 19;
         public const int GridY = 16;
-        public const int GridMapX = 95;
+
+        public const int GridMapX = 76;
         public const int GridMapY = 64;
 
-        public const int PlayerStartX = 2540;
-        public const int PlayerStartY = 840;
+        public const int PlayerStartX = 880;
+        public const int PlayerStartY = 2280;
 
         //Workers
-        public const int Doctors = 5;
+        public const int Doctors = 25;
         public const int Mayors = 1;
         public const int Policemans = 10;
         public const int Workers = 35;
-        public const int Developer = 15;
+        public const int Developer = 35;
         //Criminals
         public const int Criminals = 2;
         public const int Thiefs = 10;

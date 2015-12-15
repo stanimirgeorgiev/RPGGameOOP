@@ -11,11 +11,13 @@
     public class Mayor : Worker, ICorruptable
     {
         private const decimal DaySalary = 150;
+        private const int MayorHealth = 90;
+        private const int MayorJoy = 100;
         private const int ID = 3;
 
-        public Mayor(string firstname, string lastname, int age, Gender gender, int health, int joy, 
+        public Mayor(string firstname, string lastname, int age, Gender gender, 
             Wallet wallet, Point location, Image image)
-            : base(ID, firstname, lastname, age, gender, health, joy, wallet, location, image)
+            : base(ID, firstname, lastname, age, gender, MayorHealth, MayorJoy, wallet, location, image)
         {
         }
 

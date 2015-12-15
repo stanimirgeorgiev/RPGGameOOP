@@ -78,12 +78,13 @@
     <Compile Include="Buildings\TrainStation.cs" />
     <Compile Include="Buildings\WaterTile.cs" />
     <Compile Include="Config\GameConfig.cs" />
+    <Compile Include="Config\NameConfig.cs" />
     <Compile Include="Designer.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Exceptions\HumanException.cs" />
     <Compile Include="Exceptions\InsufficientHealthException.cs" />
     <Compile Include="Exceptions\InsufficientMoneyException.cs" />
-    <Compile Include="Exceptions\NoBuildingsException.cs" />
+    <Compile Include="Exceptions\NoTilesException.cs" />
     <Compile Include="Humans\Criminals\Criminal.cs" />
     <Compile Include="Humans\Criminals\MassMurderer.cs" />
     <Compile Include="Humans\Criminals\Rapist.cs" />

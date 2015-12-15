@@ -9,11 +9,13 @@ namespace BulgarianReality.Humans.Criminals
 
     public class MassMurderer : Criminal
     {
+        private const int MassMurdererHealth = 70;
+        private const int MassMurdererJoy = 65;
         private const int ID = 5;
 
-        public MassMurderer(string firstname, string lastname, int age, Gender gender, int health, int joy, 
+        public MassMurderer(string firstname, string lastname, int age, Gender gender, 
             Wallet wallet, Point location, Image image)
-            : base(ID, firstname, lastname, age, gender, health, joy, wallet, location, image)
+            : base(ID, firstname, lastname, age, gender, MassMurdererHealth, MassMurdererJoy, wallet, location, image)
         {
         }
 
