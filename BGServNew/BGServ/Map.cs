@@ -74,7 +74,6 @@ namespace BGServ
         }
         public void LoadMap()
         {
-            Human dummyHumman = new DummyHuman();
             Building dummyBuilding = new DummyBuilding();
             AlleyTile alleyTile = new AlleyTile();
             ParkTile parkTile = new ParkTile();
@@ -89,7 +88,7 @@ namespace BGServ
                 this.worldMap[raw] = new Tile[Config.GameConfig.GridMapX];
                 for (int column = 0; column < Config.GameConfig.GridMapX; column++)
                 {
-                    this.worldMap[raw][column] = new Tile(new Point(raw * 40, column * 40), dummyHumman, dummyBuilding, false);
+                    this.worldMap[raw][column] = new Tile(new Point(raw * 40, column * 40), 0, dummyBuilding, false);
                 }
             }
 
@@ -104,34 +103,34 @@ namespace BGServ
                         switch (line[x].ToString())
                         {
                             case "0":
-                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, new StreetTile(false), false);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, new StreetTile(false), false);
                                 this.NonWalkableTiles.Add(this.worldMap[y][x]);
                                 break;
                             case "1":
-                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, dummyBuilding, dummyBuilding.Walkable);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, dummyBuilding, dummyBuilding.Walkable);
                                 this.DummyBuildings.Add(this.worldMap[y][x]);
                                 break;
                             case "2":
-                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, parkTile, parkTile.Walkable);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, parkTile, parkTile.Walkable);
                                 this.WalkableTiles.Add(this.worldMap[y][x]);
                                 break;
                             case "3":
-                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, alleyTile, alleyTile.Walkable);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, alleyTile, alleyTile.Walkable);
                                 this.WalkableTiles.Add(this.worldMap[y][x]);
                                 break;
                             case "4":
-                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, new StreetTile(true), true);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, new StreetTile(true), true);
                                 this.NonWalkableTiles.Add(this.worldMap[y][x]);
                                 break;
                             case "5":
-                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, new StreetTile(true), true);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, new StreetTile(true), true);
                                 this.NonWalkableTiles.Add(this.worldMap[y][x]);
                                 break;
                             case "9":
-                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, waterTile, waterTile.Walkable);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, waterTile, waterTile.Walkable);
                                 break;
                             default:
-                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, waterTile, waterTile.Walkable);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, waterTile, waterTile.Walkable);
                                 break;
                         }
                     }

@@ -12,19 +12,19 @@ namespace WindowsFormsApplication1
     public class Tile
     {
 
-        public Tile(Point point, Human player, Building building, bool walkable)
+        public Tile(Point point, int playerId, Building building, bool walkable)
         //public Tile()
 
         {
             this.Location = point;
-            this.Player = player;
+            this.PlayerId = playerId;
             this.Building = building;
             this.Walkable = walkable;
 
         }
 
         public Point Location { get; set; }
-        public Human Player { get; set; }
+        public int PlayerId { get; set; }
         public Building Building { get; set; }
         public bool Walkable { get; set; }
     }

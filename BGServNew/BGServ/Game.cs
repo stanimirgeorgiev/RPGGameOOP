@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Media;
@@ -16,6 +17,8 @@ namespace BGServ
         private static Form gameForm;
         private static Human player;
         private Map map;
+        private int id = 1;
+        private HashSet<Human> bots;
 
         private Game()
         {
@@ -25,9 +28,11 @@ namespace BGServ
         {
             this.GameForm = gameForm;
             this.Player = player;
-            //this.Run();
         }
 
+        public HashSet<Human> Bots { get { return this.bots; } set { this.bots = value; } }
+        public Human Player { get { return Game.player; } set { Game.player = value; } }
+        public Form GameForm { get; set; }
         public void Run()
         {
 
@@ -36,29 +41,21 @@ namespace BGServ
             Seeder seeder = new Seeder(this.map);
             seeder.AddBiuldings();
             seeder.AddPeople();
-            
+
             Tile[][] currentMap = this.map.CurrentMap(Game.player);
 
             designer.DrawMap(currentMap);
-            designer.DrawBots(Game.player, currentMap);
+            designer.DrawBots(Game.player, currentMap, this.Bots);
             designer.DrawPlayer(Game.Instance.Player);
         }
 
-        private void BuildingSeed(Tile[][] map)
+
+
+        public int Id()
         {
-            throw new NotImplementedException();
+            this.id++;
+            return this.id;
         }
-
-        private void Draw()
-        {
-
-        }
-
-        public Human Player {
-            get { return Game.player; } 
-            set { Game.player = value; } 
-        }
-        public Form GameForm { get; set; }
 
         public static Game Instance
         {
