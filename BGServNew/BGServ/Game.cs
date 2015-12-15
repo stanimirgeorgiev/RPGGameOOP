@@ -34,8 +34,10 @@ namespace BGServ
             //this.map = new Map(Game.player);
             this.map = new Map();
             Designer designer = new Designer();
-
+            Seeder seeder = new Seeder(this.map);
+            seeder.AddBiuldings();
             Tile[][] currentMap = this.map.CurrentMap(Game.player);
+
             designer.DrawMap(currentMap);
             designer.DrawPlayer(Game.Instance.Player);
         }

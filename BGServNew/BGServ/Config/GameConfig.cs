@@ -13,8 +13,8 @@
         public const int GridMapX = 95;
         public const int GridMapY = 64;
 
-        public const int PlayerStartX = 40;
-        public const int PlayerStartY = 40;
+        public const int PlayerStartX = 2540;
+        public const int PlayerStartY = 840;
 
         //Workers
         public const int Doctors = 5;
@@ -28,9 +28,19 @@
         public const int Rapists = 1;
         public const int MassMurders = 5;
 
+        //Buildings
 
-
-
+        public const int Hospital = 5;
+        public const int Office = 30;
+        public const int Bank = 20;
+        public const int BusStation = 35;
+        public const int Home = 1;
+        public const int Police = 10;
+        public const int Port = 1;
+        public const int Restaurant = 30;
+        public const int Coffee = 30;
+        public const int Supermarket = 30;
+        public const int TrainStation = 1;
 
     }
 }

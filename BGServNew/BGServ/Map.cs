@@ -16,10 +16,14 @@ using BulgarianReality.Humans;
 
 namespace BGServ
 {
-    class Map
+    public class Map
     {
         private Tile[][] worldMap ;
         private Tile[][] currentMap;
+        private List<Tile> dummyBuildings;
+        private List<Tile> walkableTiles;
+        private List<Tile> nonWalkableTiles;
+
 
         public Map()
         {
@@ -33,6 +37,17 @@ namespace BGServ
             private set { this.currentMap = value; }
         }
 
+
+
+        public Tile[][] WorldMap
+        {
+            get { return this.worldMap; }
+            private set { this.currentMap = value; }
+        }
+
+        public List<Tile> DummyBuildings { get { return this.dummyBuildings; } set { this.dummyBuildings = value; } }
+        public List<Tile> WalkableTiles { get { return this.walkableTiles; } set { this.walkableTiles = value; } }
+        public List<Tile> NonWalkableTiles { get { return this.nonWalkableTiles; } set { this.nonWalkableTiles = value; } }
         public Tile[][] CurrentMap(Human player)
         {
             int startX = ((player.Location.X / Config.GameConfig.TileSize) / Config.GameConfig.GridX) * Config.GameConfig.GridX;
@@ -50,19 +65,6 @@ namespace BGServ
             }
             return currentMap;
         }
-
-        public Tile[][] WorldMap
-        {
-            get { return this.worldMap; }
-            private set { this.currentMap = value; }
-        }
-
-        //private Tile this[int y, int x]
-        //{
-        //    get { return this.worldMap[y][x]; }
-        //    set { this.worldMap[y][x] = value; }
-        //}
-
         public void LoadMap()
         {
             Human dummyHumman = new DummyHuman();
@@ -71,6 +73,10 @@ namespace BGServ
             ParkTile parkTile = new ParkTile();
             WaterTile waterTile = new WaterTile();
             this.worldMap = new Tile[Config.GameConfig.GridMapY][];
+            this.dummyBuildings = new List<Tile>();
+            this.walkableTiles = new List<Tile>();
+            this.nonWalkableTiles = new List<Tile>();
+
             for (int raw = 0; raw < Config.GameConfig.GridMapY; raw++)
             {
                 this.worldMap[raw] = new Tile[Config.GameConfig.GridMapX];
@@ -91,28 +97,34 @@ namespace BGServ
                         switch (line[x].ToString())
                         {
                             case "0":
-                                this.worldMap[y][x] = new Tile(new Point(y * 40, x * 40), dummyHumman, new StreetTile(false), false);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, new StreetTile(false), false);
+                                this.NonWalkableTiles.Add(this.worldMap[y][x]);
                                 break;
                             case "1":
-                                this.worldMap[y][x] = new Tile(new Point(y * 40, x * 40), dummyHumman, dummyBuilding, dummyBuilding.Walkable);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, dummyBuilding, dummyBuilding.Walkable);
+                                this.DummyBuildings.Add(this.worldMap[y][x]);
                                 break;
                             case "2":
-                                this.worldMap[y][x] = new Tile(new Point(y * 40, x * 40), dummyHumman, parkTile, parkTile.Walkable);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, parkTile, parkTile.Walkable);
+                                this.WalkableTiles.Add(this.worldMap[y][x]);
                                 break;
                             case "3":
-                                this.worldMap[y][x] = new Tile(new Point(y * 40, x * 40), dummyHumman, alleyTile, alleyTile.Walkable);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, alleyTile, alleyTile.Walkable);
+                                this.WalkableTiles.Add(this.worldMap[y][x]);
                                 break;
                             case "4":
-                                this.worldMap[y][x] = new Tile(new Point(y * 40, x * 40), dummyHumman, new StreetTile(true), true);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, new StreetTile(true), true);
+                                this.NonWalkableTiles.Add(this.worldMap[y][x]);
                                 break;
                             case "5":
-                                this.worldMap[y][x] = new Tile(new Point(y * 40, x * 40), dummyHumman, new StreetTile(true), true);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, new StreetTile(true), true);
+                                this.NonWalkableTiles.Add(this.worldMap[y][x]);
                                 break;
                             case "9":
-                                this.worldMap[y][x] = new Tile(new Point(y * 40, x * 40), dummyHumman, waterTile, waterTile.Walkable);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, waterTile, waterTile.Walkable);
                                 break;
                             default:
-                                this.worldMap[y][x] = new Tile(new Point(y * 40, x * 40), dummyHumman, waterTile, waterTile.Walkable);
+                                this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), dummyHumman, waterTile, waterTile.Walkable);
                                 break;
                         }
                     }
