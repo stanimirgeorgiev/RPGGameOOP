@@ -59,7 +59,7 @@ namespace BGServ
             this.designer.Image = this.img;
         }
 
-        public void DrawBots(Human character, Tile[][] map)
+        public void DrawBots(Human character, Tile[][] map, HashSet<Human> bot)
         {
                         this.designer.BackColor = Color.Transparent;
             Map visibleMap = Map.Instance();
@@ -67,24 +67,25 @@ namespace BGServ
             {
                 for (int x = 0; x < Config.GameConfig.GridX; x++)
                 {
-                    if (map[y][x].Player is DummyHuman)
+                    if (map[y][x].PlayerId == 0)
                     {
                         continue;
                     }
-                    if (map[y][x].Player.Location.X > visibleMap.CurrentMapStartGrid(Game.Instance.Player).X*Config.GameConfig.TileSize &&
-                        map[y][x].Player.Location.X <
-                        (visibleMap.CurrentMapStartGrid(Game.Instance.Player).X * Config.GameConfig.TileSize +
+                    Human foundBot = bot.FirstOrDefault(i => i.Id == map[y][x].PlayerId);
+
+                    if (foundBot.Location.X > visibleMap.CurrentMapStartGrid(Game.Instance.Player).X * Config.GameConfig.TileSize &&
+                        foundBot.Location.X < (visibleMap.CurrentMapStartGrid(Game.Instance.Player).X * Config.GameConfig.TileSize +
                          Config.GameConfig.GridX * Config.GameConfig.TileSize))
                     {
 
-                        this.device.DrawImage(map[y][x].Player.Image, x * 40, y * 40);
+                        this.device.DrawImage(foundBot.Image, x * 40, y * 40);
                     }
-                    if (map[y][x].Player.Location.Y > visibleMap.CurrentMapStartGrid(Game.Instance.Player).Y * Config.GameConfig.TileSize &&
-                        map[y][x].Player.Location.Y <
+                    if (foundBot.Location.Y > visibleMap.CurrentMapStartGrid(Game.Instance.Player).Y * Config.GameConfig.TileSize &&
+                        foundBot.Location.Y <
                         (visibleMap.CurrentMapStartGrid(Game.Instance.Player).Y * Config.GameConfig.TileSize +
                          Config.GameConfig.GridY * Config.GameConfig.TileSize))
                     {
-                        this.device.DrawImage(map[y][x].Player.Image, x * 40, y * 40);
+                        this.device.DrawImage(foundBot.Image, x * 40, y * 40);
                     }
                 }
             }

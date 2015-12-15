@@ -15,9 +15,9 @@
         private const int MayorJoy = 100;
         private const int ID = 3;
 
-        public Mayor(string firstname, string lastname, int age, Gender gender, 
+        public Mayor(int id,string firstname, string lastname, int age, Gender gender, 
             Wallet wallet, Point location, Image image)
-            : base(ID, firstname, lastname, age, gender, MayorHealth, MayorJoy, wallet, location, image)
+            : base(id, firstname, lastname, age, gender, MayorHealth, MayorJoy, wallet, location, image)
         {
         }
 

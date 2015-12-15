@@ -21,6 +21,8 @@ namespace BGServ
         {
             this.map = map;
         }
+
+
         public void AddBiuldings()
         {
             if (map.DummyBuildings.Count <= 0)
@@ -39,7 +41,8 @@ namespace BGServ
                 Tile foundBuilding = map.DummyBuildings[randomLocation];
                 Building hospital = new Hospital(i, new Bitmap(@"images\Hospital.png"), foundBuilding.Location);
                 map.WorldMap[foundBuilding.Location.Y / 40][foundBuilding.Location.X / 40] = new Tile(hospital.Location,
-                    foundBuilding.Player, hospital, true);
+                    foundBuilding.PlayerId, hospital, true);
+
                 map.DummyBuildings.RemoveAt(randomLocation);
             }
             for (int i = 0; i < Config.GameConfig.Police; i++)
@@ -52,7 +55,7 @@ namespace BGServ
                 Tile foundBuilding = map.DummyBuildings[randomLocation];
                 Building police = new PoliceStation(i, new Bitmap(@"images\Police.png"), foundBuilding.Location);
                 map.WorldMap[foundBuilding.Location.Y / 40][foundBuilding.Location.X / 40] = new Tile(police.Location,
-                    foundBuilding.Player, police, true);
+                    foundBuilding.PlayerId, police, true);
                 map.DummyBuildings.RemoveAt(randomLocation);
 
             }
@@ -66,7 +69,7 @@ namespace BGServ
                 Tile foundBuilding = map.DummyBuildings[randomLocation];
                 Building restaurant = new Restaurant(i, new Bitmap(@"images\Retaurant.png"), foundBuilding.Location);
                 map.WorldMap[foundBuilding.Location.Y / 40][foundBuilding.Location.X / 40] = new Tile(restaurant.Location,
-                    foundBuilding.Player, restaurant, true);
+                    foundBuilding.PlayerId, restaurant, true);
                 map.DummyBuildings.RemoveAt(randomLocation);
 
             }
@@ -80,7 +83,7 @@ namespace BGServ
                 Tile foundBuilding = map.DummyBuildings[randomLocation];
                 Building office = new Office(i, new Bitmap(@"images\Office.png"), foundBuilding.Location);
                 map.WorldMap[foundBuilding.Location.Y / 40][foundBuilding.Location.X / 40] = new Tile(office.Location,
-                    foundBuilding.Player, office, true);
+                    foundBuilding.PlayerId, office, true);
                 map.DummyBuildings.RemoveAt(randomLocation);
 
             }
@@ -94,7 +97,7 @@ namespace BGServ
                 Tile foundBuilding = map.DummyBuildings[randomLocation];
                 Building office = new Coffee(i, new Bitmap(@"images\Coffee.png"), foundBuilding.Location);
                 map.WorldMap[foundBuilding.Location.Y / 40][foundBuilding.Location.X / 40] = new Tile(office.Location,
-                    foundBuilding.Player, office, true);
+                    foundBuilding.PlayerId, office, true);
                 map.DummyBuildings.RemoveAt(randomLocation);
 
             } 
@@ -108,7 +111,7 @@ namespace BGServ
                 Tile foundBuilding = map.DummyBuildings[randomLocation];
                 Building bank = new Bank(i, new Bitmap(@"images\Bank.png"), foundBuilding.Location);
                 map.WorldMap[foundBuilding.Location.Y / 40][foundBuilding.Location.X / 40] = new Tile(bank.Location,
-                    foundBuilding.Player, bank, true);
+                    foundBuilding.PlayerId, bank, true);
                 map.DummyBuildings.RemoveAt(randomLocation);
 
             }
@@ -117,6 +120,8 @@ namespace BGServ
 
         public void AddPeople()
         {
+            int Id = 1;
+            Game.Instance.Bots = new HashSet<Human>();
             NameConfig name = new NameConfig();
             Random rand = new Random();
             for (int i = 0; i < Config.GameConfig.Policemans; i++)
@@ -128,10 +133,10 @@ namespace BGServ
                 int randomLocation = rand.Next(0, this.map.WalkableTiles.Count);
                 Tile foundCharacter = map.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new Policeman(name.FirstName(gender) ,name.LastName(gender), rand.Next(1,101),gender, new Wallet(0),foundCharacter.Location, new Bitmap(@"images\Policeman.png") );
-                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40] = new Tile(character.Location,
-                    character, foundCharacter.Building, true);
+                Human character = new Policeman(Game.Instance.Id(),name.FirstName(gender) ,name.LastName(gender), rand.Next(1,101),gender, new Wallet(0),foundCharacter.Location, new Bitmap(@"images\Policeman.png") );
+                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40].PlayerId = character.Id;
                 map.WalkableTiles.RemoveAt(randomLocation);
+                Game.Instance.Bots.Add(character);
             }
             for (int i = 0; i < Config.GameConfig.Doctors; i++)
             {
@@ -142,10 +147,10 @@ namespace BGServ
                 int randomLocation = rand.Next(0, this.map.WalkableTiles.Count);
                 Tile foundCharacter = map.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new Doctor(name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Doctor.png"));
-                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40] = new Tile(character.Location,
-                    character, foundCharacter.Building, true);
+                Human character = new Doctor(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Doctor.png"));
+                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40].PlayerId = character.Id;
                 map.WalkableTiles.RemoveAt(randomLocation);
+                Game.Instance.Bots.Add(character);
             }
             for (int i = 0; i < Config.GameConfig.Developer; i++)
             {
@@ -156,10 +161,10 @@ namespace BGServ
                 int randomLocation = rand.Next(0, this.map.WalkableTiles.Count);
                 Tile foundCharacter = map.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new Developer(name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Developer.png"));
-                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40] = new Tile(character.Location,
-                    character, foundCharacter.Building, true);
+                Human character = new Developer(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Developer.png"));
+                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40].PlayerId = character.Id;
                 map.WalkableTiles.RemoveAt(randomLocation);
+                Game.Instance.Bots.Add(character);
             }
             for (int i = 0; i < Config.GameConfig.Mayors; i++)
             {
@@ -170,10 +175,10 @@ namespace BGServ
                 int randomLocation = rand.Next(0, this.map.WalkableTiles.Count);
                 Tile foundCharacter = map.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new Mayor(name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Mayor.png"));
-                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40] = new Tile(character.Location,
-                    character, foundCharacter.Building, true);
+                Human character = new Mayor(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Mayor.png"));
+                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40].PlayerId = character.Id;
                 map.WalkableTiles.RemoveAt(randomLocation);
+                Game.Instance.Bots.Add(character);
             }
             for (int i = 0; i < Config.GameConfig.Thiefs; i++)
             {
@@ -184,10 +189,10 @@ namespace BGServ
                 int randomLocation = rand.Next(0, this.map.WalkableTiles.Count);
                 Tile foundCharacter = map.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new Thief(name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Thief.png"));
-                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40] = new Tile(character.Location,
-                    character, foundCharacter.Building, true);
+                Human character = new Thief(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Thief.png"));
+                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40].PlayerId = character.Id;
                 map.WalkableTiles.RemoveAt(randomLocation);
+                Game.Instance.Bots.Add(character);
             }
             for (int i = 0; i < Config.GameConfig.MassMurders; i++)
             {
@@ -198,10 +203,10 @@ namespace BGServ
                 int randomLocation = rand.Next(0, this.map.WalkableTiles.Count);
                 Tile foundCharacter = map.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new MassMurderer(name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\MassMurder.png"));
-                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40] = new Tile(character.Location,
-                    character, foundCharacter.Building, true);
+                Human character = new MassMurderer(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\MassMurder.png"));
+                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40].PlayerId = character.Id;
                 map.WalkableTiles.RemoveAt(randomLocation);
+                Game.Instance.Bots.Add(character);
             }
             for (int i = 0; i < Config.GameConfig.Rapists; i++)
             {
@@ -212,10 +217,10 @@ namespace BGServ
                 int randomLocation = rand.Next(0, this.map.WalkableTiles.Count);
                 Tile foundCharacter = map.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new Rapist(name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Rapist.png"));
-                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40] = new Tile(character.Location,
-                    character, foundCharacter.Building, true);
+                Human character = new Rapist(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Rapist.png"));
+                map.WorldMap[foundCharacter.Location.Y / 40][foundCharacter.Location.X / 40].PlayerId = character.Id;
                 map.WalkableTiles.RemoveAt(randomLocation);
+                Game.Instance.Bots.Add(character);
             }
         }
 
