@@ -17,6 +17,8 @@ namespace BGServ
         private static Human player;
         private Map map;
 
+        private BGSurvEvent events;
+
         private Game()
         {
             throw new NotImplementedException();
@@ -33,15 +35,17 @@ namespace BGServ
 
             this.map = Map.Instance();
             Designer designer = new Designer();
-            Seeder seeder = new Seeder(this.map);
-            seeder.AddBiuldings();
-            seeder.AddPeople();
+            //Seeder seeder = new Seeder(this.map);
+            //seeder.AddBiuldings();
+            //seeder.AddPeople();
             
             Tile[][] currentMap = this.map.CurrentMap(Game.player);
 
-            designer.DrawMap(currentMap);
-            designer.DrawBots(Game.player, currentMap);
+            //designer.DrawMap(currentMap);
+           // designer.DrawBots(Game.player, currentMap);
             designer.DrawPlayer(Game.Instance.Player);
+
+            this.events = new BGSurvEvent(this.Player, designer);
         }
 
         private void BuildingSeed(Tile[][] map)

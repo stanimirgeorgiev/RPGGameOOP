@@ -14,11 +14,19 @@ namespace BGServ
 {
     public partial class Playground : Form
     {
+        private BGSurvEvent events;
+
         public Playground()
         {
             InitializeComponent();
             Game.SetForm(this, new Developer("Pesho", "Peshev", 25, BulgarianReality.Enums.Gender.Male, new BulgarianReality.Items.Belongings.Wallet(0), new Point(Config.GameConfig.PlayerStartX, Config.GameConfig.PlayerStartY), new Bitmap(@"images\sprite.png")));
             Game.Instance.Run();
+            this.events = new BGSurvEvent(Game.Instance.Player, new Designer());
+        }
+
+        private void Playground_KeyDown(object sender, KeyEventArgs e)
+        {
+            events.HandleKeyPress(e);
         }
     }
 }

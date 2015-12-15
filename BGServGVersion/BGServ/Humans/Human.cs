@@ -83,10 +83,10 @@ namespace BulgarianReality.Humans
             this.Health += food.HealthPoints;
         }
 
-        public void Move(int x, int y)
+        public void Move(Point p)
         {
-            this.location.X += x;
-            this.location.Y += y;
+            this.location.X += p.X;
+            this.location.Y += p.Y;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace BGServ
         private List<Tile> nonWalkableTiles;
         private static Map instance = null;
 
-        private Map()
+        public  Map()
         {
             this.LoadMap();
             //this.CurrentMap();

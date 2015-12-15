@@ -1,7 +1,8 @@
-﻿namespace BulgarianReality.Interfaces
+﻿using System.Drawing;
+namespace BulgarianReality.Interfaces
 {
     public interface IMovable
     {
-        void Move(int x, int y);
+        void Move(Point p);
     }
 }
