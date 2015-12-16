@@ -247,19 +247,10 @@ namespace BGServ
             this.designer.DrawMap(Map.Instance.CurrentMap(Game.Instance.Player));
             this.designer.DrawBots(Game.player, Map.Instance.CurrentMap(Game.Instance.Player), this.Bots);
             this.designer.DrawPlayer(Game.Instance.Player);
+            
 
         }
-        public void DetectColision()
-        {
-            foreach (var bot in this.Bots)
-            {
-                if(this.Player.Location.X == bot.Location.X && this.Player.Location.Y == bot.Location.Y)
-                {
-                    MessageBox.Show("COLLISTION");
-                }
-            }
-           
-        }
+        
     }
 
 }

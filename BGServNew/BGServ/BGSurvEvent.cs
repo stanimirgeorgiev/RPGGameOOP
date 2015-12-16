@@ -13,10 +13,12 @@ namespace BGServ
     {
         private Human player;
         private Designer designer;
+        private Collision collision =  new Collision();
 
         public BGSurvEvent()
         {
             this.player = Game.Instance.Player;
+            
         }
 
         public void HandleKeyPress(KeyEventArgs e)
@@ -34,6 +36,10 @@ namespace BGServ
                         Map.Instance.WorldMap[Game.Instance.Player.Location.Y / 40][Game.Instance.Player.Location.X / 40].PlayerId = Game.Instance.Player.Id;
                         Map.Instance.WorldMap[Game.Instance.Player.Location.Y / 40][(Game.Instance.Player.Location.X / 40) + 1].PlayerId = 0;
                     }
+                    if (this.collision.DetectColisionWithBuilding(nextPont))
+                    {
+                        this.player.Health += 10;
+                    }
                 }
                 if (e.KeyCode == Keys.Right)
                 {
@@ -45,6 +51,10 @@ namespace BGServ
                         Map.Instance.WorldMap[Game.Instance.Player.Location.Y / 40][(Game.Instance.Player.Location.X / 40) - 1].PlayerId = 0;
 
                     }
+                    if (this.collision.DetectColisionWithBuilding(nextPont))
+                    {
+                        this.player.Health += 10;
+                    }
                 }
                 if (e.KeyCode == Keys.Up)
                 {
@@ -55,6 +65,10 @@ namespace BGServ
                         Map.Instance.WorldMap[Game.Instance.Player.Location.Y / 40][Game.Instance.Player.Location.X / 40].PlayerId = Game.Instance.Player.Id;
                         Map.Instance.WorldMap[(Game.Instance.Player.Location.Y / 40) + 10][(Game.Instance.Player.Location.X / 40)].PlayerId = 0;
                     }
+                    if(this.collision.DetectColisionWithBuilding(nextPont))
+                    {
+                        this.player.Health += 10;
+                    }
                 }
                 if (e.KeyCode == Keys.Down)
                 {
@@ -64,6 +78,10 @@ namespace BGServ
                         this.player.Move(0, 40);
                         Map.Instance.WorldMap[Game.Instance.Player.Location.Y / 40][Game.Instance.Player.Location.X / 40].PlayerId = Game.Instance.Player.Id;
                         Map.Instance.WorldMap[(Game.Instance.Player.Location.Y / 40) - 1][(Game.Instance.Player.Location.X / 40)].PlayerId = 0;
+                    }
+                    if (this.collision.DetectColisionWithBuilding(nextPont))
+                    {
+                        this.player.Health += 10;
                     }
                 }
             }
@@ -90,6 +108,7 @@ namespace BGServ
             }
             return false;
         }
+        
 
     }
 }
