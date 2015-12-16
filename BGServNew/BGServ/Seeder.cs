@@ -222,6 +222,7 @@ namespace BGServ
                 character.Direction = rand.Next(0, 3);
                 Game.Instance.Bots.Add(character);
             }
+            
         }
 
         private Gender RandomGender()

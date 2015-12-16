@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action.cs" />
     <Compile Include="BGSurvEvent.cs" />
     <Compile Include="Buildings\Airport.cs" />
     <Compile Include="Buildings\Bank.cs" />
@@ -222,7 +223,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GameObjects\images\AlleyTile.png" />
-    <None Include="GameObjects\images\bgMain.png" />
     <Content Include="GameObjects\images\BuildingTile.png" />
     <Content Include="GameObjects\images\coin.png" />
     <Content Include="GameObjects\images\GoblinCombatSprite.png" />
