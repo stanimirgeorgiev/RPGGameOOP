@@ -24,6 +24,7 @@ namespace BGServ
         private Designer designer;
         private int thirdTicker = 0;
         private Human botInAction;
+        private Action action;
 
         private Game()
         {
@@ -35,7 +36,7 @@ namespace BGServ
             this.Player = player;
         }
         public Human BotInAction { get { return this.botInAction; } }
-
+        
 
         public HashSet<Human> Bots { get { return this.bots; } set { this.bots = value; } }
         public Human Player { get { return Game.player; } set { Game.player = value; } }
@@ -93,19 +94,20 @@ namespace BGServ
             bool botInActionFound = false;
             Human botToRemove =  new DummyHuman();
             
+            
 
 
             foreach (var bot in this.Bots)
             {
                 thirdTicker++;
-                if (thirdTicker == 500)
+                if (thirdTicker == 1000)
                 {
                     Player.Health--;
                     Player.InAction = false;
                     foreach (var bots in Game.Instance.Bots)
                     {
                         bots.Direction = rand.Next(4);
-                        //nTicker = 0;
+                        thirdTicker = 0;
                     }
                 }
                 
@@ -124,7 +126,7 @@ namespace BGServ
                                botInActionFound = true;
                                this.botInAction = botToRemove;
                                Game.player.InAction = true;
-                              // this.action = new Action("joy");
+                               this.action = new Action("joy");
                                break;
                             }
                             if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId == 0 
@@ -155,7 +157,7 @@ namespace BGServ
                                 botInActionFound = true;
                                 botToRemove.InAction = true;
                                 this.botInAction = botToRemove;
-                               // this.action = new Action("joy");
+                                this.action = new Action("joy");
                                 break;
                                 
                                // break;
@@ -178,14 +180,14 @@ namespace BGServ
                            
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId == Game.Instance.Player.Id)
-                        {
+                            {
                                 //Collision detection;
                                 Game.Instance.Player.Health += 100;
                                 botToRemove = Game.Instance.Bots.FirstOrDefault(i => i.Id == Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId);
                                 botInActionFound = true;
                                 this.botInAction = botToRemove;
                                 Game.player.InAction = true;
-                               // this.action = new Action("joy");
+                                this.action = new Action("joy");
                                 break;
                                // break;
                             }
@@ -208,14 +210,14 @@ namespace BGServ
                            
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId == Game.Instance.Player.Id)
-                        {
+                            {
                                 //Collision detection;
                                 Game.Instance.Player.Health += 100;
                                 botToRemove = Game.Instance.Bots.FirstOrDefault(i => i.Id == Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId);
                                 botInActionFound = true;
                                 this.botInAction = botToRemove;
                                 Game.player.InAction = true;
-                               // this.action = new Action("joy");
+                                this.action = new Action("joy");
                                 break;
                                 //break;
                             }
@@ -245,10 +247,19 @@ namespace BGServ
             this.designer.DrawMap(Map.Instance.CurrentMap(Game.Instance.Player));
             this.designer.DrawBots(Game.player, Map.Instance.CurrentMap(Game.Instance.Player), this.Bots);
             this.designer.DrawPlayer(Game.Instance.Player);
-            
 
         }
-        
+        public void DetectColision()
+        {
+            foreach (var bot in this.Bots)
+            {
+                if(this.Player.Location.X == bot.Location.X && this.Player.Location.Y == bot.Location.Y)
+                {
+                    MessageBox.Show("COLLISTION");
+                }
+            }
+           
+        }
     }
 
 }

@@ -44,7 +44,7 @@
             this.ClientSize = new System.Drawing.Size(960, 660);
             this.Name = "Playground";
             this.Text = "Form1";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Playground_KeyDown);
+            //this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Playground_KeyDown);
             this.ResumeLayout(false);
 
         }
