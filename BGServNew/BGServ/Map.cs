@@ -100,33 +100,33 @@ namespace BGServ
 
                     for (int x = 0; x < Config.GameConfig.GridMapX; x++)
                     {
-                        switch (line[x].ToString())
+                        switch ((int)line[x])
                         {
-                            case "0":
+                            case 48:
                                 this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, new StreetTile(false), false);
                                 this.NonWalkableTiles.Add(this.worldMap[y][x]);
                                 break;
-                            case "1":
+                            case 49:
                                 this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, dummyBuilding, dummyBuilding.Walkable);
                                 this.DummyBuildings.Add(this.worldMap[y][x]);
                                 break;
-                            case "2":
+                            case 50:
                                 this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, parkTile, parkTile.Walkable);
                                 this.WalkableTiles.Add(this.worldMap[y][x]);
                                 break;
-                            case "3":
+                            case 51:
                                 this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, alleyTile, alleyTile.Walkable);
                                 this.WalkableTiles.Add(this.worldMap[y][x]);
                                 break;
-                            case "4":
+                            case 52:
                                 this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, new StreetTile(true), true);
                                 this.NonWalkableTiles.Add(this.worldMap[y][x]);
                                 break;
-                            case "5":
+                            case 53:
                                 this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, new StreetTile(true), true);
                                 this.NonWalkableTiles.Add(this.worldMap[y][x]);
                                 break;
-                            case "9":
+                            case 58:
                                 this.worldMap[y][x] = new Tile(new Point(x * 40, y * 40), 0, waterTile, waterTile.Walkable);
                                 break;
                             default:

@@ -100,9 +100,13 @@ namespace BGServ
                     case 0:
                         if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].Walkable)
                         {
+                            if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId == 0)
+                            {
+                                
                             Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId = 0;
                             Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId = bot.Id;
                             bot.Move(0, -40);
+                            }
                         }
                         else
                         {
@@ -112,9 +116,12 @@ namespace BGServ
                     case 1:
                         if (Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40 + 1].Walkable)
                         {
-                            Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId = 0;
-                            Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40 + 1].PlayerId = bot.Id;
-                            bot.Move(40, 0);
+                            if (Map.Instance.WorldMap[bot.Location.Y/40][bot.Location.X/40 +1].PlayerId == 0)
+                            {
+                                Map.Instance.WorldMap[bot.Location.Y/40][bot.Location.X/40].PlayerId = 0;
+                                Map.Instance.WorldMap[bot.Location.Y/40][bot.Location.X/40 + 1].PlayerId = bot.Id;
+                                bot.Move(40, 0);
+                            }
                         }
                         else
                         {
@@ -124,9 +131,12 @@ namespace BGServ
                     case 2:
                         if (Map.Instance.WorldMap[bot.Location.Y / 40 + 1][bot.Location.X / 40].Walkable)
                         {
-                            Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId = 0;
-                            Map.Instance.WorldMap[bot.Location.Y / 40 + 1][bot.Location.X / 40].PlayerId = bot.Id;
-                            bot.Move(0, 40);
+                            if (Map.Instance.WorldMap[bot.Location.Y/40 + 1][bot.Location.X/40].PlayerId == 0)
+                            {
+                                Map.Instance.WorldMap[bot.Location.Y/40][bot.Location.X/40].PlayerId = 0;
+                                Map.Instance.WorldMap[bot.Location.Y/40 + 1][bot.Location.X/40].PlayerId = bot.Id;
+                                bot.Move(0, 40);
+                            }
                         }
                         else
                         {
@@ -137,9 +147,12 @@ namespace BGServ
                     case 3:
                         if (Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40 - 1].Walkable)
                         {
-                            Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId = 0;
-                            Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40 - 1].PlayerId = bot.Id;
-                            bot.Move(-40, 0);
+                            if (Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40 - 1].PlayerId == 0)
+                            {
+                                Map.Instance.WorldMap[bot.Location.Y/40][bot.Location.X/40].PlayerId = 0;
+                                Map.Instance.WorldMap[bot.Location.Y/40][bot.Location.X/40 - 1].PlayerId = bot.Id;
+                                bot.Move(-40, 0);
+                            }
                         }
                         else
                         {
