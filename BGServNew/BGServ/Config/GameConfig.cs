@@ -11,11 +11,11 @@
         public const int GridX = 19;
         public const int GridY = 16;
 
-        public const int GridMapX = 76;
-        public const int GridMapY = 64;
+        public const int GridMapX = 95;
+        public const int GridMapY = 80;
 
-        public const int PlayerStartX = 880;
-        public const int PlayerStartY = 2280;
+        public const int PlayerStartX = 40;
+        public const int PlayerStartY = 40;
 
         //Workers
         public const int Doctors = 25;
@@ -42,6 +42,9 @@
         public const int Coffee = 30;
         public const int Supermarket = 30;
         public const int TrainStation = 1;
+
+        //Timer
+        public const int TimerTick = 500;
 
     }
 }

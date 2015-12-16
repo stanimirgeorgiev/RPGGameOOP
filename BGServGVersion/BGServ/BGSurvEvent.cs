@@ -19,10 +19,10 @@ namespace BGServ
 
         public BGSurvEvent(Human player, Designer designer)
         {
-            
+
             this.designer = designer;
             this.player = player;
-            this.map = new Map();
+            this.map = Map.Instance;
             
         }
        
@@ -70,19 +70,18 @@ namespace BGServ
                     this.player.Move(move);
                 }
             }
-            designer.DrawPlayer(this.player);
-
+            //designer.DrawPlayer(this.player);
+            Game.Instance.Designer.DrawMap(Map.Instance.CurrentMap(player));
+            Game.Instance.Designer.DrawBots(player, this.map.CurrentMap(player));
+            Game.Instance.Designer.DrawPlayer(this.player);
             
         }
         private bool CheckIsWalkable(Point check)
         {
-            foreach (var tile in map.WalkableTiles)
-            {
-                if(tile.Location.X == check.X && tile.Location.Y == check.Y)
+                if(Map.Instance.WorldMap[check.Y/40][check.X/40].Walkable)
                 {
                     return true;
                 }
-            }
             return false;
         }
 

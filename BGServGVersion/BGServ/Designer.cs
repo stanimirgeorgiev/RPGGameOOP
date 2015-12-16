@@ -31,7 +31,7 @@ namespace BGServ
 
         public void DrawPlayer(Human player)
         {
-
+            //this.device.Clear(Color.Transparent);
             //this.device.DrawImage(player.Image, player.Location);
             this.designer.BackColor = Color.Transparent;
             this.device.DrawImage(player.Image, this.LocalCoordinates(player.Location));
@@ -62,7 +62,7 @@ namespace BGServ
         public void DrawBots(Human character, Tile[][] map)
         {
                         this.designer.BackColor = Color.Transparent;
-            Map visibleMap = Map.Instance();
+            Map visibleMap = Map.Instance;
             for (int y = 0; y < Config.GameConfig.GridY; y++)
             {
                 for (int x = 0; x < Config.GameConfig.GridX; x++)

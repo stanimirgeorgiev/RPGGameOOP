@@ -14,7 +14,7 @@
         public const int GridMapX = 76;
         public const int GridMapY = 64;
 
-        public const int PlayerStartX = 880;
+        public const int PlayerStartX = 920;
         public const int PlayerStartY = 2280;
 
         //Workers

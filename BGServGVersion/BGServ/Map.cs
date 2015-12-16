@@ -25,7 +25,7 @@ namespace BGServ
         private List<Tile> nonWalkableTiles;
         private static Map instance = null;
 
-        public  Map()
+        private  Map()
         {
             this.LoadMap();
             //this.CurrentMap();
@@ -139,13 +139,16 @@ namespace BGServ
             }
         }
 
-        public static Map Instance()
+        public static Map Instance
         {
-            if (Map.instance == null)
+            get
             {
-                Map.instance = new Map();
+                if (Map.instance == null)
+                {
+                    Map.instance = new Map();
+                }
+                return Map.instance;
             }
-            return Map.instance;
         }
     }
 }

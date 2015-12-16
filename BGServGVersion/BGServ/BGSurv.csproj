@@ -81,7 +81,7 @@
     <Compile Include="Config\NameConfig.cs" />
     <Compile Include="Designer.cs" />
     <Compile Include="Enums\Gender.cs" />
-    <Compile Include="Event.cs" />
+    <Compile Include="BGSurvEvent.cs" />
     <Compile Include="Exceptions\HumanException.cs" />
     <Compile Include="Exceptions\InsufficientHealthException.cs" />
     <Compile Include="Exceptions\InsufficientMoneyException.cs" />

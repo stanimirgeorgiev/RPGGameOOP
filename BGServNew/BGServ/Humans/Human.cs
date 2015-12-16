@@ -72,6 +72,7 @@ namespace BulgarianReality.Humans
 
         public Image Image { get; set; }
         public Point Location { get { return this.location; } set { this.location = value; } }
+        public int Direction { get; set; }
 
         public void Drink(Drink drink)
         {

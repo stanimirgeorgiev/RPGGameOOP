@@ -16,6 +16,7 @@ namespace BGServ
         private static Form gameForm;
         private static Human player;
         private Map map;
+        private Designer designer;
 
         private BGSurvEvent events;
 
@@ -33,21 +34,23 @@ namespace BGServ
         public void Run()
         {
 
-            this.map = Map.Instance();
+            this.map = Map.Instance;
             Designer designer = new Designer();
-            //Seeder seeder = new Seeder(this.map);
-            //seeder.AddBiuldings();
-            //seeder.AddPeople();
+            this.designer = designer;
+            Seeder seeder = new Seeder(this.map);
+            seeder.AddBiuldings();
+            seeder.AddPeople();
             
             Tile[][] currentMap = this.map.CurrentMap(Game.player);
 
-            //designer.DrawMap(currentMap);
-           // designer.DrawBots(Game.player, currentMap);
+            designer.DrawMap(currentMap);
+            designer.DrawBots(Game.player, currentMap);
             designer.DrawPlayer(Game.Instance.Player);
 
             this.events = new BGSurvEvent(this.Player, designer);
         }
 
+        public Designer Designer { get { return this.designer; } set { this.designer = value; } }
         private void BuildingSeed(Tile[][] map)
         {
             throw new NotImplementedException();

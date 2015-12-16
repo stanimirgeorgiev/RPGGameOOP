@@ -62,7 +62,7 @@ namespace BGServ
         public void DrawBots(Human character, Tile[][] map, HashSet<Human> bot)
         {
                         this.designer.BackColor = Color.Transparent;
-            Map visibleMap = Map.Instance();
+            Map visibleMap = Map.Instance;
             for (int y = 0; y < Config.GameConfig.GridY; y++)
             {
                 for (int x = 0; x < Config.GameConfig.GridX; x++)

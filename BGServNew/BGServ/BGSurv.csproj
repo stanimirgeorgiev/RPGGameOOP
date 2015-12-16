@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BGSurvEvent.cs" />
     <Compile Include="Buildings\Airport.cs" />
     <Compile Include="Buildings\Bank.cs" />
     <Compile Include="Buildings\Building.cs" />
