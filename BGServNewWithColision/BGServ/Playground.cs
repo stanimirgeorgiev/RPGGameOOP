@@ -21,7 +21,7 @@ namespace BGServ
         public Playground()
         {
             InitializeComponent();
-            Game.SetForm(this, new Developer(1, "Pesho", "Peshev", 25, BulgarianReality.Enums.Gender.Male, new BulgarianReality.Items.Belongings.Wallet(0), new Point(Config.GameConfig.PlayerStartX, Config.GameConfig.PlayerStartY), new Bitmap(@"images\sprite.png")));
+            Game.SetForm(this, new Developer(1, "Pesho", "Peshev", 25, BulgarianReality.Enums.Gender.Male, new BulgarianReality.Items.Belongings.Wallet(100), new Point(Config.GameConfig.PlayerStartX, Config.GameConfig.PlayerStartY), new Bitmap(@"images\sprite.png")));
             Game.Instance.Run();
             this.events = new BGSurvEvent();
             timer.Tick += new EventHandler(timer1_Tick);
@@ -58,6 +58,7 @@ namespace BGServ
         private void timer2_Tick(object sender, EventArgs e)
         {
             this.label9.Text = Game.Instance.Player.Joy.ToString();
+            this.label4.Text = Game.Instance.Player.Wallet.Balance.ToString() + "лв.";
         }
 
         

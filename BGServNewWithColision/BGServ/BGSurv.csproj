@@ -79,6 +79,7 @@
     <Compile Include="Buildings\Supermarket.cs" />
     <Compile Include="Buildings\TrainStation.cs" />
     <Compile Include="Buildings\WaterTile.cs" />
+    <Compile Include="Collision.cs" />
     <Compile Include="Config\GameConfig.cs" />
     <Compile Include="Config\NameConfig.cs" />
     <Compile Include="Designer.cs" />

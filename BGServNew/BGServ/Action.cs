@@ -27,7 +27,7 @@ namespace BGServ
                     break;
                 case "restaurant": this.RestaurantTime();
                     break;
-                case "police": this.PoliceStaion();
+                case "police":this.Police();
                     break;
                 default :
                     break;
@@ -71,7 +71,7 @@ namespace BGServ
                 Game.Instance.Player.Joy += 20;
             }
         }
-        private void PoliceStaion()
+        private void Police()
         {
             Game.Instance.Player.Joy += 35;
         }

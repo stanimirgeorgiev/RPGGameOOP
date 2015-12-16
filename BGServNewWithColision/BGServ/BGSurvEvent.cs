@@ -13,6 +13,7 @@ namespace BGServ
     {
         private Human player;
         private Designer designer;
+        private Collision collision = new Collision();
 
         public BGSurvEvent()
         {
@@ -34,6 +35,8 @@ namespace BGServ
                         Map.Instance.WorldMap[Game.Instance.Player.Location.Y / 40][Game.Instance.Player.Location.X / 40].PlayerId = Game.Instance.Player.Id;
                         Map.Instance.WorldMap[Game.Instance.Player.Location.Y / 40][(Game.Instance.Player.Location.X / 40) + 1].PlayerId = 0;
                     }
+                    this.collision.DetectColisionWithBuilding(nextPont);
+                   
                 }
                 if (e.KeyCode == Keys.Right)
                 {
@@ -45,6 +48,8 @@ namespace BGServ
                         Map.Instance.WorldMap[Game.Instance.Player.Location.Y / 40][(Game.Instance.Player.Location.X / 40) - 1].PlayerId = 0;
 
                     }
+                    this.collision.DetectColisionWithBuilding(nextPont);
+                    
                 }
                 if (e.KeyCode == Keys.Up)
                 {
@@ -55,6 +60,9 @@ namespace BGServ
                         Map.Instance.WorldMap[Game.Instance.Player.Location.Y / 40][Game.Instance.Player.Location.X / 40].PlayerId = Game.Instance.Player.Id;
                         Map.Instance.WorldMap[(Game.Instance.Player.Location.Y / 40) + 10][(Game.Instance.Player.Location.X / 40)].PlayerId = 0;
                     }
+                    this.collision.DetectColisionWithBuilding(nextPont);
+                  
+                    
                 }
                 if (e.KeyCode == Keys.Down)
                 {
@@ -65,6 +73,7 @@ namespace BGServ
                         Map.Instance.WorldMap[Game.Instance.Player.Location.Y / 40][Game.Instance.Player.Location.X / 40].PlayerId = Game.Instance.Player.Id;
                         Map.Instance.WorldMap[(Game.Instance.Player.Location.Y / 40) - 1][(Game.Instance.Player.Location.X / 40)].PlayerId = 0;
                     }
+                    this.collision.DetectColisionWithBuilding(nextPont);
                 }
             }
             //designer.DrawPlayer(this.player);
@@ -90,14 +99,14 @@ namespace BGServ
             }
             return false;
         }
-        private bool DetectColisionWithBuilding(Point check)
-        {
-            if(Map.Instance.WorldMap[check.Y / 40][check.X / 40].Walkable)
-            {
-                return true;
-            }
-            return false;
-        }
+        //private bool DetectColisionWithBuilding(Point check)
+        //{
+        //    if(Map.Instance.WorldMap[check.Y / 40][check.X / 40].Walkable)
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
     }
 }
