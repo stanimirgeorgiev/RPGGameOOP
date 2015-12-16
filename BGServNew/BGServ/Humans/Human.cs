@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 using WindowsFormsApplication1;
 using BulgarianReality.Interfaces;
@@ -16,7 +17,7 @@ namespace BulgarianReality.Humans
 
     using Enums;
 
-    public abstract class Human : IMovable, IDrinkable, IEatable
+    public abstract class Human : IMovable, IDrinkable, IEatable, INotifyPropertyChanged
     {
         private int id;
         private string firstname;
@@ -63,7 +64,7 @@ namespace BulgarianReality.Humans
 
         public Gender Gender { get; set; }
 
-        public int Health { get; set; }
+        public int Health { get { return this.health; } set { this.health = value; NotifyPropertyChanged(); } }
 
         public int Joy { get; set; }
 
@@ -93,6 +94,16 @@ namespace BulgarianReality.Humans
         {
             this.location.X += x;
             this.location.Y += y;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged()
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("Health"));
+            }
         }
     }
 }

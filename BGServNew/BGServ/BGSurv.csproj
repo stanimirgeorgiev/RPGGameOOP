@@ -191,6 +191,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\BulgarianReality.Humans.Human.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -223,7 +224,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GameObjects\images\AlleyTile.png" />
-    <None Include="GameObjects\images\Avatar1.jpg" />
     <Content Include="GameObjects\images\BuildingTile.png" />
     <Content Include="GameObjects\images\coin.png" />
     <Content Include="GameObjects\images\GoblinCombatSprite.png" />

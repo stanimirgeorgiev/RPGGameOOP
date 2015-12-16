@@ -23,8 +23,6 @@ namespace BGServ
         private HashSet<Human> bots;
         private Designer designer;
         private int thirdTicker = 0;
-        private Human botInAction;
-        private Action action;
 
         private Game()
         {
@@ -36,7 +34,7 @@ namespace BGServ
             this.Player = player;
         }
         public Human BotInAction { get { return this.botInAction; } }
-        
+
 
         public HashSet<Human> Bots { get { return this.bots; } set { this.bots = value; } }
         public Human Player { get { return Game.player; } set { Game.player = value; } }
@@ -94,20 +92,19 @@ namespace BGServ
             bool botInActionFound = false;
             Human botToRemove =  new DummyHuman();
             
-            
 
 
             foreach (var bot in this.Bots)
             {
                 thirdTicker++;
-                if (thirdTicker == 1000)
+                if (thirdTicker == 500)
                 {
                     Player.Health--;
                     Player.InAction = false;
                     foreach (var bots in Game.Instance.Bots)
                     {
                         bots.Direction = rand.Next(4);
-                        thirdTicker = 0;
+                        nTicker = 0;
                     }
                 }
                 
@@ -180,7 +177,7 @@ namespace BGServ
                            
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId == Game.Instance.Player.Id)
-                            {
+                        {
                                 //Collision detection;
                                 Game.Instance.Player.Health += 100;
                                 botToRemove = Game.Instance.Bots.FirstOrDefault(i => i.Id == Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId);
@@ -210,7 +207,7 @@ namespace BGServ
                            
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId == Game.Instance.Player.Id)
-                            {
+                        {
                                 //Collision detection;
                                 Game.Instance.Player.Health += 100;
                                 botToRemove = Game.Instance.Bots.FirstOrDefault(i => i.Id == Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId);
