@@ -67,11 +67,12 @@ namespace BGServ
             {
                 for (int x = 0; x < Config.GameConfig.GridX; x++)
                 {
-                    if (map[y][x].PlayerId == 0)
+                    Human foundBot = bot.FirstOrDefault(i => i.Id == map[y][x].PlayerId);
+                    if (map[y][x].PlayerId < 2 || foundBot == null)//|| bot.FirstOrDefault(i => i.Id == map[y][x].PlayerId).InAction)
                     {
                         continue;
                     }
-                    Human foundBot = bot.FirstOrDefault(i => i.Id == map[y][x].PlayerId);
+                    
 
                     if (foundBot.Location.X > visibleMap.CurrentMapStartGrid(Game.Instance.Player).X * Config.GameConfig.TileSize &&
                         foundBot.Location.X < (visibleMap.CurrentMapStartGrid(Game.Instance.Player).X * Config.GameConfig.TileSize +
@@ -85,12 +86,16 @@ namespace BGServ
                         (visibleMap.CurrentMapStartGrid(Game.Instance.Player).Y * Config.GameConfig.TileSize +
                          Config.GameConfig.GridY * Config.GameConfig.TileSize))
                     {
+
                         this.device.DrawImage(foundBot.Image, x * 40, y * 40);
                     }
                 }
             }
-
-
+            if(Game.Instance.BotInAction != null)
+            {
+                this.device.DrawImage(Game.Instance.BotInAction.Image, Game.Instance.BotInAction.Location);
+            }
+            
             //this.designer.Height = Config.GameConfig.TileSize;
             //this.designer.Width = Config.GameConfig.TileSize;
             this.designer.Image = this.img;

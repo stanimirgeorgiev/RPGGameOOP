@@ -45,6 +45,9 @@
 
         //Timer
         public const int TimerTick = 500;
+        public const int RealTick = 10;
+        
+        
 
     }
 }

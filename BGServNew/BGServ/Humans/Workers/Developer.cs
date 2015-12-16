@@ -10,7 +10,7 @@ namespace BulgarianReality.Humans.Workers
     {
         private const int DaySalary = 100;
 
-        private const int WorkerHealth = 80;
+        private const int WorkerHealth = 200;
         private const int WorkerJoy = 50;
 
         private const int ID = 1;

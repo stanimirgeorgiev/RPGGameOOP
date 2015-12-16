@@ -27,6 +27,9 @@ namespace BulgarianReality.Humans
         private Wallet wallet;
         private Point location;
         private Image image;
+        //private bool inAction = false;
+
+
 
         protected Human()
             : this(0, "", "", 0, Gender.Male, 0, 0, new Wallet(0), new Point(0, 0), new Bitmap(@"images/monster.png"))
@@ -73,6 +76,8 @@ namespace BulgarianReality.Humans
         public Image Image { get; set; }
         public Point Location { get { return this.location; } set { this.location = value; } }
         public int Direction { get; set; }
+
+        public bool InAction { get; set; }
 
         public void Drink(Drink drink)
         {
