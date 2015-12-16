@@ -14,6 +14,7 @@ namespace BGServ
 {
     public partial class Playground : Form
     {
+        BindingSource bs = new BindingSource();
         private BGSurvEvent events;
         private Timer timer = new Timer();
         private Random rand = new Random();
@@ -22,6 +23,9 @@ namespace BGServ
             InitializeComponent();
             Game.SetForm(this, new Developer(-1, "Pesho", "Peshev", 25, BulgarianReality.Enums.Gender.Male, new BulgarianReality.Items.Belongings.Wallet(0), new Point(Config.GameConfig.PlayerStartX, Config.GameConfig.PlayerStartY), new Bitmap(@"images\sprite.png")));
             Game.Instance.Run();
+            bs.DataSource = Game.Instance.Player;
+            playerHealth.DataBindings.Add(new Binding("Text", bs, "Health", false, DataSourceUpdateMode.OnPropertyChanged));
+
             this.events = new BGSurvEvent();
             timer.Tick += new EventHandler(timer1_Tick);
             timer.Enabled = true;

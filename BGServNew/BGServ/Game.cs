@@ -19,7 +19,7 @@ namespace BGServ
         private int id = 1;
         private HashSet<Human> bots;
         private Designer designer;
-        private int thirdTicker = 0;
+        private int nTicker = 0;
 
         private Game()
         {
@@ -81,18 +81,16 @@ namespace BGServ
             Random rand = new Random();
             int[] directionEast = {0, 2, 3};
             int[] directionSouth = {0, 1, 3};
-            
-
 
             foreach (var bot in this.Bots)
             {
-                thirdTicker++;
-                if (thirdTicker == 500)
+                nTicker++;
+                if (nTicker == 500)
                 {
                     foreach (var bots in Game.Instance.Bots)
                     {
                         bots.Direction = rand.Next(4);
-                        thirdTicker = 0;
+                        nTicker = 0;
                     }
                 }
                 switch (bot.Direction)
