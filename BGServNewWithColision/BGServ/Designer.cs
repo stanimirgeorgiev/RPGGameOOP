@@ -9,6 +9,7 @@ using WindowsFormsApplication1;
 using BGServ;
 using BGServ.Humans;
 using BulgarianReality.Humans;
+using BulgarianReality.Transportation;
 
 namespace BGServ
 {
@@ -61,7 +62,7 @@ namespace BGServ
 
         public void DrawBots(Human character, Tile[][] map, HashSet<Human> bot)
         {
-                        this.designer.BackColor = Color.Transparent;
+            this.designer.BackColor = Color.Transparent;
             Map visibleMap = Map.Instance;
             for (int y = 0; y < Config.GameConfig.GridY; y++)
             {
@@ -72,7 +73,7 @@ namespace BGServ
                     {
                         continue;
                     }
-                    
+
 
                     if (foundBot.Location.X > visibleMap.CurrentMapStartGrid(Game.Instance.Player).X * Config.GameConfig.TileSize &&
                         foundBot.Location.X < (visibleMap.CurrentMapStartGrid(Game.Instance.Player).X * Config.GameConfig.TileSize +
@@ -91,11 +92,11 @@ namespace BGServ
                     }
                 }
             }
-            if(Game.Instance.BotInAction != null)
+            if (Game.Instance.BotInAction != null)
             {
                 this.device.DrawImage(Game.Instance.BotInAction.Image, Game.Instance.BotInAction.Location);
             }
-            
+
             //this.designer.Height = Config.GameConfig.TileSize;
             //this.designer.Width = Config.GameConfig.TileSize;
             this.designer.Image = this.img;
@@ -108,5 +109,44 @@ namespace BGServ
             newLocation.Y = location.Y % ((Config.GameConfig.GridY) * Config.GameConfig.TileSize);
             return newLocation;
         }
+
+        public void DrawCars(Human character, Tile[][] map, HashSet<Transport> car)
+        {
+            this.designer.BackColor = Color.Transparent;
+            Map visibleMap = Map.Instance;
+            for (int y = 0; y < Config.GameConfig.GridY; y++)
+            {
+                for (int x = 0; x < Config.GameConfig.GridX; x++)
+                {
+                    Transport foundBot = car.FirstOrDefault(i => i.Location == map[y][x].Location);
+                    if (foundBot == null) //|| bot.FirstOrDefault(i => i.Id == map[y][x].PlayerId).InAction)
+                    {
+                        continue;
+                    }
+
+
+                    if (foundBot.Location.X >
+                        visibleMap.CurrentMapStartGrid(Game.Instance.Player).X*Config.GameConfig.TileSize &&
+                        foundBot.Location.X <
+                        (visibleMap.CurrentMapStartGrid(Game.Instance.Player).X*Config.GameConfig.TileSize +
+                         Config.GameConfig.GridX*Config.GameConfig.TileSize))
+                    {
+
+                        this.device.DrawImage(foundBot.Image, x*40, y*40);
+                    }
+                    if (foundBot.Location.Y >
+                        visibleMap.CurrentMapStartGrid(Game.Instance.Player).Y*Config.GameConfig.TileSize &&
+                        foundBot.Location.Y <
+                        (visibleMap.CurrentMapStartGrid(Game.Instance.Player).Y*Config.GameConfig.TileSize +
+                         Config.GameConfig.GridY*Config.GameConfig.TileSize))
+                    {
+
+                        this.device.DrawImage(foundBot.Image, x*40, y*40);
+                    }
+                }
+            }
+
+        }
+
     }
 }

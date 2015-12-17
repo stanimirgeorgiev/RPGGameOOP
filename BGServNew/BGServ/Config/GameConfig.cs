@@ -30,7 +30,6 @@
         public const int MassMurders = 5;
 
         //Buildings
-
         public const int Hospital = 5;
         public const int Office = 30;
         public const int Bank = 20;
@@ -46,8 +45,8 @@
         //Timer
         public const int TimerTick = 500;
         public const int RealTick = 10;
-        
-        
 
+
+        public const int Cars = 10;
     }
 }

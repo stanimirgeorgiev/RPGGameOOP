@@ -11,6 +11,7 @@ using BulgarianReality.Humans;
 using BulgarianReality.Buildings;
 using System.Linq;
 using BGServ.Humans;
+using BulgarianReality.Transportation;
 
 namespace BGServ
 {
@@ -25,6 +26,8 @@ namespace BGServ
         private int thirdTicker = 0;
         private Human botInAction;
 
+        private Action action;
+
         private Game()
         {
             throw new NotImplementedException();
@@ -34,37 +37,36 @@ namespace BGServ
             this.GameForm = gameForm;
             this.Player = player;
         }
+
+        public Designer Designer { get { return this.designer; }}
         public Human BotInAction { get { return this.botInAction; } }
-
-
         public HashSet<Human> Bots { get { return this.bots; } set { this.bots = value; } }
-        public Human Player { get { return Game.player; } set { Game.player = value; } }
+        public Human Player { get { return Game.player; } private set { Game.player = value; } }
         public Form GameForm { get; set; }
+        public HashSet<Transport> Cars { get; set; }
+
         public void Run()
         {
-
             Designer designer = new Designer();
             Seeder seeder = new Seeder();
-
             this.designer = designer;
             seeder.AddBiuldings();
             seeder.AddPeople();
+            seeder.AddCars();
             Map.Instance.WorldMap[Game.Instance.Player.Location.Y / 40][Game.Instance.Player.Location.X / 40].PlayerId = Game.Instance.Player.Id;
-
             Tile[][] currentMap = Map.Instance.CurrentMap(Game.player);
-
-            designer.DrawMap(currentMap);
-            designer.DrawBots(Game.player, currentMap, this.Bots);
-            designer.DrawPlayer(Game.Instance.Player);
+            designer.DrawMap();
+            designer.DrawBots(this.Player, Map.Instance.CurrentMap(this.Player), this.Bots);
+            designer.DrawCars(Map.Instance.CurrentMap(Game.Instance.Player));
+            designer.DrawPlayer();
         }
-
 
         public int Id()
         {
             this.id++;
             return this.id;
         }
-        public Designer Designer { get { return this.designer; } set { this.designer = value; } }
+
 
         public static Game Instance
         {
@@ -78,46 +80,50 @@ namespace BGServ
             }
         }
 
+
         public static void SetForm(Form gameForm, Human player)
         {
             Game.gameForm = gameForm;
             Game.player = player;
         }
 
-        
+
         public void MoveBots()
         {
             Random rand = new Random();
-            int[] directionEast = {0, 2, 3};
-            int[] directionSouth = {0, 1, 3};
+            int[] directionEast = { 0, 2, 3 };
+            int[] directionSouth = { 0, 1, 3 };
             bool botInActionFound = false;
-            Human botToRemove =  new DummyHuman();
-            
+            Human botToRemove = new DummyHuman();
+
+
 
 
             foreach (var bot in this.Bots)
             {
                 thirdTicker++;
-                if (thirdTicker == 500)
+                if (thirdTicker == 1000)
                 {
                     Player.Health--;
                     Player.InAction = false;
                     foreach (var bots in Game.Instance.Bots)
                     {
                         bots.Direction = rand.Next(4);
-                        //nTicker = 0;
+
+                        thirdTicker = 0;
+
                     }
                 }
-                
+
                 switch (bot.Direction)
                 {
 
                     case 0:
-                        if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].Walkable )
-                            
+                        if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].Walkable)
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId == Game.Instance.Player.Id)
                             {
+
                                 
                                //Game.Instance.Player.Health+=100;
                                botToRemove = Game.Instance.Bots.FirstOrDefault(i => i.Id == Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId);
@@ -126,15 +132,16 @@ namespace BGServ
                                Game.player.InAction = true;
                               // this.action = new Action("joy");
                                break;
+
                             }
-                            if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId == 0 
+                            if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId == 0
                                 )//&& !(Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].Building is Building))
                             {
 
-                                
-                            Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId = 0;
-                            Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId = bot.Id;
-                            bot.Move(0, -40);
+
+                                Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId = 0;
+                                Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId = bot.Id;
+                                bot.Move(0, -40);
                             }
                         }
                         else
@@ -144,9 +151,8 @@ namespace BGServ
                         break;
                     case 1:
                         if (Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40 + 1].Walkable)
-                            
                         {
-                                
+
                             if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId == Game.Instance.Player.Id)//&& !botToRemove.InAction )
                             {
                                 //Collision detection;
@@ -157,14 +163,14 @@ namespace BGServ
                                 this.botInAction = botToRemove;
                                // this.action = new Action("joy");
                                 break;
-                                
-                               // break;
+
+                                // break;
                             }
-                            if (Map.Instance.WorldMap[bot.Location.Y/40][bot.Location.X/40 +1].PlayerId == 0
+                            if (Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40 + 1].PlayerId == 0
                                 )//&& !(Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].Building is Building))
                             {
-                                Map.Instance.WorldMap[bot.Location.Y/40][bot.Location.X/40].PlayerId = 0;
-                                Map.Instance.WorldMap[bot.Location.Y/40][bot.Location.X/40 + 1].PlayerId = bot.Id;
+                                Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId = 0;
+                                Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40 + 1].PlayerId = bot.Id;
                                 bot.Move(40, 0);
                             }
                         }
@@ -175,10 +181,9 @@ namespace BGServ
                         break;
                     case 2:
                         if (Map.Instance.WorldMap[bot.Location.Y / 40 + 1][bot.Location.X / 40].Walkable)
-                           
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId == Game.Instance.Player.Id)
-                        {
+                            {
                                 //Collision detection;
                                 Game.Instance.Player.Health += 100;
                                 botToRemove = Game.Instance.Bots.FirstOrDefault(i => i.Id == Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId);
@@ -187,28 +192,26 @@ namespace BGServ
                                 Game.player.InAction = true;
                                // this.action = new Action("joy");
                                 break;
-                               // break;
+                                // break;
                             }
-                            if (Map.Instance.WorldMap[bot.Location.Y/40 + 1][bot.Location.X/40].PlayerId == 0)
-                              //  && !(Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].Building is Building))
+                            if (Map.Instance.WorldMap[bot.Location.Y / 40 + 1][bot.Location.X / 40].PlayerId == 0)
+                            //  && !(Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].Building is Building))
                             {
-                                Map.Instance.WorldMap[bot.Location.Y/40][bot.Location.X/40].PlayerId = 0;
-                                Map.Instance.WorldMap[bot.Location.Y/40 + 1][bot.Location.X/40].PlayerId = bot.Id;
+                                Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId = 0;
+                                Map.Instance.WorldMap[bot.Location.Y / 40 + 1][bot.Location.X / 40].PlayerId = bot.Id;
                                 bot.Move(0, 40);
                             }
                         }
                         else
                         {
                             bot.Direction = directionSouth[rand.Next(0, 3)];
-
                         }
                         break;
                     case 3:
                         if (Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40 - 1].Walkable)
-                           
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].PlayerId == Game.Instance.Player.Id)
-                        {
+                            {
                                 //Collision detection;
                                 Game.Instance.Player.Health += 100;
                                 botToRemove = Game.Instance.Bots.FirstOrDefault(i => i.Id == Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId);
@@ -220,10 +223,10 @@ namespace BGServ
                                 //break;
                             }
                             if (Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40 - 1].PlayerId == 0)
-                                //&& !(Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].Building is Building))
+                            //&& !(Map.Instance.WorldMap[bot.Location.Y / 40 - 1][bot.Location.X / 40].Building is Building))
                             {
-                                Map.Instance.WorldMap[bot.Location.Y/40][bot.Location.X/40].PlayerId = 0;
-                                Map.Instance.WorldMap[bot.Location.Y/40][bot.Location.X/40 - 1].PlayerId = bot.Id;
+                                Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40].PlayerId = 0;
+                                Map.Instance.WorldMap[bot.Location.Y / 40][bot.Location.X / 40 - 1].PlayerId = bot.Id;
                                 bot.Move(-40, 0);
                             }
                         }
@@ -235,20 +238,138 @@ namespace BGServ
 
                 }
             }
-            if(botInActionFound)
+            if (botInActionFound)
             {
-            Game.Instance.Bots.Remove(botToRemove);
-            botInActionFound = false;
-            
+                Game.Instance.Bots.Remove(botToRemove);
+                botInActionFound = false;
+
             }
 
-            this.designer.DrawMap(Map.Instance.CurrentMap(Game.Instance.Player));
+            this.designer.DrawMap();
+            //this.designer.DrawBots(Game.player, Map.Instance.CurrentMap(Game.Instance.Player), this.Bots);
             this.designer.DrawBots(Game.player, Map.Instance.CurrentMap(Game.Instance.Player), this.Bots);
-            this.designer.DrawPlayer(Game.Instance.Player);
+            //this.MoveCars();
+            this.designer.DrawPlayer();
             
 
         }
-        
+        public void MoveCars()
+        {
+            Random rand = new Random();
+            int[] directionEast = { 0, 2 };
+            int[] directionSouth = { 0, 3 };
+            int[] directionNorth = { 0, 3 };
+            int[] directionWest = { 0, 2 };
+
+            foreach (var car in this.Cars)
+            {
+                switch (car.Direction)
+                {
+
+                    case 0:
+                        if (Map.Instance.NonWalkableTiles.Contains(Map.Instance.WorldMap[car.Location.Y / 40 - 1][car.Location.X / 40]))
+                        {
+                            car.Move(0, -40);
+                        }
+                        else
+                        {
+                            if (Map.Instance.NonWalkableTiles.Contains(Map.Instance.WorldMap[car.Location.Y / 40][car.Location.X / 40 + 1]))
+                            {
+                                car.Move(40, 0);
+                                car.Direction = 1;
+                                car.Image = car.DirectionImage[car.Direction];
+                            }
+                            else
+                            {
+                                car.Move(-40, 0);
+                                car.Direction = 3;
+                                car.Image = car.DirectionImage[car.Direction];
+                            }
+                        }
+                        break;
+                    case 1:
+                        if (Map.Instance.NonWalkableTiles.Contains(Map.Instance.WorldMap[car.Location.Y / 40][car.Location.X / 40 + 1]))
+                        {
+                            car.Move(40, 0);
+                        }
+                        else
+                        {
+                            if (Map.Instance.NonWalkableTiles.Contains(Map.Instance.WorldMap[car.Location.Y / 40 - 1][car.Location.X / 40]))
+                            {
+                                car.Move(0, -40);
+                                car.Direction = 0;
+                                car.Image = car.DirectionImage[car.Direction];
+                            }
+                            else
+                            {
+                                car.Move(0, 40);
+                                car.Direction = 2;
+                                car.Image = car.DirectionImage[car.Direction];
+                            }
+
+                        }
+                        break;
+                    case 2:
+                        if (Map.Instance.NonWalkableTiles.Contains(Map.Instance.WorldMap[car.Location.Y / 40 + 1][car.Location.X / 40]))
+                        {
+                            car.Move(0, 40);
+                        }
+                        else
+                        {
+                            if (Map.Instance.NonWalkableTiles.Contains(Map.Instance.WorldMap[car.Location.Y / 40][car.Location.X / 40 + 1]))
+                            {
+                                car.Move(40, 0);
+                                car.Direction = 1;
+                                car.Image = car.DirectionImage[car.Direction];
+                            }
+                            else
+                            {
+                                car.Move(-40, 0);
+                                car.Direction = 3;
+                                car.Image = car.DirectionImage[car.Direction];
+                            }
+                        }
+                        break;
+                    case 3:
+                        if (Map.Instance.NonWalkableTiles.Contains(Map.Instance.WorldMap[car.Location.Y / 40][car.Location.X / 40 - 1]))
+                        {
+                            car.Move(-40, 0);
+                        }
+                        else
+                        {
+                            if (Map.Instance.NonWalkableTiles.Contains(Map.Instance.WorldMap[car.Location.Y / 40 - 1][car.Location.X / 40]))
+                            {
+                                car.Move(0, -40);
+                                car.Direction = 0;
+                                car.Image = car.DirectionImage[car.Direction];
+                            }
+                            else
+                            {
+                                car.Move(0, 40);
+                                car.Direction = 2;
+                                car.Image = car.DirectionImage[car.Direction];
+                            }
+
+                        }
+                        break;
+
+                }
+            }
+            this.designer.DrawCars(Map.Instance.CurrentMap(this.Player));
+        }
+
+        public void DetectColision()
+        {
+            foreach (var bot in this.Bots)
+            {
+                if (this.Player.Location.X == bot.Location.X && this.Player.Location.Y == bot.Location.Y)
+                {
+                    MessageBox.Show("COLLISTION");
+                }
+            }
+
+        }
+
     }
 
 }

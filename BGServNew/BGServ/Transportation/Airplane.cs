@@ -2,5 +2,6 @@
 {
     public class Airplane : Transport
     {
+       
     }
 }

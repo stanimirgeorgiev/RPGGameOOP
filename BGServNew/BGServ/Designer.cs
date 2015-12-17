@@ -9,6 +9,7 @@ using WindowsFormsApplication1;
 using BGServ;
 using BGServ.Humans;
 using BulgarianReality.Humans;
+using BulgarianReality.Transportation;
 
 namespace BGServ
 {
@@ -16,8 +17,10 @@ namespace BGServ
     {
         private PictureBox designer;
         private Image img = new Bitmap(Config.GameConfig.WindowSizeX, Config.GameConfig.WindowSizeY);
-
         private Graphics device;
+
+        private Human player = Game.Instance.Player;
+
 
         public Designer()
         {
@@ -29,75 +32,110 @@ namespace BGServ
         }
 
 
-        public void DrawPlayer(Human player)
+        public void DrawPlayer()
         {
-
-            //this.device.DrawImage(player.Image, player.Location);
             this.designer.BackColor = Color.Transparent;
-            this.device.DrawImage(player.Image, this.LocalCoordinates(player.Location));
+            this.device.DrawImage(this.player.Image, this.LocalCoordinates(this.player.Location));
 
-            //this.designer.Height = Config.GameConfig.TileSize;
-            //this.designer.Width = Config.GameConfig.TileSize;
             this.designer.Image = this.img;
-
         }
 
-        public void DrawMap(Tile[][] map)
+        public void DrawMap()
         {
-            Tile playTile = map[0][0];
-            //designer.Width = Config.GameConfig.WindowSizeX;
-            //designer.Height = Config.GameConfig.WindowSizeY;
+            Tile[][] map = Map.Instance.CurrentMap(Game.Instance.Player);
             for (int y = 0; y < Config.GameConfig.GridY; y++)
             {
-
                 for (int x = 0; x < Config.GameConfig.GridX; x++)
                 {
                     device.DrawImage(map[y][x].Building.Image, x * 40, y * 40);
                 }
             }
-
             this.designer.Image = this.img;
         }
 
-        public void DrawBots(Human character, Tile[][] map, HashSet<Human> bot)
+        public void DrawBots(Human player, Tile[][] map, HashSet<Human> bots)
         {
-                        this.designer.BackColor = Color.Transparent;
+            //List<Human> fiteredBots = new List<Human>();
+            //HashSet<Human> bots = Game.Instance.Bots;
+            //Map m = Map.Instance;
+            //Tile[][] curMap = m.CurrentMap(Game.Instance.Player);
+            //this.designer.BackColor = Color.Transparent;
+            ////List<Human> fiteredBots = Game.Instance.Bots
+            ////    .Where(i =>
+            ////            i.Location.X > map[0][0].Location.X &&
+            ////            i.Location.X < map[0][18].Location.X &&
+            ////            i.Location.Y > map[0][0].Location.Y &&
+            ////            i.Location.Y < map[15][0].Location.Y
+            ////            ).ToList();
+            ////foreach (var botinka in Game.Instance.Bots)
+            ////{
+            ////    this.device.DrawImage(botinka.Image, botinka.Location);
+            ////}
+            //for (int i = 0; i < 16; i++)
+            //{
+            //    for (int j = 0; j < 19; j++)
+            //    {
+            //        Human foundBot = bots.FirstOrDefault(id => id.Id == map[i][j].PlayerId);
+            //        if (foundBot != null)
+            //        {
+            //            this.device.DrawImage(foundBot.Image, foundBot.Location);
+            //        }
+            //    }
+            //}
+
+            //if (Game.Instance.BotInAction != null)
+            //{
+            //    this.device.DrawImage(Game.Instance.BotInAction.Image, Game.Instance.BotInAction.Location);
+            //}
+            //this.designer.Image = this.img;
+
+            this.designer.BackColor = Color.Transparent;
             Map visibleMap = Map.Instance;
             for (int y = 0; y < Config.GameConfig.GridY; y++)
             {
                 for (int x = 0; x < Config.GameConfig.GridX; x++)
                 {
-                    Human foundBot = bot.FirstOrDefault(i => i.Id == map[y][x].PlayerId);
-                    if (map[y][x].PlayerId < 2 || foundBot == null)//|| bot.FirstOrDefault(i => i.Id == map[y][x].PlayerId).InAction)
+                    Human foundBot = bots.FirstOrDefault(id => id.Id == map[y][x].PlayerId);
+                    if (foundBot == null)
                     {
                         continue;
                     }
-                    
-
-                    if (foundBot.Location.X > visibleMap.CurrentMapStartGrid(Game.Instance.Player).X * Config.GameConfig.TileSize &&
-                        foundBot.Location.X < (visibleMap.CurrentMapStartGrid(Game.Instance.Player).X * Config.GameConfig.TileSize +
-                         Config.GameConfig.GridX * Config.GameConfig.TileSize))
-                    {
-
-                        this.device.DrawImage(foundBot.Image, x * 40, y * 40);
-                    }
-                    if (foundBot.Location.Y > visibleMap.CurrentMapStartGrid(Game.Instance.Player).Y * Config.GameConfig.TileSize &&
-                        foundBot.Location.Y <
-                        (visibleMap.CurrentMapStartGrid(Game.Instance.Player).Y * Config.GameConfig.TileSize +
+                    if (map[y][x].Location.X > visibleMap.CurrentMapStartGrid(player).X * Config.GameConfig.TileSize
+                        &&
+                        map[y][x].Location.X < (visibleMap.CurrentMapStartGrid(player).X * Config.GameConfig.TileSize +
+                           Config.GameConfig.GridX * Config.GameConfig.TileSize)
+                     &&
+                         map[y][x].Location.Y > visibleMap.CurrentMapStartGrid(player).Y * Config.GameConfig.TileSize
+                     &&
+                        map[y][x].Location.Y < (visibleMap.CurrentMapStartGrid(player).Y * Config.GameConfig.TileSize +
                          Config.GameConfig.GridY * Config.GameConfig.TileSize))
                     {
-
-                        this.device.DrawImage(foundBot.Image, x * 40, y * 40);
+                        this.device.DrawImage(foundBot.Image,foundBot.Location);
                     }
                 }
             }
-            if(Game.Instance.BotInAction != null)
-            {
-                this.device.DrawImage(Game.Instance.BotInAction.Image, Game.Instance.BotInAction.Location);
-            }
-            
+
+
             //this.designer.Height = Config.GameConfig.TileSize;
             //this.designer.Width = Config.GameConfig.TileSize;
+            this.designer.Image = this.img;
+        }
+
+        public void DrawCars(Tile[][] map)
+        {
+            this.designer.BackColor = Color.Transparent;
+            List<Transport> fiteredCars = Game.Instance.Cars
+                .Where(i =>
+                        i.Location.X > map[0][0].Location.X &&
+                        i.Location.X < map[0][18].Location.X &&
+                        i.Location.Y > map[0][0].Location.Y &&
+                        i.Location.Y < map[15][0].Location.Y
+                        ).ToList();
+            foreach (Transport car in fiteredCars)
+            {
+                this.device.DrawImage(car.Image, car.Location);
+
+            }
             this.designer.Image = this.img;
         }
 

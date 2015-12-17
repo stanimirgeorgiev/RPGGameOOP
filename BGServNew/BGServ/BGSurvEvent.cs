@@ -63,7 +63,7 @@ namespace BGServ
                     {
                         this.player.Move(0, -40);
                         Map.Instance.WorldMap[Game.Instance.Player.Location.Y / 40][Game.Instance.Player.Location.X / 40].PlayerId = Game.Instance.Player.Id;
-                        Map.Instance.WorldMap[(Game.Instance.Player.Location.Y / 40) + 10][(Game.Instance.Player.Location.X / 40)].PlayerId = 0;
+                        Map.Instance.WorldMap[(Game.Instance.Player.Location.Y / 40) + 1][(Game.Instance.Player.Location.X / 40)].PlayerId = 0;
                     }
                     if(this.collision.DetectColisionWithBuilding(nextPont))
                     {
@@ -86,9 +86,10 @@ namespace BGServ
                 }
             }
             //designer.DrawPlayer(this.player);
-            Game.Instance.Designer.DrawMap(Map.Instance.CurrentMap(this.player));
-            Game.Instance.Designer.DrawBots(this.player, Map.Instance.CurrentMap(this.player), Game.Instance.Bots);
-            Game.Instance.Designer.DrawPlayer(this.player);
+            Game.Instance.Designer.DrawMap();
+            Game.Instance.Designer.DrawBots(Game.Instance.Player, Map.Instance.CurrentMap(Game.Instance.Player), Game.Instance.Bots);
+            Game.Instance.Designer.DrawCars(Map.Instance.CurrentMap(Game.Instance.Player));
+            Game.Instance.Designer.DrawPlayer();
 
         }
 
@@ -108,7 +109,14 @@ namespace BGServ
             }
             return false;
         }
-        
 
+        private bool DetectColisionWithBuilding(Point check)
+        {
+            if(Map.Instance.WorldMap[check.Y / 40][check.X / 40].Walkable)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

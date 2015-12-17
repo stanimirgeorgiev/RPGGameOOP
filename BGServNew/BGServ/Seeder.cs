@@ -10,6 +10,7 @@ using BulgarianReality.Humans;
 using BulgarianReality.Humans.Criminals;
 using BulgarianReality.Humans.Workers;
 using BulgarianReality.Items.Belongings;
+using BulgarianReality.Transportation;
 
 namespace BGServ
 {
@@ -223,6 +224,76 @@ namespace BGServ
                 Game.Instance.Bots.Add(character);
             }
             
+        }
+
+        public void AddCars()
+        {
+            Game.Instance.Cars = new HashSet<Transport>();
+            Random rand = new Random();
+            for (int i = 0; i < Config.GameConfig.Cars; i++)
+            {
+                if (Map.Instance.NonWalkableTiles.Count <= 0)
+                {
+                    throw new NoTilesException("No cars to populate");
+                }
+                Image[] directionImage =
+                {
+                    new Bitmap(@"images\pol1-0.png"),
+                    new Bitmap(@"images\pol1-1.png"),
+                    new Bitmap(@"images\pol1-2.png"),
+                    new Bitmap(@"images\pol1-3.png"),
+                };
+                int randomLocation = rand.Next(0, Map.Instance.NonWalkableTiles.Count);
+                Tile foundCar = Map.Instance.NonWalkableTiles[randomLocation];
+                Transport car = new Car(Game.Instance.Id(), foundCar.Location, directionImage);
+
+                //Map.Instance.NonWalkableTiles.RemoveAt(randomLocation);
+                car.Direction = rand.Next(0,4);
+                Game.Instance.Cars.Add(car);
+            }
+            for (int i = 0; i < Config.GameConfig.Cars; i++)
+            {
+                if (Map.Instance.NonWalkableTiles.Count <= 0)
+                {
+                    throw new NoTilesException("No cars to populate");
+                }
+                Image[] directionImage =
+                {
+                    new Bitmap(@"images\car1-0.png"),
+                    new Bitmap(@"images\car1-1.png"),
+                    new Bitmap(@"images\car1-2.png"),
+                    new Bitmap(@"images\car1-3.png"),
+                };
+            int randomLocation = rand.Next(0, Map.Instance.NonWalkableTiles.Count);
+                Tile foundCar = Map.Instance.NonWalkableTiles[randomLocation];
+                Transport car = new Car(Game.Instance.Id(), foundCar.Location, directionImage);
+
+                //Map.Instance.NonWalkableTiles.RemoveAt(randomLocation);
+                car.Direction = 0;
+                Game.Instance.Cars.Add(car);
+            }
+            for (int i = 0; i < Config.GameConfig.Cars; i++)
+            {
+                if (Map.Instance.NonWalkableTiles.Count <= 0)
+                {
+                    throw new NoTilesException("No cars to populate");
+                }
+                Image[] directionImage =
+                {
+                    new Bitmap(@"images\car2-0.png"),
+                    new Bitmap(@"images\car2-1.png"),
+                    new Bitmap(@"images\car2-2.png"),
+                    new Bitmap(@"images\car2-3.png"),
+                };
+                int randomLocation = rand.Next(0, Map.Instance.NonWalkableTiles.Count);
+                Tile foundCar = Map.Instance.NonWalkableTiles[randomLocation];
+                Transport car = new Car(Game.Instance.Id(), foundCar.Location, directionImage);
+
+                //Map.Instance.NonWalkableTiles.RemoveAt(randomLocation);
+                car.Direction = 0;
+                Game.Instance.Cars.Add(car);
+            }
+
         }
 
         private Gender RandomGender()
