@@ -54,17 +54,34 @@ namespace BGServ
             if (Game.Instance.Player.InAction)
             {
                 
-            this.pictureBox1.Load(Game.Instance.Player.OponentImage);
-                this.label10.Text = Game.Instance.Player.OponentId.Firstname + " " + Game.Instance.Player.OponentId.Lastname;
+                if(Game.Instance.Player.Oponent == null)
+                {
+                    this.pictureBox1.Load(Game.Instance.Player.CollisionImage);
+                    this.label10.Text = Game.Instance.Player.BuilDingName;
+                    this.groupBox2.Text = Game.Instance.Player.BuilDingName;
+                    
+                    
+                }
+                else
+                {
+                    this.pictureBox1.Load(Game.Instance.Player.CollisionImage);
+                    this.label10.Text = Game.Instance.Player.Oponent.Firstname + " " + Game.Instance.Player.Oponent.Lastname;
+                    this.groupBox2.Text = Game.Instance.Player.Oponent.Firstname + " " + Game.Instance.Player.Oponent.Lastname;
+                    this.label10.Text = string.Format("Hello {0}, I'm {1} ",Game.Instance.Player.Firstname,Game.Instance.Player.Oponent.Firstname + " " + Game.Instance.Player.Oponent.Lastname );
+                }
+                Game.Instance.Player.Oponent = null;
+                
             }
-
+            
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
             this.label9.Text = Game.Instance.Player.Joy.ToString();
-            this.label4.Text = Game.Instance.Player.Wallet.Balance.ToString() + "лв.";
+            this.label4.Text = Game.Instance.Player.Wallet.Balance.ToString();
         }
+
+       
 
     }
 }

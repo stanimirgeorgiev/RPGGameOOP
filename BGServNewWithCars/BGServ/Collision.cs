@@ -23,36 +23,51 @@ namespace BGServ
         {
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Bank)
             {
-                Game.Instance.Player.OponentImage = @"images\bank.png";
+                Game.Instance.Player.CollisionImage = @"images\unicredit.png";
                 Game.Instance.Player.InAction = true;
+                Game.Instance.Player.BuilDingName = "Unicredit Bulbank";
                 this.action = new Action("bank");
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Hospital)
             {
-                Game.Instance.Player.OponentImage = @"images\hospital.png";
+                Game.Instance.Player.CollisionImage = @"images\hospital.jpg";
                 Game.Instance.Player.InAction = true;
+                Game.Instance.Player.BuilDingName = "Tokuda Hospital";
                 this.action = new Action("hospital");
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Office)
             {
-                Game.Instance.Player.OponentImage = @"images\office.png";
+                Game.Instance.Player.CollisionImage = @"images\office.jpg";
                 Game.Instance.Player.InAction = true;
+                Game.Instance.Player.BuilDingName = "Softuni office";
                 this.action = new Action("office");
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Supermarket)
             {
+                Game.Instance.Player.CollisionImage = @"images\metrocash.jpg";
+                Game.Instance.Player.InAction = true;
+                Game.Instance.Player.BuilDingName = "Metro cash n carry";
                 this.action = new Action("supermarket");
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Coffee)
             {
+                Game.Instance.Player.CollisionImage = @"images\starbucks.jpg";
+                Game.Instance.Player.InAction = true;
+                Game.Instance.Player.BuilDingName = "Starbucks";
                 this.action = new Action("coffee");
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Restaurant)
             {
+                Game.Instance.Player.CollisionImage = @"images\happy.jpg";
+                Game.Instance.Player.InAction = true;
+                Game.Instance.Player.BuilDingName = "Happy SHUSHI";
                 this.action = new Action("restaurant");
             }
-            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Restaurant)
+            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is PoliceStation)
             {
+                Game.Instance.Player.CollisionImage = @"images\police.jpg";
+                Game.Instance.Player.InAction = true;
+                Game.Instance.Player.BuilDingName = "Sofia police station";
                 this.action = new Action("police");
             }
         }
@@ -77,9 +92,9 @@ namespace BGServ
                 }
                 if (bot is Developer)
                 {
-                    Game.Instance.Player.OponentImage = @"images\Avatar1.jpg";
+                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
                     Game.Instance.Player.InAction = true;
-                    Game.Instance.Player.OponentId = bot;
+                    Game.Instance.Player.Oponent = bot;
                     this.action = new Action("Developer");
                 }
                 if (bot is Doctor)
@@ -94,6 +109,7 @@ namespace BGServ
                 {
                     this.action = new Action("Policeman");
                 }
+                
             }
         }
     }

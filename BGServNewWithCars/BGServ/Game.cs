@@ -187,7 +187,7 @@ namespace BGServ
                                 botInActionFound = true;
                                 this.botInAction = botToRemove;
                                 Game.player.InAction = true;
-                                this.action = new Action("joy");
+                                //this.action = new Action("joy");
                                 break;
                                 // break;
                             }
@@ -216,7 +216,7 @@ namespace BGServ
                                 botInActionFound = true;
                                 this.botInAction = botToRemove;
                                 Game.player.InAction = true;
-                                this.action = new Action("joy");
+                               // this.action = new Action("joy");
                                 break;
                                 //break;
                             }

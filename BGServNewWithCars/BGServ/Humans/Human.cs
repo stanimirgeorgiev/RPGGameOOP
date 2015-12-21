@@ -78,8 +78,12 @@ namespace BulgarianReality.Humans
         public int Direction { get; set; }
 
         public bool InAction { get; set; }
-        public string OponentImage { get; set; }
-        public Human OponentId { get; set; }
+        public string CollisionImage { get; set; }
+        public Human Oponent { get; set; }
+        public string BuilDingName { get; set; }
+        //public bool InActionWithBuilding { get; set; }
+       // public string BuildingImage { get; set; }
+       // public string BuildingName { get; set; }
 
         public void Drink(Drink drink)
         {
