@@ -57,7 +57,7 @@ namespace BGServ
                 if(Game.Instance.Player.Oponent == null)
                 {
                     this.pictureBox1.Load(Game.Instance.Player.CollisionImage);
-                    this.label10.Text = Game.Instance.Player.BuilDingName;
+                    this.label10.Text = Game.Instance.Player.MeetMsg;
                     this.groupBox2.Text = Game.Instance.Player.BuilDingName;
                     
                     
@@ -71,7 +71,8 @@ namespace BGServ
                 }
                 Game.Instance.Player.Oponent = null;
                 
-            }
+           }
+            Game.Instance.Player.InAction = false;
             
         }
 

@@ -163,7 +163,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(19, 33);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(337, 201);
+            this.pictureBox1.Size = new System.Drawing.Size(179, 201);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -174,7 +174,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(379, 220);
+            this.groupBox3.Size = new System.Drawing.Size(379, 150);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Action";
@@ -182,11 +182,10 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(35, 43);
+            this.label10.Location = new System.Drawing.Point(6, 30);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(12, 17);
+            this.label10.Size = new System.Drawing.Size(0, 17);
             this.label10.TabIndex = 7;
-            this.label10.Text = ":";
             // 
             // timer2
             // 

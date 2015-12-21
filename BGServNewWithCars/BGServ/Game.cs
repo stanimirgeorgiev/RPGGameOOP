@@ -128,7 +128,7 @@ namespace BGServ
                                 botInActionFound = true;
                                 this.botInAction = botToRemove;
                                 Game.player.InAction = true;
-                                this.action = new Action("joy");
+                                //this.action = new Action("joy");
                                 break;
                             }
                             if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize - 1][bot.Location.X / Config.GameConfig.TileSize].PlayerId == 0
@@ -154,7 +154,7 @@ namespace BGServ
                             {
                                 //Collision detection;
                                 botToRemove = Game.Instance.Bots.FirstOrDefault(i => i.Id == Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize][bot.Location.X / Config.GameConfig.TileSize].PlayerId);
-                                Game.Instance.Player.Health += 100;
+                                //Game.Instance.Player.Health += 100;
                                 botInActionFound = true;
                                 botToRemove.InAction = true;
                                 this.botInAction = botToRemove;
@@ -182,7 +182,7 @@ namespace BGServ
                             if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize - 1][bot.Location.X / Config.GameConfig.TileSize].PlayerId == Game.Instance.Player.Id)
                             {
                                 //Collision detection;
-                                Game.Instance.Player.Health += 100;
+                                //Game.Instance.Player.Health += 100;
                                 botToRemove = Game.Instance.Bots.FirstOrDefault(i => i.Id == Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize][bot.Location.X / Config.GameConfig.TileSize].PlayerId);
                                 botInActionFound = true;
                                 this.botInAction = botToRemove;
@@ -211,7 +211,7 @@ namespace BGServ
                             if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize - 1][bot.Location.X / Config.GameConfig.TileSize].PlayerId == Game.Instance.Player.Id)
                             {
                                 //Collision detection;
-                                Game.Instance.Player.Health += 100;
+                                //Game.Instance.Player.Health += 100;
                                 botToRemove = Game.Instance.Bots.FirstOrDefault(i => i.Id == Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize][bot.Location.X / Config.GameConfig.TileSize].PlayerId);
                                 botInActionFound = true;
                                 this.botInAction = botToRemove;
