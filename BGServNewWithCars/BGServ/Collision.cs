@@ -75,7 +75,7 @@ namespace BGServ
                 Game.Instance.Player.InAction = true;
                 Game.Instance.Player.BuilDingName = "Sofia police station";
                 this.action = new Action("police");
-                Game.Instance.Player.MeetMsg = this.action.Msgs["policastation"];
+                Game.Instance.Player.MeetMsg = this.action.Msgs["policestation"];
             }
         }
         public void DetectColisionWithPlayer(Point check)
