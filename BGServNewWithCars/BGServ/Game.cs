@@ -118,7 +118,7 @@ namespace BGServ
                 {
 
                     case 0:
-                        Game.player.Image = Game.player.ImageDirection[0];
+                        bot.Image = bot.ImageDirection[0];
                         if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize - 1][bot.Location.X / Config.GameConfig.TileSize].Walkable)
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize - 1][bot.Location.X / Config.GameConfig.TileSize].PlayerId == Game.Instance.Player.Id)
@@ -148,7 +148,7 @@ namespace BGServ
                         }
                         break;
                     case 1:
-                        Game.player.Image = Game.player.ImageDirection[1];
+                        bot.Image = bot.ImageDirection[1];
                         if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize][bot.Location.X / Config.GameConfig.TileSize + 1].Walkable)
                         {
 
@@ -179,7 +179,7 @@ namespace BGServ
                         }
                         break;
                     case 2:
-                        Game.player.Image = Game.player.ImageDirection[2];
+                        bot.Image = bot.ImageDirection[2];
                         if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize + 1][bot.Location.X / Config.GameConfig.TileSize].Walkable)
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize - 1][bot.Location.X / Config.GameConfig.TileSize].PlayerId == Game.Instance.Player.Id)
@@ -209,7 +209,7 @@ namespace BGServ
                         }
                         break;
                     case 3:
-                        Game.player.Image = Game.player.ImageDirection[3];
+                        bot.Image = bot.ImageDirection[3];
                         if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize][bot.Location.X / Config.GameConfig.TileSize - 1].Walkable)
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize - 1][bot.Location.X / Config.GameConfig.TileSize].PlayerId == Game.Instance.Player.Id)
