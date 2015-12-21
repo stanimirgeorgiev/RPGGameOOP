@@ -27,6 +27,7 @@ namespace BGServ
                 Game.Instance.Player.InAction = true;
                 Game.Instance.Player.BuilDingName = "Unicredit Bulbank";
                 this.action = new Action("bank");
+                Game.Instance.Player.MeetMsg = this.action.Msgs["bank"];
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Hospital)
             {
@@ -34,6 +35,7 @@ namespace BGServ
                 Game.Instance.Player.InAction = true;
                 Game.Instance.Player.BuilDingName = "Tokuda Hospital";
                 this.action = new Action("hospital");
+                Game.Instance.Player.MeetMsg = this.action.Msgs["hospital"];
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Office)
             {
@@ -41,6 +43,7 @@ namespace BGServ
                 Game.Instance.Player.InAction = true;
                 Game.Instance.Player.BuilDingName = "Softuni office";
                 this.action = new Action("office");
+                Game.Instance.Player.MeetMsg = this.action.Msgs["office"];
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Supermarket)
             {
@@ -48,6 +51,7 @@ namespace BGServ
                 Game.Instance.Player.InAction = true;
                 Game.Instance.Player.BuilDingName = "Metro cash n carry";
                 this.action = new Action("supermarket");
+                Game.Instance.Player.MeetMsg = this.action.Msgs["supermarket"];
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Coffee)
             {
@@ -55,6 +59,7 @@ namespace BGServ
                 Game.Instance.Player.InAction = true;
                 Game.Instance.Player.BuilDingName = "Starbucks";
                 this.action = new Action("coffee");
+                Game.Instance.Player.MeetMsg = this.action.Msgs["coffee"];
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Restaurant)
             {
@@ -62,6 +67,7 @@ namespace BGServ
                 Game.Instance.Player.InAction = true;
                 Game.Instance.Player.BuilDingName = "Happy SHUSHI";
                 this.action = new Action("restaurant");
+                Game.Instance.Player.MeetMsg = this.action.Msgs["restaurant"];
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is PoliceStation)
             {
@@ -69,6 +75,7 @@ namespace BGServ
                 Game.Instance.Player.InAction = true;
                 Game.Instance.Player.BuilDingName = "Sofia police station";
                 this.action = new Action("police");
+                Game.Instance.Player.MeetMsg = this.action.Msgs["policastation"];
             }
         }
         public void DetectColisionWithPlayer(Point check)
@@ -80,15 +87,27 @@ namespace BGServ
 
                 if (bot is MassMurderer)
                 {
+                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
+                    Game.Instance.Player.InAction = true;
+                    Game.Instance.Player.Oponent = bot;
                     this.action = new Action("MassMurderer");
+                    bot.MeetMsg = this.action.Msgs["massmurderer"];
                 }
                 if (bot is Thief)
                 {
+                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
+                    Game.Instance.Player.InAction = true;
+                    Game.Instance.Player.Oponent = bot;
                     this.action = new Action("Thief");
+                    bot.MeetMsg = this.action.Msgs["thief"];
                 }
                 if (bot is Rapist)
                 {
+                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
+                    Game.Instance.Player.InAction = true;
+                    Game.Instance.Player.Oponent = bot;
                     this.action = new Action("Rapist");
+                    bot.MeetMsg = this.action.Msgs["rapist"];
                 }
                 if (bot is Developer)
                 {
@@ -101,15 +120,28 @@ namespace BGServ
                 }
                 if (bot is Doctor)
                 {
+                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
+                    Game.Instance.Player.InAction = true;
+                    Game.Instance.Player.Oponent = bot;
                     this.action = new Action("Doctor");
+                    bot.MeetMsg = this.action.Msgs["doctor"];
+                    
                 }
                 if (bot is Mayor)
                 {
+                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
+                    Game.Instance.Player.InAction = true;
+                    Game.Instance.Player.Oponent = bot;
                     this.action = new Action("Mayor");
+                    bot.MeetMsg = this.action.Msgs["mayor"];
                 }
                 if (bot is Policeman)
                 {
+                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
+                    Game.Instance.Player.InAction = true;
+                    Game.Instance.Player.Oponent = bot;
                     this.action = new Action("Policeman");
+                    bot.MeetMsg = this.action.Msgs["policeman"];
                 }
                 
             }

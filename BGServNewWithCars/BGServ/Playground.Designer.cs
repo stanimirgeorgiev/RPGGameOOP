@@ -199,7 +199,11 @@
             this.pictureBox1.Location = new System.Drawing.Point(14, 27);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
+//<<<<<<< HEAD
             this.pictureBox1.Size = new System.Drawing.Size(253, 163);
+//=======
+            //this.pictureBox1.Size = new System.Drawing.Size(179, 201);
+//>>>>>>> 56a0f638c5f6681c6c580b2ed875f2ee59c158a4
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -209,8 +213,13 @@
             this.groupBox3.Location = new System.Drawing.Point(806, 440);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox3.Name = "groupBox3";
+//<<<<<<< HEAD
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox3.Size = new System.Drawing.Size(284, 179);
+//=======
+//            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+//            this.groupBox3.Size = new System.Drawing.Size(379, 150);
+//>>>>>>> 56a0f638c5f6681c6c580b2ed875f2ee59c158a4
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Action";
@@ -218,12 +227,17 @@
             // label10
             // 
             this.label10.AutoSize = true;
+//<<<<<<< HEAD
             this.label10.Location = new System.Drawing.Point(26, 35);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(10, 13);
+//=======
+//            this.label10.Location = new System.Drawing.Point(6, 30);
+//            this.label10.Name = "label10";
+//            this.label10.Size = new System.Drawing.Size(0, 17);
+//>>>>>>> 56a0f638c5f6681c6c580b2ed875f2ee59c158a4
             this.label10.TabIndex = 7;
-            this.label10.Text = ":";
             // 
             // timer2
             // 
