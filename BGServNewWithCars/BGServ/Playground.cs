@@ -46,12 +46,17 @@ namespace BGServ
 
             Game.Instance.MoveBots();
             this.label3.Text = Game.Instance.Player.Health.ToString();
-            
         }
 
         private void Playground_KeyDown_1(object sender, KeyEventArgs e)
         {
             this.events.HandleKeyPress(e);
+            if (Game.Instance.Player.InAction)
+            {
+                
+            this.pictureBox1.Load(Game.Instance.Player.OponentImage);
+                this.label10.Text = Game.Instance.Player.OponentId.Firstname + " " + Game.Instance.Player.OponentId.Lastname;
+            }
 
         }
 
@@ -61,6 +66,5 @@ namespace BGServ
             this.label4.Text = Game.Instance.Player.Wallet.Balance.ToString() + "лв.";
         }
 
-        
     }
 }

@@ -45,7 +45,7 @@
 
         //Timer
         public const int TimerTick = 500;
-        public const int RealTick = 10;
+        public const int RealTick = 230;
 
         public const int Cars = 40;
 

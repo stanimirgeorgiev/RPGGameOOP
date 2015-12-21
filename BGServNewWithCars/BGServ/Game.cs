@@ -36,6 +36,7 @@ namespace BGServ
             this.GameForm = gameForm;
             this.Player = player;
         }
+
         public Human BotInAction { get { return this.botInAction; } }
 
         public HashSet<Transport> Cars { get; set; }

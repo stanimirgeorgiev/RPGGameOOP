@@ -8,6 +8,7 @@ namespace BGServ
 {
     public class Action
     {
+
         public Action(string action)
         {
             switch(action)

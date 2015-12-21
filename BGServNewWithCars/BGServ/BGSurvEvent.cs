@@ -1,5 +1,6 @@
 ﻿using BulgarianReality.Humans;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -23,7 +24,6 @@ namespace BGServ
         public void HandleKeyPress(KeyEventArgs e)
         {
             Point nextPont = new Point(0, 0);
-
             if (!Game.Instance.Player.InAction)
             {
                 if (e.KeyCode == Keys.Left)
@@ -36,6 +36,7 @@ namespace BGServ
                         Map.Instance.WorldMap[Game.Instance.Player.Location.Y / Config.GameConfig.TileSize][(Game.Instance.Player.Location.X / Config.GameConfig.TileSize) + 1].PlayerId = 0;
                     }
                     this.collision.DetectColisionWithBuilding(nextPont);
+                    this.collision.DetectColisionWithPlayer(nextPont);
                    
                 }
                 if (e.KeyCode == Keys.Right)
@@ -49,6 +50,7 @@ namespace BGServ
 
                     }
                     this.collision.DetectColisionWithBuilding(nextPont);
+                    this.collision.DetectColisionWithPlayer(nextPont);
                     
                 }
                 if (e.KeyCode == Keys.Up)
@@ -61,8 +63,9 @@ namespace BGServ
                         Map.Instance.WorldMap[(Game.Instance.Player.Location.Y / Config.GameConfig.TileSize) + 1][(Game.Instance.Player.Location.X / Config.GameConfig.TileSize)].PlayerId = 0;
                     }
                     this.collision.DetectColisionWithBuilding(nextPont);
-                  
-                    
+                    this.collision.DetectColisionWithPlayer(nextPont);
+
+
                 }
                 if (e.KeyCode == Keys.Down)
                 {
@@ -74,6 +77,7 @@ namespace BGServ
                         Map.Instance.WorldMap[(Game.Instance.Player.Location.Y / Config.GameConfig.TileSize) - 1][(Game.Instance.Player.Location.X / Config.GameConfig.TileSize)].PlayerId = 0;
                     }
                     this.collision.DetectColisionWithBuilding(nextPont);
+                    this.collision.DetectColisionWithPlayer(nextPont);
                 }
             }
             //designer.DrawPlayer(this.player);
