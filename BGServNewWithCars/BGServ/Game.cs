@@ -105,7 +105,7 @@ namespace BGServ
                 thirdTicker++;
                 if (thirdTicker == 1000)
                 {
-                    Player.Health--;
+                    Player.Health -= 10;
                     Player.InAction = false;
                     foreach (var bots in Game.Instance.Bots)
                     {
@@ -118,6 +118,7 @@ namespace BGServ
                 {
 
                     case 0:
+                        bot.Image = bot.ImageDirection[0];
                         if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize - 1][bot.Location.X / Config.GameConfig.TileSize].Walkable)
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize - 1][bot.Location.X / Config.GameConfig.TileSize].PlayerId == Game.Instance.Player.Id)
@@ -147,6 +148,7 @@ namespace BGServ
                         }
                         break;
                     case 1:
+                        bot.Image = bot.ImageDirection[1];
                         if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize][bot.Location.X / Config.GameConfig.TileSize + 1].Walkable)
                         {
 
@@ -177,6 +179,7 @@ namespace BGServ
                         }
                         break;
                     case 2:
+                        bot.Image = bot.ImageDirection[2];
                         if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize + 1][bot.Location.X / Config.GameConfig.TileSize].Walkable)
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize - 1][bot.Location.X / Config.GameConfig.TileSize].PlayerId == Game.Instance.Player.Id)
@@ -206,6 +209,7 @@ namespace BGServ
                         }
                         break;
                     case 3:
+                        bot.Image = bot.ImageDirection[3];
                         if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize][bot.Location.X / Config.GameConfig.TileSize - 1].Walkable)
                         {
                             if (Map.Instance.WorldMap[bot.Location.Y / Config.GameConfig.TileSize - 1][bot.Location.X / Config.GameConfig.TileSize].PlayerId == Game.Instance.Player.Id)
@@ -216,7 +220,7 @@ namespace BGServ
                                 botInActionFound = true;
                                 this.botInAction = botToRemove;
                                 Game.player.InAction = true;
-                               // this.action = new Action("joy");
+                                // this.action = new Action("joy");
                                 break;
                                 //break;
                             }
@@ -346,10 +350,10 @@ namespace BGServ
                                 car.Image = car.DirectionImage[car.Direction];
                                 break;
                         }
- 
+
                         break;
                     case 2:
- 
+
                         if (Map.Instance.WorldMap[car.Location.Y / Config.GameConfig.TileSize + 1][car.Location.X / Config.GameConfig.TileSize].IsStreet)
                         {
                             direct.Add(2);
@@ -393,7 +397,7 @@ namespace BGServ
 
                         break;
                     case 3:
-   
+
                         if (Map.Instance.WorldMap[car.Location.Y / Config.GameConfig.TileSize][car.Location.X / Config.GameConfig.TileSize - 1].IsStreet)
                         {
                             direct.Add(3);

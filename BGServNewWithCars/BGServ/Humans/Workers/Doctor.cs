@@ -21,7 +21,7 @@ namespace BulgarianReality.Humans.Workers
         private readonly IList<Drug> drugs;
 
         public Doctor(int id,string firstname, string lastname, int age, Gender gender, 
-            Wallet wallet, Point location, Image image)
+            Wallet wallet, Point location, Image[] image)
             : base(id, firstname, lastname, age, gender, DoctorHealth, DoctorJoy, wallet, location, image)
         {
             this.drugs = new List<Drug>();

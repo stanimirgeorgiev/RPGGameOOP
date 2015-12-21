@@ -124,13 +124,21 @@ namespace BGServ
                 {
                     throw new NoTilesException("No buldings to populate");
                 }
+                Image[] directionImage =
+                {
+                    new Bitmap(@"images\dev-0.png"),
+                    new Bitmap(@"images\dev-1.png"),
+                    new Bitmap(@"images\dev-2.png"),
+                    new Bitmap(@"images\dev-3.png"),
+                };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new Policeman(Game.Instance.Id(),name.FirstName(gender) ,name.LastName(gender), rand.Next(1,101),gender, new Wallet(0),foundCharacter.Location, new Bitmap(@"images\Policeman.png") );
+                Human character = new Policeman(Game.Instance.Id(),name.FirstName(gender) ,name.LastName(gender), rand.Next(1,101),gender, new Wallet(0),foundCharacter.Location, directionImage);
                 Map.Instance.WorldMap[foundCharacter.Location.Y / Config.GameConfig.TileSize][foundCharacter.Location.X / Config.GameConfig.TileSize].PlayerId = character.Id;
                 Map.Instance.WalkableTiles.RemoveAt(randomLocation);
                 character.Direction = rand.Next(0, 3);
+                character.Image = directionImage[character.Direction];
                 Game.Instance.Bots.Add(character);
             }
             for (int i = 0; i < Config.GameConfig.Doctors; i++)
@@ -139,13 +147,21 @@ namespace BGServ
                 {
                     throw new NoTilesException("No buldings to populate");
                 }
+                                Image[] directionImage =
+                {
+                    new Bitmap(@"images\dev-0.png"),
+                    new Bitmap(@"images\dev-1.png"),
+                    new Bitmap(@"images\dev-2.png"),
+                    new Bitmap(@"images\dev-3.png"),
+                };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new Doctor(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Doctor.png"));
+                Human character = new Doctor(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, directionImage);
                 Map.Instance.WorldMap[foundCharacter.Location.Y / Config.GameConfig.TileSize][foundCharacter.Location.X / Config.GameConfig.TileSize].PlayerId = character.Id;
                 Map.Instance.WalkableTiles.RemoveAt(randomLocation);
                 character.Direction = rand.Next(0, 3);
+                character.Image = directionImage[character.Direction];
                 Game.Instance.Bots.Add(character);
             }
             for (int i = 0; i < Config.GameConfig.Developer; i++)
@@ -154,13 +170,21 @@ namespace BGServ
                 {
                     throw new NoTilesException("No buldings to populate");
                 }
+                Image[] directionImage =
+                {
+                    new Bitmap(@"images\dev-0.png"),
+                    new Bitmap(@"images\dev-1.png"),
+                    new Bitmap(@"images\dev-2.png"),
+                    new Bitmap(@"images\dev-3.png"),
+                };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new Developer(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Developer.png"));
+                Human character = new Developer(Game.Instance.Id(), name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, directionImage);
                 Map.Instance.WorldMap[foundCharacter.Location.Y / Config.GameConfig.TileSize][foundCharacter.Location.X / Config.GameConfig.TileSize].PlayerId = character.Id;
                 Map.Instance.WalkableTiles.RemoveAt(randomLocation);
                 character.Direction = rand.Next(0, 3);
+                character.Image = directionImage[character.Direction];
                 Game.Instance.Bots.Add(character);
             }
             for (int i = 0; i < Config.GameConfig.Mayors; i++)
@@ -169,13 +193,21 @@ namespace BGServ
                 {
                     throw new NoTilesException("No buldings to populate");
                 }
+                                Image[] directionImage =
+                {
+                    new Bitmap(@"images\dev-0.png"),
+                    new Bitmap(@"images\dev-1.png"),
+                    new Bitmap(@"images\dev-2.png"),
+                    new Bitmap(@"images\dev-3.png"),
+                };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new Mayor(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Mayor.png"));
+                Human character = new Mayor(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location,directionImage);
                 Map.Instance.WorldMap[foundCharacter.Location.Y / Config.GameConfig.TileSize][foundCharacter.Location.X / Config.GameConfig.TileSize].PlayerId = character.Id;
                 Map.Instance.WalkableTiles.RemoveAt(randomLocation);
                 character.Direction = rand.Next(0, 3);
+                character.Image = directionImage[character.Direction];
                 Game.Instance.Bots.Add(character);
             }
             for (int i = 0; i < Config.GameConfig.Thiefs; i++)
@@ -184,13 +216,21 @@ namespace BGServ
                 {
                     throw new NoTilesException("No buldings to populate");
                 }
+                                Image[] directionImage =
+                {
+                    new Bitmap(@"images\dev-0.png"),
+                    new Bitmap(@"images\dev-1.png"),
+                    new Bitmap(@"images\dev-2.png"),
+                    new Bitmap(@"images\dev-3.png"),
+                };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new Thief(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Thief.png"));
+                Human character = new Thief(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, directionImage);
                 Map.Instance.WorldMap[foundCharacter.Location.Y / Config.GameConfig.TileSize][foundCharacter.Location.X / Config.GameConfig.TileSize].PlayerId = character.Id;
                 Map.Instance.WalkableTiles.RemoveAt(randomLocation);
                 character.Direction = rand.Next(0, 3);
+                character.Image = directionImage[character.Direction];
                 Game.Instance.Bots.Add(character);
             }
             for (int i = 0; i < Config.GameConfig.MassMurders; i++)
@@ -199,13 +239,21 @@ namespace BGServ
                 {
                     throw new NoTilesException("No buldings to populate");
                 }
+                                Image[] directionImage =
+                {
+                    new Bitmap(@"images\dev-0.png"),
+                    new Bitmap(@"images\dev-1.png"),
+                    new Bitmap(@"images\dev-2.png"),
+                    new Bitmap(@"images\dev-3.png"),
+                };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new MassMurderer(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\MassMurder.png"));
+                Human character = new MassMurderer(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, directionImage);
                 Map.Instance.WorldMap[foundCharacter.Location.Y / Config.GameConfig.TileSize][foundCharacter.Location.X / Config.GameConfig.TileSize].PlayerId = character.Id;
                 Map.Instance.WalkableTiles.RemoveAt(randomLocation);
                 character.Direction = rand.Next(0, 3);
+                character.Image = directionImage[character.Direction];
                 Game.Instance.Bots.Add(character);
             }
             for (int i = 0; i < Config.GameConfig.Rapists; i++)
@@ -214,13 +262,21 @@ namespace BGServ
                 {
                     throw new NoTilesException("No buldings to populate");
                 }
+                                Image[] directionImage =
+                {
+                    new Bitmap(@"images\dev-0.png"),
+                    new Bitmap(@"images\dev-1.png"),
+                    new Bitmap(@"images\dev-2.png"),
+                    new Bitmap(@"images\dev-3.png"),
+                };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
                 Gender gender = this.RandomGender();
-                Human character = new Rapist(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, new Bitmap(@"images\Rapist.png"));
+                Human character = new Rapist(Game.Instance.Id(),name.FirstName(gender), name.LastName(gender), rand.Next(1, 101), gender, new Wallet(0), foundCharacter.Location, directionImage);
                 Map.Instance.WorldMap[foundCharacter.Location.Y / Config.GameConfig.TileSize][foundCharacter.Location.X / Config.GameConfig.TileSize].PlayerId = character.Id;
                 Map.Instance.WalkableTiles.RemoveAt(randomLocation);
                 character.Direction = rand.Next(0, 3);
+                character.Image = directionImage[character.Direction];
                 Game.Instance.Bots.Add(character);
             }
             

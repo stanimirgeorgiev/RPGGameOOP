@@ -21,7 +21,15 @@ namespace BGServ
         public Playground()
         {
             InitializeComponent();
-            Game.SetForm(this, new Developer(1, "Pesho", "Peshev", 25, BulgarianReality.Enums.Gender.Male, new BulgarianReality.Items.Belongings.Wallet(100), new Point(Config.GameConfig.PlayerStartX, Config.GameConfig.PlayerStartY), new Bitmap(@"images\sprite.png")));
+            Image[] directionImage =
+                {
+                    new Bitmap(@"images\dev-0.png"),
+                    new Bitmap(@"images\dev-1.png"),
+                    new Bitmap(@"images\dev-2.png"),
+                    new Bitmap(@"images\dev-3.png"),
+                };
+            Game.SetForm(this, new Developer(1, "Pesho", "Peshev", 25, BulgarianReality.Enums.Gender.Male, new BulgarianReality.Items.Belongings.Wallet(100), new Point(Config.GameConfig.PlayerStartX, Config.GameConfig.PlayerStartY), directionImage));
+            Game.Instance.Player.Image = Game.Instance.Player.ImageDirection[Game.Instance.Player.Direction];
             Game.Instance.Run();
             this.events = new BGSurvEvent();
             timer.Tick += new EventHandler(timer1_Tick);

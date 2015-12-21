@@ -16,7 +16,7 @@ namespace BulgarianReality.Humans.Workers
         private const int ID = 1;
 
         public Developer(int id,string firstname, string lastname, int age, Gender gender, 
-            Wallet wallet, Point location, Image image)
+            Wallet wallet, Point location, Image[] image)
             : base(id, firstname, lastname, age, gender, WorkerHealth, WorkerJoy, wallet, location, image)
         {
         }

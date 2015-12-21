@@ -12,7 +12,7 @@ namespace BulgarianReality.Humans.Workers
     {
 
         protected Worker(int id, string firstname, string lastname, int age, Gender gender,int health, int joy, 
-            Wallet wallet, Point location, Image image)
+            Wallet wallet, Point location, Image[] image)
             : base(id, firstname, lastname, age, gender, health, joy, wallet, location, image)
         {
         }
