@@ -81,6 +81,8 @@ namespace BulgarianReality.Humans
         public string CollisionImage { get; set; }
         public Human Oponent { get; set; }
         public string BuilDingName { get; set; }
+
+        public string MeetMsg  { get; set; }
         //public bool InActionWithBuilding { get; set; }
        // public string BuildingImage { get; set; }
        // public string BuildingName { get; set; }

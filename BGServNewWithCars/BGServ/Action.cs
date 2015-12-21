@@ -8,9 +8,11 @@ namespace BGServ
 {
     public class Action
     {
+        private Dictionary<string, string> msgs;
 
         public Action(string action)
         {
+            this.msgs = new Dictionary<string, string>();
             switch(action)
             {
                 case "joy":
@@ -32,10 +34,15 @@ namespace BGServ
                     break;
                 case "police": this.Police();
                     break;
+                case "Developer": this.DeveloperMeet();
+                    break;
                 default:
                     break;
             }
+            this.SeedMsg();
         }
+        public Dictionary<string, string> Msgs { get { return this.msgs; } }
+
         private void IncreaseJoy()
         {
             Game.Instance.Player.Joy += 10;
@@ -81,6 +88,15 @@ namespace BGServ
         private void Police()
         {
             Game.Instance.Player.Joy += 35;
+        }
+        private void DeveloperMeet()
+        {
+            Game.Instance.Player.Joy += 30;
+            
+        }
+        private void SeedMsg()
+        {
+            this.msgs.Add("developer", "Здрасти пич!\nДобре дошъл в реалноста.\nАз съм много луд Developer и ще ти кача joy с 30.");
         }
     }
 }

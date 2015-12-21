@@ -96,6 +96,8 @@ namespace BGServ
                     Game.Instance.Player.InAction = true;
                     Game.Instance.Player.Oponent = bot;
                     this.action = new Action("Developer");
+                    bot.MeetMsg = this.action.Msgs["developer"];
+
                 }
                 if (bot is Doctor)
                 {
