@@ -60,7 +60,6 @@ namespace BGServ
                     this.label10.Text = Game.Instance.Player.MeetMsg;
                     this.groupBox2.Text = Game.Instance.Player.BuilDingName;
                     
-                    
                 }
                 else
                 {
@@ -72,7 +71,15 @@ namespace BGServ
                 Game.Instance.Player.Oponent = null;
                 
            }
+            else
+            {
+                this.pictureBox1.Load(@"images\default.png");
+                this.groupBox2.Text = "";
+                this.label10.Text = "";
+            }
             Game.Instance.Player.InAction = false;
+            
+            
             
         }
 
