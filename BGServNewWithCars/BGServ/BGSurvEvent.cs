@@ -29,6 +29,7 @@ namespace BGServ
                 if (e.KeyCode == Keys.Left)
                 {
                     nextPont = new Point(this.player.Location.X - Config.GameConfig.TileSize, this.player.Location.Y);
+                    this.player.Image = this.player.ImageDirection[3];
                     if (this.CheckIsWalkable(nextPont))
                     {
                         this.player.Move(-Config.GameConfig.TileSize, 0);
@@ -42,6 +43,7 @@ namespace BGServ
                 if (e.KeyCode == Keys.Right)
                 {
                     nextPont = new Point(this.player.Location.X + Config.GameConfig.TileSize, this.player.Location.Y);
+                    this.player.Image = this.player.ImageDirection[1];
                     if (this.CheckIsWalkable(nextPont))
                     {
                         this.player.Move(Config.GameConfig.TileSize, 0);
@@ -56,6 +58,7 @@ namespace BGServ
                 if (e.KeyCode == Keys.Up)
                 {
                     nextPont = new Point(this.player.Location.X, this.player.Location.Y - Config.GameConfig.TileSize);
+                    this.player.Image = this.player.ImageDirection[0];
                     if (this.CheckIsWalkable(nextPont))
                     {
                         this.player.Move(0, -Config.GameConfig.TileSize);
@@ -70,6 +73,7 @@ namespace BGServ
                 if (e.KeyCode == Keys.Down)
                 {
                     nextPont = new Point(this.player.Location.X, this.player.Location.Y + Config.GameConfig.TileSize);
+                    this.player.Image = this.player.ImageDirection[2];
                     if (this.CheckIsWalkable(nextPont))
                     {
                         this.player.Move(0, Config.GameConfig.TileSize);

@@ -17,7 +17,7 @@ namespace BulgarianReality.Humans.Workers
         private const int ID = 4;
 
         public Policeman(int id,string firstname, string lastname, int age, Gender gender,
-            Wallet wallet, Point location, Image image)
+            Wallet wallet, Point location, Image[] image)
             : base(id, firstname, lastname, age, gender, PolicemanHealth, PolicemanJoy, wallet, location, image)
         {
         }

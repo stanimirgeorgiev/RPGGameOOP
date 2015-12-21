@@ -32,12 +32,12 @@ namespace BulgarianReality.Humans
 
 
         protected Human()
-            : this(0, "", "", 0, Gender.Male, 0, 0, new Wallet(0), new Point(0, 0), new Bitmap(@"images/monster.png"))
+            : this(0, "", "", 0, Gender.Male, 0, 0, new Wallet(0), new Point(0, 0), new Image[4])
         {
 
         }
         protected Human(int id, string firstname, string lastname, int age, Gender gender, int health, int joy,
-            Wallet wallet, Point location, Image image)
+            Wallet wallet, Point location, Image[] image)
         {
             this.Id = id;
             this.Firstname = firstname;
@@ -48,7 +48,7 @@ namespace BulgarianReality.Humans
             this.Joy = joy;
             this.Wallet = wallet;
             this.location = location;
-            this.Image = image;
+            this.ImageDirection = image;
             this.Items = new List<Item>();
             this.Accounts = new List<Account>();
         }
@@ -74,6 +74,7 @@ namespace BulgarianReality.Humans
         public IList<Account> Accounts { get; set; }
 
         public Image Image { get; set; }
+        public Image[] ImageDirection { get; set; }
         public Point Location { get { return this.location; } set { this.location = value; } }
         public int Direction { get; set; }
 
