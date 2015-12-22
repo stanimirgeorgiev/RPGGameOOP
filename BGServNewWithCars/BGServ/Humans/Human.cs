@@ -15,6 +15,7 @@ namespace BulgarianReality.Humans
     using System.Drawing;
 
     using Enums;
+    using BulgarianReality.Exceptions;
 
     public abstract class Human : IMovable, IDrinkable, IEatable
     {
@@ -63,7 +64,18 @@ namespace BulgarianReality.Humans
 
         public Gender Gender { get; set; }
 
-        public int Health { get; set; }
+        public int Health 
+        {
+            get { return this.health; }
+            set 
+            {
+                if(value <0)
+                {
+                    throw new InsufficientHealthException("You'r dead. Game over.");
+                }
+                this.health = value;
+            }
+        }
 
         public int Joy { get; set; }
 

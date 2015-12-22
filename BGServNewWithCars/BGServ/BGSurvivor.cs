@@ -70,15 +70,19 @@ namespace BGServ
                 
             }
             // age
-            if(string.IsNullOrEmpty(this.comboBox1.Text))
+            if(!string.IsNullOrEmpty(this.comboBox1.Text))
             {
-                this.age = int.Parse(this.comboBox1.Text);
+                this.age = int.Parse(this.comboBox1.SelectedItem.ToString());
                 
+            }
+            else
+            {
+                MessageBox.Show("Age is required");
             }
             // picture avatar 
             if(this.radioButton4.Checked == true)
             {
-                this.avatar = @"images\Avatar2.jpg";
+                this.avatar = @"images\Avatar2.png";
                 
             }
             else if(this.radioButton5.Checked == true)
