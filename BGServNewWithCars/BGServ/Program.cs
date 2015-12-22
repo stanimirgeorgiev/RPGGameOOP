@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BulgarianReality.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +15,16 @@ namespace BGServ
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Playground());
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new BGSurvivor());
+            }
+            catch(InsufficientHealthException e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
     }
 }

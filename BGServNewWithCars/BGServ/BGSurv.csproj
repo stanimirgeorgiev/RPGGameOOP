@@ -61,6 +61,12 @@
   <ItemGroup>
     <Compile Include="Action.cs" />
     <Compile Include="BGSurvEvent.cs" />
+    <Compile Include="BGSurvivor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BGSurvivor.Designer.cs">
+      <DependentUpon>BGSurvivor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Buildings\Airport.cs" />
     <Compile Include="Buildings\Bank.cs" />
     <Compile Include="Buildings\Building.cs" />
@@ -178,6 +184,9 @@
     <Compile Include="Transportation\Car.cs" />
     <Compile Include="Transportation\Train.cs" />
     <Compile Include="Transportation\Transport.cs" />
+    <EmbeddedResource Include="BGSurvivor.resx">
+      <DependentUpon>BGSurvivor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Playground.resx">
       <DependentUpon>Playground.cs</DependentUpon>
       <SubType>Designer</SubType>

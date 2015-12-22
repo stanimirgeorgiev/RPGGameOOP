@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BulgarianReality.Humans;
 using BulgarianReality.Humans.Workers;
+using BulgarianReality.Enums;
 
 namespace BGServ
 {
@@ -18,9 +19,10 @@ namespace BGServ
         private Timer timer = new Timer();
         private Timer realTimer = new Timer();
         private Random rand = new Random();
-        public Playground()
+        public Playground(string firstname, string lastname, int age,Gender gender, string avatarPicture)
         {
             InitializeComponent();
+            this.pictureBox2.Load(avatarPicture);
             Image[] directionImage =
                 {
                     new Bitmap(@"images\play-0.png"),
@@ -28,7 +30,7 @@ namespace BGServ
                     new Bitmap(@"images\play-2.png"),
                     new Bitmap(@"images\play-3.png"),
                 };
-            Game.SetForm(this, new Developer(1, "Pesho", "Peshev", 25, BulgarianReality.Enums.Gender.Male, new BulgarianReality.Items.Belongings.Wallet(100), new Point(Config.GameConfig.PlayerStartX, Config.GameConfig.PlayerStartY), directionImage));
+            Game.SetForm(this, new Developer(1, firstname, lastname, age, gender, new BulgarianReality.Items.Belongings.Wallet(100), new Point(Config.GameConfig.PlayerStartX, Config.GameConfig.PlayerStartY), directionImage));
             Game.Instance.Player.Image = Game.Instance.Player.ImageDirection[Game.Instance.Player.Direction];
             Game.Instance.Run();
             this.events = new BGSurvEvent();
@@ -42,6 +44,7 @@ namespace BGServ
             realTimer.Enabled = true;
             realTimer.Interval = Config.GameConfig.RealTick;
             realTimer.Start();
+            this.groupBox1.Text = Game.Instance.Player.Firstname + " " + Game.Instance.Player.Lastname;
 
         }
         //private void Playground_KeyDown(object sender, KeyEventArgs e)
