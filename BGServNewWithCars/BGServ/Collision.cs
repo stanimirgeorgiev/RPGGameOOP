@@ -23,17 +23,17 @@ namespace BGServ
         {
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Bank)
             {
-                Game.Instance.Player.CollisionImage = @"images\unicredit.png";
+                Game.Instance.Player.CollisionImage = @"images\credit.png";
                 Game.Instance.Player.InAction = true;
-                Game.Instance.Player.BuilDingName = "Unicredit Bulbank";
+                Game.Instance.Player.BuilDingName = "Credit Bank";
                 this.action = new Action("bank");
                 Game.Instance.Player.MeetMsg = this.action.Msgs["bank"];
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Hospital)
             {
-                Game.Instance.Player.CollisionImage = @"images\hospital.jpg";
+                Game.Instance.Player.CollisionImage = @"images\HospitalAvatar.png";
                 Game.Instance.Player.InAction = true;
-                Game.Instance.Player.BuilDingName = "Tokuda Hospital";
+                Game.Instance.Player.BuilDingName = "Uni Hospital";
                 this.action = new Action("hospital");
                 Game.Instance.Player.MeetMsg = this.action.Msgs["hospital"];
             }
@@ -49,31 +49,31 @@ namespace BGServ
             {
                 Game.Instance.Player.CollisionImage = @"images\metrocash.jpg";
                 Game.Instance.Player.InAction = true;
-                Game.Instance.Player.BuilDingName = "Metro cash n carry";
+                Game.Instance.Player.BuilDingName = "Metro cash & carry";
                 this.action = new Action("supermarket");
                 Game.Instance.Player.MeetMsg = this.action.Msgs["supermarket"];
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Coffee)
             {
-                Game.Instance.Player.CollisionImage = @"images\starbucks.jpg";
+                Game.Instance.Player.CollisionImage = @"images\Coffee.jpg";
                 Game.Instance.Player.InAction = true;
-                Game.Instance.Player.BuilDingName = "Starbucks";
+                Game.Instance.Player.BuilDingName = "Coffee";
                 this.action = new Action("coffee");
                 Game.Instance.Player.MeetMsg = this.action.Msgs["coffee"];
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Restaurant)
             {
-                Game.Instance.Player.CollisionImage = @"images\happy.jpg";
+                Game.Instance.Player.CollisionImage = @"images\Restaurant.jpg";
                 Game.Instance.Player.InAction = true;
-                Game.Instance.Player.BuilDingName = "Happy SHUSHI";
+                Game.Instance.Player.BuilDingName = "Bar & Grill";
                 this.action = new Action("restaurant");
                 Game.Instance.Player.MeetMsg = this.action.Msgs["restaurant"];
             }
             if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is PoliceStation)
             {
-                Game.Instance.Player.CollisionImage = @"images\police.jpg";
+                Game.Instance.Player.CollisionImage = @"images\PoliceAvatar.png";
                 Game.Instance.Player.InAction = true;
-                Game.Instance.Player.BuilDingName = "Sofia police station";
+                Game.Instance.Player.BuilDingName = "Sofia Police Station";
                 this.action = new Action("police");
                 Game.Instance.Player.MeetMsg = this.action.Msgs["policestation"];
             }
@@ -87,63 +87,144 @@ namespace BGServ
 
                 if (bot is MassMurderer)
                 {
-                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
-                    Game.Instance.Player.InAction = true;
-                    Game.Instance.Player.Oponent = bot;
-                    this.action = new Action("MassMurderer");
-                    bot.MeetMsg = this.action.Msgs["massmurderer"];
+                    if (Game.Instance.Player.Gender == BulgarianReality.Enums.Gender.Male)
+                    {
+
+                        Game.Instance.Player.CollisionImage = @"images\MassMale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("MassMurderer");
+                        bot.MeetMsg = this.action.Msgs["massmurderer"];
+                    }
+                    else
+                    {
+
+                        Game.Instance.Player.CollisionImage = @"images\MassFemale.png";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("MassMurderer");
+                        bot.MeetMsg = this.action.Msgs["massmurderer"];
+                    }
                 }
                 if (bot is Thief)
                 {
-                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
-                    Game.Instance.Player.InAction = true;
-                    Game.Instance.Player.Oponent = bot;
-                    this.action = new Action("Thief");
-                    bot.MeetMsg = this.action.Msgs["thief"];
+                    if (Game.Instance.Player.Gender == BulgarianReality.Enums.Gender.Male)
+                    {
+                        Game.Instance.Player.CollisionImage = @"images\ThiefMale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("Thief");
+                        bot.MeetMsg = this.action.Msgs["thief"];
+                    }
+                    else
+                    {
+                        Game.Instance.Player.CollisionImage = @"images\ThiefFemale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("Thief");
+                        bot.MeetMsg = this.action.Msgs["thief"];
+                    }
+
                 }
                 if (bot is Rapist)
                 {
-                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
-                    Game.Instance.Player.InAction = true;
-                    Game.Instance.Player.Oponent = bot;
-                    this.action = new Action("Rapist");
-                    bot.MeetMsg = this.action.Msgs["rapist"];
+                    if (bot.Gender == BulgarianReality.Enums.Gender.Male)
+                    {
+                        Game.Instance.Player.CollisionImage = @"images\RapistMale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("Rapist");
+                        bot.MeetMsg = this.action.Msgs["rapist"];
+                    }
+                    else
+                    {
+                        Game.Instance.Player.CollisionImage = @"images\RapistFemale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("Rapist");
+                        bot.MeetMsg = this.action.Msgs["rapist"];
+                    }
                 }
                 if (bot is Developer)
                 {
-                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
-                    Game.Instance.Player.InAction = true;
-                    Game.Instance.Player.Oponent = bot;
-                    this.action = new Action("Developer");
-                    bot.MeetMsg = this.action.Msgs["developer"];
+                    if (bot.Gender == BulgarianReality.Enums.Gender.Male)
+                    {
+                        Game.Instance.Player.CollisionImage = @"images\DeveloperMale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("Developer");
+                        bot.MeetMsg = this.action.Msgs["developer"];
+                    }
+                    else
+                    {
+                        Game.Instance.Player.CollisionImage = @"images\DeveloperFemale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("Developer");
+                        bot.MeetMsg = this.action.Msgs["developer"];
+
+                    }
 
                 }
                 if (bot is Doctor)
                 {
-                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
-                    Game.Instance.Player.InAction = true;
-                    Game.Instance.Player.Oponent = bot;
-                    this.action = new Action("Doctor");
-                    bot.MeetMsg = this.action.Msgs["doctor"];
-                    
+                    if (bot.Gender == BulgarianReality.Enums.Gender.Male)
+                    {
+                        Game.Instance.Player.CollisionImage = @"images\DoctorMale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("Doctor");
+                        bot.MeetMsg = this.action.Msgs["doctor"];
+                    }
+                    else
+                    {
+                        Game.Instance.Player.CollisionImage = @"images\DoctorFemale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("Doctor");
+                        bot.MeetMsg = this.action.Msgs["doctor"];
+                    }
+
                 }
                 if (bot is Mayor)
                 {
-                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
-                    Game.Instance.Player.InAction = true;
-                    Game.Instance.Player.Oponent = bot;
-                    this.action = new Action("Mayor");
-                    bot.MeetMsg = this.action.Msgs["mayor"];
+                    if (bot.Gender == BulgarianReality.Enums.Gender.Male)
+                    {
+                        Game.Instance.Player.CollisionImage = @"images\MayorMale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("Mayor");
+                        bot.MeetMsg = this.action.Msgs["mayor"];
+                    }
+                    else
+                    {
+                        Game.Instance.Player.CollisionImage = @"images\MayorFemale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("Mayor");
+                        bot.MeetMsg = this.action.Msgs["mayor"];
+                    }
                 }
                 if (bot is Policeman)
                 {
-                    Game.Instance.Player.CollisionImage = @"images\Avatar1.jpg";
-                    Game.Instance.Player.InAction = true;
-                    Game.Instance.Player.Oponent = bot;
-                    this.action = new Action("Policeman");
-                    bot.MeetMsg = this.action.Msgs["policeman"];
+                    if (bot.Gender == BulgarianReality.Enums.Gender.Male)
+                    {
+                        Game.Instance.Player.CollisionImage = @"images\PoliceMale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("Policeman");
+                        bot.MeetMsg = this.action.Msgs["policeman"];
+                    }
+                    else
+                    {
+                        Game.Instance.Player.CollisionImage = @"images\PoliceFemale.jpg";
+                        Game.Instance.Player.InAction = true;
+                        Game.Instance.Player.Oponent = bot;
+                        this.action = new Action("Policeman");
+                        bot.MeetMsg = this.action.Msgs["policeman"];
+                    }
                 }
-                
+
             }
         }
     }
