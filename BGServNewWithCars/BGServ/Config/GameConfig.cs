@@ -18,15 +18,13 @@
         public const int PlayerStartY = 120;
 
         //Workers
-        public const int Doctors = 25;
-        public const int Mayors = 1;
-        public const int Policemans = 20;
-        public const int Workers = 35;
-        public const int Developer = 35;
+        public const int Doctors = 35;
+        public const int Mayors = 10;
+        public const int Policemans = 50;
+        public const int Developer = 85;
         //Criminals
-        public const int Criminals = 12;
-        public const int Thiefs = 40;
-        public const int Rapists = 21;
+        public const int Thiefs = 60;
+        public const int Rapists = 41;
         public const int MassMurders = 15;
 
         //Buildings
@@ -45,9 +43,9 @@
 
         //Timer
         public const int TimerTick = 500;
-        public const int RealTick = 230;
+        public const int RealTick = 10;
 
-        public const int Cars = 40;
+        public const int Cars = 80;
 
     }
 }
