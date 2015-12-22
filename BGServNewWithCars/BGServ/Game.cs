@@ -37,7 +37,8 @@ namespace BGServ
             this.Player = player;
         }
 
-        public Human BotInAction { get { return this.botInAction; } }
+        public Human BotInAction { get { return this.botInAction; }
+            set { this.botInAction = value; }}
 
         public HashSet<Transport> Cars { get; set; }
         public HashSet<Human> Bots { get { return this.bots; } set { this.bots = value; } }
@@ -107,6 +108,10 @@ namespace BGServ
                 {
                     Player.Health -= 10;
                     Player.InAction = false;
+                    //Game.Instance.bots.Add(this.BotInAction);
+                    ////Map.Instance.WorldMap[this.BotInAction.Location.Y/Config.GameConfig.TileSize][
+                    ////    this.BotInAction.Location.X/Config.GameConfig.TileSize].PlayerId = 0;
+                    //this.BotInAction = null;
                     foreach (var bots in Game.Instance.Bots)
                     {
                         bots.Direction = rand.Next(4);

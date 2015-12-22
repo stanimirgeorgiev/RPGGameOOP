@@ -126,10 +126,10 @@ namespace BGServ
                 }
                 Image[] directionImage =
                 {
-                    new Bitmap(@"images\dev-0.png"),
-                    new Bitmap(@"images\dev-1.png"),
-                    new Bitmap(@"images\dev-2.png"),
-                    new Bitmap(@"images\dev-3.png"),
+                    new Bitmap(@"images\pol-0.png"),
+                    new Bitmap(@"images\pol-1.png"),
+                    new Bitmap(@"images\pol-2.png"),
+                    new Bitmap(@"images\pol-3.png"),
                 };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
@@ -149,10 +149,10 @@ namespace BGServ
                 }
                                 Image[] directionImage =
                 {
-                    new Bitmap(@"images\dev-0.png"),
-                    new Bitmap(@"images\dev-1.png"),
-                    new Bitmap(@"images\dev-2.png"),
-                    new Bitmap(@"images\dev-3.png"),
+                    new Bitmap(@"images\doc-0.png"),
+                    new Bitmap(@"images\doc-1.png"),
+                    new Bitmap(@"images\doc-2.png"),
+                    new Bitmap(@"images\doc-3.png"),
                 };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
@@ -195,10 +195,10 @@ namespace BGServ
                 }
                                 Image[] directionImage =
                 {
-                    new Bitmap(@"images\dev-0.png"),
-                    new Bitmap(@"images\dev-1.png"),
-                    new Bitmap(@"images\dev-2.png"),
-                    new Bitmap(@"images\dev-3.png"),
+                    new Bitmap(@"images\mayor-0.png"),
+                    new Bitmap(@"images\mayor-1.png"),
+                    new Bitmap(@"images\mayor-2.png"),
+                    new Bitmap(@"images\mayor-3.png"),
                 };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
@@ -218,10 +218,10 @@ namespace BGServ
                 }
                                 Image[] directionImage =
                 {
-                    new Bitmap(@"images\dev-0.png"),
-                    new Bitmap(@"images\dev-1.png"),
-                    new Bitmap(@"images\dev-2.png"),
-                    new Bitmap(@"images\dev-3.png"),
+                    new Bitmap(@"images\thief-0.png"),
+                    new Bitmap(@"images\thief-1.png"),
+                    new Bitmap(@"images\thief-2.png"),
+                    new Bitmap(@"images\thief-3.png"),
                 };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
@@ -241,10 +241,10 @@ namespace BGServ
                 }
                                 Image[] directionImage =
                 {
-                    new Bitmap(@"images\dev-0.png"),
-                    new Bitmap(@"images\dev-1.png"),
-                    new Bitmap(@"images\dev-2.png"),
-                    new Bitmap(@"images\dev-3.png"),
+                    new Bitmap(@"images\mass-0.png"),
+                    new Bitmap(@"images\mass-1.png"),
+                    new Bitmap(@"images\mass-2.png"),
+                    new Bitmap(@"images\mass-3.png"),
                 };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
@@ -264,10 +264,10 @@ namespace BGServ
                 }
                                 Image[] directionImage =
                 {
-                    new Bitmap(@"images\dev-0.png"),
-                    new Bitmap(@"images\dev-1.png"),
-                    new Bitmap(@"images\dev-2.png"),
-                    new Bitmap(@"images\dev-3.png"),
+                    new Bitmap(@"images\rapist-0.png"),
+                    new Bitmap(@"images\rapist-1.png"),
+                    new Bitmap(@"images\rapist-2.png"),
+                    new Bitmap(@"images\rapist-3.png"),
                 };
                 int randomLocation = rand.Next(0, Map.Instance.WalkableTiles.Count);
                 Tile foundCharacter = Map.Instance.WalkableTiles[randomLocation];
