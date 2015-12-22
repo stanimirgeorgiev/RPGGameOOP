@@ -23,17 +23,17 @@ namespace BGServ
             InitializeComponent();
             Image[] directionImage =
                 {
-                    new Bitmap(@"images\dev-0.png"),
-                    new Bitmap(@"images\dev-1.png"),
-                    new Bitmap(@"images\dev-2.png"),
-                    new Bitmap(@"images\dev-3.png"),
+                    new Bitmap(@"images\play-0.png"),
+                    new Bitmap(@"images\play-1.png"),
+                    new Bitmap(@"images\play-2.png"),
+                    new Bitmap(@"images\play-3.png"),
                 };
             Game.SetForm(this, new Developer(1, "Pesho", "Peshev", 25, BulgarianReality.Enums.Gender.Male, new BulgarianReality.Items.Belongings.Wallet(100), new Point(Config.GameConfig.PlayerStartX, Config.GameConfig.PlayerStartY), directionImage));
             Game.Instance.Player.Image = Game.Instance.Player.ImageDirection[Game.Instance.Player.Direction];
             Game.Instance.Run();
             this.events = new BGSurvEvent();
             timer.Tick += new EventHandler(timer1_Tick);
-           
+
             timer.Enabled = true;
             timer.Interval = Config.GameConfig.TimerTick;
             timer.Start();
@@ -42,7 +42,7 @@ namespace BGServ
             realTimer.Enabled = true;
             realTimer.Interval = Config.GameConfig.RealTick;
             realTimer.Start();
-            
+
         }
         //private void Playground_KeyDown(object sender, KeyEventArgs e)
         //{
@@ -56,11 +56,9 @@ namespace BGServ
             this.label3.Text = Game.Instance.Player.Health.ToString();
             if (Game.Instance.BotInAction != null)
             {
-                
-            Game.Instance.Bots.Add(Game.Instance.BotInAction);
-            //Map.Instance.WorldMap[this.BotInAction.Location.Y/Config.GameConfig.TileSize][
-            //    this.BotInAction.Location.X/Config.GameConfig.TileSize].PlayerId = 0;
-            Game.Instance.BotInAction = null;
+
+                Game.Instance.Bots.Add(Game.Instance.BotInAction);
+                Game.Instance.BotInAction = null;
             }
         }
 
@@ -69,24 +67,24 @@ namespace BGServ
             this.events.HandleKeyPress(e);
             if (Game.Instance.Player.InAction)
             {
-                
-                if(Game.Instance.Player.Oponent == null)
+
+                if (Game.Instance.Player.Oponent == null)
                 {
                     this.pictureBox1.Load(Game.Instance.Player.CollisionImage);
                     this.label10.Text = Game.Instance.Player.MeetMsg;
                     this.groupBox2.Text = Game.Instance.Player.BuilDingName;
-                    
+
                 }
                 else
                 {
                     this.pictureBox1.Load(Game.Instance.Player.CollisionImage);
-                   // this.label10.Text = Game.Instance.Player.Oponent.Firstname + " " + Game.Instance.Player.Oponent.Lastname;
+                    // this.label10.Text = Game.Instance.Player.Oponent.Firstname + " " + Game.Instance.Player.Oponent.Lastname;
                     this.groupBox2.Text = Game.Instance.Player.Oponent.Firstname + " " + Game.Instance.Player.Oponent.Lastname;
                     this.label10.Text = Game.Instance.Player.Oponent.MeetMsg;
                 }
                 Game.Instance.Player.Oponent = null;
-                
-           }
+
+            }
             else
             {
                 this.pictureBox1.Load(@"images\default.png");
@@ -94,9 +92,9 @@ namespace BGServ
                 this.label10.Text = "";
             }
             Game.Instance.Player.InAction = false;
-            
-            
-            
+
+
+
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -105,7 +103,7 @@ namespace BGServ
             this.label4.Text = Game.Instance.Player.Wallet.Balance.ToString();
         }
 
-       
+
 
     }
 }
