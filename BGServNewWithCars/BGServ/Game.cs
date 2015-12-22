@@ -247,6 +247,7 @@ namespace BGServ
 
             }
 
+
             this.designer.DrawMap(Map.Instance.CurrentMap(Game.Instance.Player));
             this.designer.DrawBots(Game.player, Map.Instance.CurrentMap(Game.Instance.Player), this.Bots);
             //this.designer.DrawCars(Game.player, Map.Instance.CurrentMap(Game.Instance.Player), this.Cars);
