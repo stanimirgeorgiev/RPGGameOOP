@@ -54,6 +54,14 @@ namespace BGServ
 
             Game.Instance.MoveBots();
             this.label3.Text = Game.Instance.Player.Health.ToString();
+            if (Game.Instance.BotInAction != null)
+            {
+                
+            Game.Instance.Bots.Add(Game.Instance.BotInAction);
+            //Map.Instance.WorldMap[this.BotInAction.Location.Y/Config.GameConfig.TileSize][
+            //    this.BotInAction.Location.X/Config.GameConfig.TileSize].PlayerId = 0;
+            Game.Instance.BotInAction = null;
+            }
         }
 
         private void Playground_KeyDown_1(object sender, KeyEventArgs e)
