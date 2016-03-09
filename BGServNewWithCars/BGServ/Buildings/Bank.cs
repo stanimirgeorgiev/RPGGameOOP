@@ -5,7 +5,7 @@ namespace BulgarianReality.Buildings
 {
     using System.Drawing;
 
-    public class Bank : Building
+    public class Bank : MapTile
     { 
         private readonly IList<Account> accounts;
 

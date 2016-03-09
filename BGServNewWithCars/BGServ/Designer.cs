@@ -53,7 +53,7 @@ namespace BGServ
 
                 for (int x = 0; x < Config.GameConfig.GridX; x++)
                 {
-                    device.DrawImage(map[y][x].Building.Image, x * Config.GameConfig.TileSize, y * Config.GameConfig.TileSize);
+                    device.DrawImage(map[y][x].MapTile.Image, x * Config.GameConfig.TileSize, y * Config.GameConfig.TileSize);
                 }
             }
 

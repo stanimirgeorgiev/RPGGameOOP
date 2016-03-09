@@ -21,7 +21,7 @@ namespace BGServ
         }
         public void DetectColisionWithBuilding(Point check)
         {
-            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Bank)
+            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].MapTile is Bank)
             {
                 Game.Instance.Player.CollisionImage = @"images\credit.png";
                 Game.Instance.Player.InAction = true;
@@ -29,7 +29,7 @@ namespace BGServ
                 this.action = new Action("bank");
                 Game.Instance.Player.MeetMsg = this.action.Msgs["bank"];
             }
-            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Hospital)
+            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].MapTile is Hospital)
             {
                 Game.Instance.Player.CollisionImage = @"images\HospitalAvatar.png";
                 Game.Instance.Player.InAction = true;
@@ -37,7 +37,7 @@ namespace BGServ
                 this.action = new Action("hospital");
                 Game.Instance.Player.MeetMsg = this.action.Msgs["hospital"];
             }
-            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Office)
+            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].MapTile is Office)
             {
                 Game.Instance.Player.CollisionImage = @"images\office.jpg";
                 Game.Instance.Player.InAction = true;
@@ -45,7 +45,7 @@ namespace BGServ
                 this.action = new Action("office");
                 Game.Instance.Player.MeetMsg = this.action.Msgs["office"];
             }
-            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Supermarket)
+            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].MapTile is Supermarket)
             {
                 Game.Instance.Player.CollisionImage = @"images\metrocash.jpg";
                 Game.Instance.Player.InAction = true;
@@ -53,7 +53,7 @@ namespace BGServ
                 this.action = new Action("supermarket");
                 Game.Instance.Player.MeetMsg = this.action.Msgs["supermarket"];
             }
-            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Coffee)
+            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].MapTile is Coffee)
             {
                 Game.Instance.Player.CollisionImage = @"images\Coffee.jpg";
                 Game.Instance.Player.InAction = true;
@@ -61,7 +61,7 @@ namespace BGServ
                 this.action = new Action("coffee");
                 Game.Instance.Player.MeetMsg = this.action.Msgs["coffee"];
             }
-            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is Restaurant)
+            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].MapTile is Restaurant)
             {
                 Game.Instance.Player.CollisionImage = @"images\Restaurant.jpg";
                 Game.Instance.Player.InAction = true;
@@ -69,7 +69,7 @@ namespace BGServ
                 this.action = new Action("restaurant");
                 Game.Instance.Player.MeetMsg = this.action.Msgs["restaurant"];
             }
-            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].Building is PoliceStation)
+            if (Map.Instance.WorldMap[check.Y / Config.GameConfig.TileSize][check.X / Config.GameConfig.TileSize].MapTile is PoliceStation)
             {
                 Game.Instance.Player.CollisionImage = @"images\PoliceAvatar.png";
                 Game.Instance.Player.InAction = true;

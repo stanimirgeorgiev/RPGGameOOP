@@ -2,7 +2,7 @@
 
 namespace BulgarianReality.Buildings
 {
-    public class ParkTile : Building
+    public class ParkTile : MapTile
     {
         public ParkTile()
         {

@@ -39,6 +39,7 @@ namespace BGServ
             timer.Enabled = true;
             timer.Interval = Config.GameConfig.TimerTick;
             timer.Start();
+           
             realTimer.Tick += new EventHandler(timer2_Tick);
 
             realTimer.Enabled = true;
@@ -59,7 +60,6 @@ namespace BGServ
             this.label3.Text = Game.Instance.Player.Health.ToString();
             if (Game.Instance.BotInAction != null)
             {
-
                 Game.Instance.Bots.Add(Game.Instance.BotInAction);
                 Game.Instance.BotInAction = null;
             }
@@ -76,7 +76,6 @@ namespace BGServ
                     this.pictureBox1.Load(Game.Instance.Player.CollisionImage);
                     this.label10.Text = Game.Instance.Player.MeetMsg;
                     this.groupBox2.Text = Game.Instance.Player.BuilDingName;
-
                 }
                 else
                 {

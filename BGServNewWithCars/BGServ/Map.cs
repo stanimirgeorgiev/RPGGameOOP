@@ -74,7 +74,7 @@ namespace BGServ
         }
         public void LoadMap()
         {
-            Building dummyBuilding = new DummyBuilding();
+            MapTile dummyMapTile = new DummyMapTile();
             AlleyTile alleyTile = new AlleyTile();
             ParkTile parkTile = new ParkTile();
             WaterTile waterTile = new WaterTile();
@@ -88,7 +88,7 @@ namespace BGServ
                 this.worldMap[raw] = new Tile[Config.GameConfig.GridMapX];
                 for (int column = 0; column < Config.GameConfig.GridMapX; column++)
                 {
-                    this.worldMap[raw][column] = new Tile(new Point(raw * Config.GameConfig.TileSize, column * Config.GameConfig.TileSize), 0, dummyBuilding, false,false);
+                    this.worldMap[raw][column] = new Tile(new Point(raw * Config.GameConfig.TileSize, column * Config.GameConfig.TileSize), 0, dummyMapTile, false,false);
                 }
             }
 
@@ -107,7 +107,7 @@ namespace BGServ
                                 this.NonWalkableTiles.Add(this.worldMap[y][x]);
                                 break;
                             case 49:
-                                this.worldMap[y][x] = new Tile(new Point(x * Config.GameConfig.TileSize, y * Config.GameConfig.TileSize), 0, dummyBuilding, dummyBuilding.Walkable, false);
+                                this.worldMap[y][x] = new Tile(new Point(x * Config.GameConfig.TileSize, y * Config.GameConfig.TileSize), 0, dummyMapTile, dummyMapTile.Walkable, false);
                                 this.DummyBuildings.Add(this.worldMap[y][x]);
                                 break;
                             case 50:

@@ -33,7 +33,7 @@ namespace BGServ
                 }
                 int randomLocation = rand.Next(0, Map.Instance.DummyBuildings.Count);
                 Tile foundBuilding = Map.Instance.DummyBuildings[randomLocation];
-                Building hospital = new Hospital(i, new Bitmap(@"images\Hospital.png"), foundBuilding.Location);
+                MapTile hospital = new Hospital(i, new Bitmap(@"images\Hospital.png"), foundBuilding.Location);
                 Map.Instance.WorldMap[foundBuilding.Location.Y / Config.GameConfig.TileSize][foundBuilding.Location.X / Config.GameConfig.TileSize] = new Tile(hospital.Location,
                     foundBuilding.PlayerId, hospital, true,false);
 
@@ -47,7 +47,7 @@ namespace BGServ
                 }
                 int randomLocation = rand.Next(0, Map.Instance.DummyBuildings.Count);
                 Tile foundBuilding = Map.Instance.DummyBuildings[randomLocation];
-                Building police = new PoliceStation(i, new Bitmap(@"images\Police.png"), foundBuilding.Location);
+                MapTile police = new PoliceStation(i, new Bitmap(@"images\Police.png"), foundBuilding.Location);
                 Map.Instance.WorldMap[foundBuilding.Location.Y / Config.GameConfig.TileSize][foundBuilding.Location.X / Config.GameConfig.TileSize] = new Tile(police.Location,
                     foundBuilding.PlayerId, police, true, false);
                 Map.Instance.DummyBuildings.RemoveAt(randomLocation);
@@ -61,7 +61,7 @@ namespace BGServ
                 }
                 int randomLocation = rand.Next(0, Map.Instance.DummyBuildings.Count);
                 Tile foundBuilding = Map.Instance.DummyBuildings[randomLocation];
-                Building restaurant = new Restaurant(i, new Bitmap(@"images\Retaurant.png"), foundBuilding.Location);
+                MapTile restaurant = new Restaurant(i, new Bitmap(@"images\Retaurant.png"), foundBuilding.Location);
                 Map.Instance.WorldMap[foundBuilding.Location.Y / Config.GameConfig.TileSize][foundBuilding.Location.X / Config.GameConfig.TileSize] = new Tile(restaurant.Location,
                     foundBuilding.PlayerId, restaurant, true, false);
                 Map.Instance.DummyBuildings.RemoveAt(randomLocation);
@@ -75,7 +75,7 @@ namespace BGServ
                 }
                 int randomLocation = rand.Next(0, Map.Instance.DummyBuildings.Count);
                 Tile foundBuilding = Map.Instance.DummyBuildings[randomLocation];
-                Building office = new Office(i, new Bitmap(@"images\Office.png"), foundBuilding.Location);
+                MapTile office = new Office(i, new Bitmap(@"images\Office.png"), foundBuilding.Location);
                 Map.Instance.WorldMap[foundBuilding.Location.Y / Config.GameConfig.TileSize][foundBuilding.Location.X / Config.GameConfig.TileSize] = new Tile(office.Location,
                     foundBuilding.PlayerId, office, true, false);
                 Map.Instance.DummyBuildings.RemoveAt(randomLocation);
@@ -89,7 +89,7 @@ namespace BGServ
                 }
                 int randomLocation = rand.Next(0, Map.Instance.DummyBuildings.Count);
                 Tile foundBuilding = Map.Instance.DummyBuildings[randomLocation];
-                Building office = new Coffee(i, new Bitmap(@"images\Coffee.png"), foundBuilding.Location);
+                MapTile office = new Coffee(i, new Bitmap(@"images\Coffee.png"), foundBuilding.Location);
                 Map.Instance.WorldMap[foundBuilding.Location.Y / Config.GameConfig.TileSize][foundBuilding.Location.X / Config.GameConfig.TileSize] = new Tile(office.Location,
                     foundBuilding.PlayerId, office, true, false);
                 Map.Instance.DummyBuildings.RemoveAt(randomLocation);
@@ -103,7 +103,7 @@ namespace BGServ
                 }
                 int randomLocation = rand.Next(0, Map.Instance.DummyBuildings.Count);
                 Tile foundBuilding = Map.Instance.DummyBuildings[randomLocation];
-                Building bank = new Bank(i, new Bitmap(@"images\Bank.png"), foundBuilding.Location);
+                MapTile bank = new Bank(i, new Bitmap(@"images\Bank.png"), foundBuilding.Location);
                 Map.Instance.WorldMap[foundBuilding.Location.Y / Config.GameConfig.TileSize][foundBuilding.Location.X / Config.GameConfig.TileSize] = new Tile(bank.Location,
                     foundBuilding.PlayerId, bank, true, false);
                 Map.Instance.DummyBuildings.RemoveAt(randomLocation);

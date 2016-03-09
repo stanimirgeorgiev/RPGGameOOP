@@ -2,7 +2,7 @@
 {
     using System.Drawing;
 
-    public class PoliceStation : Building
+    public class PoliceStation : MapTile
     {
         public PoliceStation(int id, Image image, Point location)
             : base(id, image, location)

@@ -69,9 +69,9 @@
     </Compile>
     <Compile Include="Buildings\Airport.cs" />
     <Compile Include="Buildings\Bank.cs" />
-    <Compile Include="Buildings\Building.cs" />
+    <Compile Include="Buildings\MapTile.cs" />
     <Compile Include="Buildings\BusStation.cs" />
-    <Compile Include="Buildings\DummyBuilding.cs" />
+    <Compile Include="Buildings\DummyMapTile.cs" />
     <Compile Include="Buildings\Home.cs" />
     <Compile Include="Buildings\Hospital.cs" />
     <Compile Include="Buildings\Coffee.cs" />

@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace BulgarianReality.Buildings
 {
-    public class DummyBuilding : Building
+    public class DummyMapTile : MapTile
     {
         private Image image = new Bitmap(@"images\DummyTile.png");
 

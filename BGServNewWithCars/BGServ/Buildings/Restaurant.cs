@@ -5,7 +5,7 @@
 
     using Items;
 
-    public class Restaurant : Building
+    public class Restaurant : MapTile
     {
         private readonly IList<Item> items;
          

@@ -6,7 +6,7 @@ namespace BulgarianReality.Towns
 {
     public abstract class Town
     {
-        private IList<Building> buildings;
+        private IList<MapTile> buildings;
         private IList<Human> humans;
         
 

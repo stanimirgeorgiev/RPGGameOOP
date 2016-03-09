@@ -10,7 +10,7 @@ using BulgarianReality.Buildings;
 
 namespace BulgarianReality.Buildings
 {
-    class AlleyTile : Building
+    class AlleyTile : MapTile
     {
         public AlleyTile()
         {

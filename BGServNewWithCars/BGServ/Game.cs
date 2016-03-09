@@ -44,6 +44,8 @@ namespace BGServ
         public HashSet<Human> Bots { get { return this.bots; } set { this.bots = value; } }
         public Human Player { get { return Game.player; } set { Game.player = value; } }
         public Form GameForm { get; set; }
+
+
         public void Run()
         {
 
@@ -97,9 +99,6 @@ namespace BGServ
             int[] directionSouth = { 0, 1, 3 };
             bool botInActionFound = false;
             Human botToRemove = new DummyHuman();
-
-
-
 
             foreach (var bot in this.Bots)
             {

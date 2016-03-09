@@ -2,7 +2,7 @@
 {
     using System.Drawing;
 
-    public class Airport : Building
+    public class Airport : MapTile
     {
         public Airport(int id, Image image, Point location)
             : base(id, image, location)

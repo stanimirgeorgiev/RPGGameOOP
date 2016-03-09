@@ -4,7 +4,7 @@
     using System.Drawing;
     using Items.Drugs;
 
-    public class Hospital : Building
+    public class Hospital : MapTile
     {
         private readonly IList<Drug> drugs;
          

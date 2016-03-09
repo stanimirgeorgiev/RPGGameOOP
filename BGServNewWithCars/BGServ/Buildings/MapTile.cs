@@ -2,16 +2,16 @@
 
 namespace BulgarianReality.Buildings
 {
-    public abstract class Building
+    public abstract class MapTile
     {
         private Point location;
         private Image image;
         private int id;
 
-        protected Building() : this(0,new Bitmap(@"images\DummyTile.png"),new Point(0,0))
+        protected MapTile() : this(0,new Bitmap(@"images\DummyTile.png"),new Point(0,0))
         {
         }
-        protected Building(int id, Image image, Point location)
+        protected MapTile(int id, Image image, Point location)
         {
             this.Id = id;
             this.Image = image;

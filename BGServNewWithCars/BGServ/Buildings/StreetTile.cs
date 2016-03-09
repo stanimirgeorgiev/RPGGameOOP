@@ -10,7 +10,7 @@ using BulgarianReality.Buildings;
 
 namespace BulgarianReality.Buildings
 {
-    class StreetTile : Building
+    class StreetTile : MapTile
     {
         public StreetTile(Boolean walkable)
         {
